@@ -30,7 +30,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--crimson);text-transform:uppercase;margin-bottom:20px;animation:fade-in 1s ease .3s both}
 .hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(32px,6vw,68px);font-weight:900;line-height:1.05;color:var(--pale-gold);letter-spacing:.05em;margin-bottom:8px;animation:fade-up 1s ease .5s both;text-shadow:0 0 60px rgba(201,168,76,.2)}
 .hero-sub{font-family:'Cinzel Decorative',serif;font-size:clamp(14px,2.5vw,22px);color:var(--crimson);letter-spacing:.1em;margin-bottom:28px;animation:fade-up 1s ease .7s both}
-.hero-desc{font-family:'IM Fell English',serif;font-style:italic;font-size:18px;color:var(--silver);max-width:560px;margin:0 auto 48px;line-height:1.8;animation:fade-up 1s ease .9s both}
+.hero-desc{font-family:'IM Fell English',serif;font-size:18px;color:var(--silver);max-width:560px;margin:0 auto 48px;line-height:1.8;animation:fade-up 1s ease .9s both}
 @keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
 .oracle-stats{display:flex;justify-content:center;gap:48px;margin-bottom:60px;animation:fade-in 1s ease 1.2s both}
@@ -42,7 +42,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .ticker-label{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;padding:0 20px;background:var(--crimson);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--white);text-transform:uppercase;z-index:2;white-space:nowrap}
 .ticker-track{display:flex;gap:80px;animation:ticker 40s linear infinite;padding-left:140px;white-space:nowrap}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-item{display:flex;align-items:center;gap:12px;font-family:'IM Fell English',serif;font-style:italic;font-size:14px;color:var(--mist)}
+.ticker-item{display:flex;align-items:center;gap:12px;font-family:'IM Fell English',serif;font-size:14px;color:var(--mist)}
 .ticker-prob{font-family:'Space Mono',monospace;font-size:11px;font-style:normal;padding:2px 8px;border-radius:2px;font-weight:700}
 .prob-high{background:rgba(139,26,26,.4);color:#ff6b6b}
 .prob-med{background:rgba(201,168,76,.2);color:var(--gold)}
@@ -64,27 +64,27 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .prophecy-card:nth-child(4){animation-delay:.4s}
 @keyframes card-appear{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
 .card-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.card-category{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:3px 10px;border-radius:2px}
+.card-category{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:3px 10px;border-radius:2px}
 .cat-geopolitics{background:rgba(139,26,26,.3);color:#ff8080}
 .cat-climate{background:rgba(0,100,60,.3);color:#80ffb0}
 .cat-tech{background:rgba(40,60,139,.3);color:#80a0ff}
 .cat-economy{background:rgba(139,100,0,.3);color:var(--gold)}
 .cat-society{background:rgba(100,0,139,.3);color:#d080ff}
-.card-date{font-family:'Space Mono',monospace;font-size:9px;color:var(--silver);opacity:.5;margin-left:auto}
-.card-title{font-family:'Cinzel',serif;font-size:16px;color:var(--pale-gold);line-height:1.4;margin-bottom:10px;font-weight:600}
-.card-excerpt{font-family:'IM Fell English',serif;font-style:italic;font-size:14px;color:var(--silver);line-height:1.7;margin-bottom:18px;opacity:.8}
+.card-date{font-family:'Space Mono',monospace;font-size:10px;color:var(--silver);opacity:.6;margin-left:auto}
+.card-title{font-family:'Cinzel',serif;font-size:19px;color:var(--pale-gold);line-height:1.45;margin-bottom:12px;font-weight:600}
+.card-excerpt{font-family:'IM Fell English',serif;font-style:italic;font-size:17px;color:var(--silver);line-height:1.85;margin-bottom:18px;opacity:.85}
 .card-footer{display:flex;align-items:center;justify-content:space-between}
 .probability-bar-wrap{flex:1;margin-right:20px}
-.prob-label{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:9px;color:var(--silver);opacity:.6;margin-bottom:4px}
-.probability-bar{height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.prob-label{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:11px;color:var(--silver);opacity:.7;margin-bottom:5px}
+.probability-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
 .probability-fill{height:100%;border-radius:2px;transition:width 1s ease;background:var(--fill-color,var(--gold))}
 .fill-high{--fill-color:#ff6b6b}
 .fill-med{--fill-color:var(--gold)}
 .fill-low{--fill-color:var(--silver)}
-.card-votes{font-family:'Space Mono',monospace;font-size:10px;color:var(--silver);opacity:.5;white-space:nowrap}
+.card-votes{font-family:'Space Mono',monospace;font-size:11px;color:var(--silver);opacity:.6;white-space:nowrap}
 .oracle-input-section{background:rgba(13,10,16,.9);border:1px solid rgba(201,168,76,.15);padding:32px;margin-bottom:48px}
 .oracle-input-section h3{font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--gold);margin-bottom:6px;letter-spacing:.05em}
-.oracle-input-section p{font-family:'IM Fell English',serif;font-style:italic;font-size:13px;color:var(--silver);opacity:.7;margin-bottom:20px;line-height:1.6}
+.oracle-input-section p{font-family:'IM Fell English',serif;font-size:13px;color:var(--silver);opacity:.7;margin-bottom:20px;line-height:1.6}
 .oracle-textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.2);color:var(--mist);font-family:'IM Fell English',serif;font-size:15px;padding:16px;resize:none;height:100px;outline:none;transition:border-color .3s;margin-bottom:12px}
 .oracle-textarea::placeholder{color:rgba(168,164,184,.3);font-style:italic}
 .oracle-textarea:focus{border-color:rgba(201,168,76,.5)}
@@ -93,7 +93,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .oracle-verdict{background:linear-gradient(135deg,rgba(139,26,26,.15),rgba(13,10,16,.9));border:1px solid rgba(139,26,26,.3);padding:28px;margin-bottom:28px;text-align:center}
 .verdict-eye{margin:0 auto 16px;width:48px;height:48px;animation:pulse-eye 3s ease-in-out infinite}
 .verdict-title{font-family:'Cinzel Decorative',serif;font-size:11px;letter-spacing:.2em;color:var(--crimson);text-transform:uppercase;margin-bottom:12px}
-.verdict-text{font-family:'IM Fell English',serif;font-style:italic;font-size:15px;color:var(--pale-gold);line-height:1.7;margin-bottom:16px}
+.verdict-text{font-family:'IM Fell English',serif;font-size:15px;color:var(--pale-gold);line-height:1.7;margin-bottom:16px}
 .verdict-confidence{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--silver);opacity:.5;text-transform:uppercase}
 .accuracy-panel{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);padding:24px;margin-bottom:28px}
 .accuracy-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
@@ -102,8 +102,8 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .dot-fulfilled{background:#4caf50;box-shadow:0 0 6px rgba(76,175,80,.5)}
 .dot-pending{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,.4)}
 .dot-failed{background:var(--blood);box-shadow:0 0 6px rgba(192,57,43,.4)}
-.acc-text{font-family:'IM Fell English',serif;font-style:italic;font-size:13px;color:var(--silver);flex:1;line-height:1.4;opacity:.8}
-.acc-badge{font-family:'Space Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;white-space:nowrap}
+.acc-text{font-family:'IM Fell English',serif;font-size:15px;color:var(--silver);flex:1;line-height:1.5;opacity:.85}
+.acc-badge{font-family:'Space Mono',monospace;font-size:10px;padding:3px 8px;border-radius:2px;white-space:nowrap}
 .badge-fulfilled{background:rgba(76,175,80,.2);color:#80ff84}
 .badge-pending{background:rgba(201,168,76,.15);color:var(--gold)}
 .badge-failed{background:rgba(192,57,43,.2);color:#ff8080}
@@ -114,7 +114,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .cat-tag:hover,.cat-tag.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.05)}
 footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
 .footer-brand{font-family:'Cinzel Decorative',serif;font-size:12px;letter-spacing:.2em;color:var(--gold);opacity:.6}
-.footer-tagline{font-family:'IM Fell English',serif;font-style:italic;font-size:13px;color:var(--silver);opacity:.4}
+.footer-tagline{font-family:'IM Fell English',serif;font-size:13px;color:var(--silver);opacity:.4}
 .footer-links{display:flex;gap:28px}
 .footer-links a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--silver);text-decoration:none;text-transform:uppercase;opacity:.4;transition:opacity .2s}
 .footer-links a:hover{opacity:.8}
@@ -124,13 +124,13 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 .modal-overlay.open .modal{transform:translateY(0)}
 .modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--silver);font-size:20px;cursor:pointer;opacity:.5;transition:opacity .2s;font-family:'Cinzel',serif}
 .modal-close:hover{opacity:1}
-.modal h2{font-family:'Cinzel Decorative',serif;font-size:18px;color:var(--pale-gold);margin-bottom:8px;letter-spacing:.05em}
+.modal h2{font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--pale-gold);margin-bottom:8px;letter-spacing:.05em}
 .modal-category-display{margin-bottom:16px}
-.modal-excerpt{font-family:'IM Fell English',serif;font-style:italic;font-size:15px;color:var(--silver);line-height:1.8;margin-bottom:28px;opacity:.8}
-.modal-analysis-title{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;opacity:.7}
-.modal-analysis{font-family:'IM Fell English',serif;font-size:15px;color:var(--mist);line-height:1.8;margin-bottom:28px;border-left:2px solid rgba(201,168,76,.2);padding-left:20px}
+.modal-excerpt{font-family:'IM Fell English',serif;font-style:italic;font-size:18px;color:var(--silver);line-height:1.85;margin-bottom:28px;opacity:.85}
+.modal-analysis-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;opacity:.7}
+.modal-analysis{font-family:'IM Fell English',serif;font-size:16px;color:var(--mist);line-height:1.85;margin-bottom:28px;border-left:2px solid rgba(201,168,76,.2);padding-left:20px}
 .modal-vote-section{display:flex;gap:12px}
-.vote-btn{flex:1;background:transparent;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:12px;cursor:pointer;transition:all .3s}
+.vote-btn{flex:1;background:transparent;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:14px;cursor:pointer;transition:all .3s}
 .vote-fulfill{border:1px solid rgba(76,175,80,.4);color:#80ff84}
 .vote-fulfill:hover{background:rgba(76,175,80,.15)}
 .vote-doubt{border:1px solid rgba(192,57,43,.4);color:#ff8080}
