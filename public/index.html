@@ -171,13 +171,13 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   <div class="hero-sub">What the oracle foresees</div>
   <p class="hero-desc">AI analyses global events, historical patterns, and emerging signals to issue probability-scored prophecies. Each is tracked. Each is judged. Nothing is forgotten.</p>
   <div class="oracle-stats">
-    <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Prophecies Issued</span></div>
+    <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">Prophecies Issued</span></div>
     <div class="stat-divider"></div>
     <div class="stat-item"><span class="stat-num">—</span><span class="stat-label">Oracle Accuracy</span></div>
     <div class="stat-divider"></div>
     <div class="stat-item"><span class="stat-num">0</span><span class="stat-label">Fulfilled</span></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Pending Judgment</span></div>
+    <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">Pending Judgment</span></div>
   </div>
 </div>
 <div class="ticker-wrap">
@@ -245,6 +245,51 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments</div>
         </div>
       </div>
+      <div class="prophecy-card danger" onclick="openModal(3)">
+        <div class="card-meta"><span class="card-category cat-geopolitics">Governance</span><span class="card-date">Issued: June 5, 2026 · Resolves June 21</span></div>
+        <div class="card-title">Abelardo de la Espriella will win the Colombia presidential runoff on June 21 2026</div>
+        <div class="card-excerpt">"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>82%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:82%"></div></div></div>
+          <div class="card-votes">0 judgments · Polymarket: 82%</div>
+        </div>
+      </div>
+      <div class="prophecy-card danger" onclick="openModal(4)">
+        <div class="card-meta"><span class="card-category cat-geopolitics">Conflict</span><span class="card-date">Issued: June 5, 2026 · Resolves June 30</span></div>
+        <div class="card-title">No formal Russia-Ukraine ceasefire will be signed before June 30 2026</div>
+        <div class="card-excerpt">"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>91%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:91%"></div></div></div>
+          <div class="card-votes">0 judgments · Polymarket: 88% No</div>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(5)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19</span></div>
+        <div class="card-title">Neither the USA nor Mexico will reach the 2026 FIFA World Cup semi-finals</div>
+        <div class="card-excerpt">"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>76%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:76%"></div></div></div>
+          <div class="card-votes">0 judgments · FanDuel: USA +6000</div>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(6)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19</span></div>
+        <div class="card-title">Spain or France will win the 2026 FIFA World Cup</div>
+        <div class="card-excerpt">"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
+          <div class="card-votes">0 judgments · FanDuel: Spain +475, France +500</div>
+        </div>
+      </div>
+      <div class="prophecy-card neutral" onclick="openModal(7)">
+        <div class="card-meta"><span class="card-category cat-geopolitics">Governance</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
+        <div class="card-title">The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026</div>
+        <div class="card-excerpt">"The two chambers of power turn against each other over blood spent in distant deserts. What the executive wages, the legislature refuses to fund. The oldest fault line of the republic reopens."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>73%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:73%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="sidebar">
@@ -265,6 +310,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Taiwan Strait incident forces UN Security Council session</div><span class="acc-badge badge-pending">Pending</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">EU AI Act triggers first major action against US tech firm</div><span class="acc-badge badge-pending">Pending</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">G20 geoeconomic confrontation severs bilateral trade deal</div><span class="acc-badge badge-pending">Pending</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">De la Espriella wins Colombia runoff June 21</div><span class="acc-badge badge-pending">Jun 21</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">No Russia-Ukraine ceasefire before June 30</div><span class="acc-badge badge-pending">Jun 30</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">USA and Mexico eliminated before World Cup semis</div><span class="acc-badge badge-pending">Jul 19</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Spain or France wins the 2026 FIFA World Cup</div><span class="acc-badge badge-pending">Jul 19</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">US House Iran vote triggers constitutional crisis</div><span class="acc-badge badge-pending">Dec 31</span></div>
     </div>
     <div class="category-panel">
       <div class="category-title">Domains of Prophecy</div>
@@ -295,9 +345,14 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 const starsEl=document.getElementById('stars');
 for(let i=0;i<180;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;--max-op:${.2+Math.random()*.5}`;starsEl.appendChild(s)}
 const prophecies=[
-  {title:"A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026",category:"Geopolitics",catClass:"cat-geopolitics",excerpt:"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks — and in that blink, a threshold is crossed that cannot be uncrossed.",analysis:"Taiwan detected 202 Chinese military aircraft around the island in April 2026, of which at least 145 crossed the unofficial median line. The PLA has conducted larger and more frequent drills simulating blockades and precision strikes. A Dutch frigate was tracked by Chinese naval and air forces in June 2026. Historical pattern analysis shows triggering incidents follow sustained median line crossings at 71% frequency within 8 months.",confidence:71},
-  {title:"The EU AI Act August 2026 enforcement deadline will trigger the first major regulatory action against a US technology company in Europe",category:"Technology",catClass:"cat-tech",excerpt:"The scribes of the old continent have drawn their lines in the sand of law. What was built in haste and hubris now faces the weight of consequence. The first stone cast will echo across every shore where the machine has taken root.",analysis:"The EU AI Act enforcement deadline of August 2, 2026 is weeks away. The final Code of Practice for AI-generated content labeling is expected June 2026. Penalties reach €35M or 7% of global annual revenue — whichever is higher. Multiple independent legal sources confirm major companies are not ready. The EU acted within 90 days of GDPR enforcement opening. Base rate for action: 85%.",confidence:78},
-  {title:"A geoeconomic confrontation between two G20 nations will result in the first formal severance of a bilateral trade agreement in the post-WTO era",category:"Economy",catClass:"cat-economy",excerpt:"The merchants who once bowed to the same altar of open exchange now sharpen different blades. What took decades to weave is being unraveled in seasons. The loom itself is breaking.",analysis:"Geoeconomic confrontation tops 2026 global risk rankings, cited by 18% of experts as the risk most likely to trigger a global crisis. US tariffs, Chinese industrial overcapacity, and EU protectionist policy are simultaneously pressuring trade frameworks that have held since the WTO founding. Conditions for a formal bilateral rupture are at their highest recorded level.",confidence:62}
+  {title:"A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026",category:"Geopolitics",catClass:"cat-geopolitics",excerpt:"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks and in that blink a threshold is crossed that cannot be uncrossed.",analysis:"Taiwan detected 202 Chinese military aircraft around the island in April 2026, of which at least 145 crossed the unofficial median line. The PLA has conducted larger and more frequent drills simulating blockades and precision strikes. A Dutch frigate was tracked by Chinese naval and air forces in June 2026. Historical pattern analysis shows triggering incidents follow sustained median line crossings at 71% frequency within 8 months.",confidence:71},
+  {title:"The EU AI Act August 2026 enforcement deadline will trigger the first major regulatory action against a US technology company in Europe",category:"Technology",catClass:"cat-tech",excerpt:"The scribes of the old continent have drawn their lines in the sand of law. What was built in haste and hubris now faces the weight of consequence. The first stone cast will echo across every shore where the machine has taken root.",analysis:"The EU AI Act enforcement deadline of August 2, 2026 is weeks away. Penalties reach 35 million euros or 7% of global annual revenue, whichever is higher. Multiple independent legal sources confirm major companies are not ready. The EU acted within 90 days of GDPR enforcement opening. Base rate for action: 85%.",confidence:78},
+  {title:"A geoeconomic confrontation between two G20 nations will result in the first formal severance of a bilateral trade agreement in the post-WTO era",category:"Economy",catClass:"cat-economy",excerpt:"The merchants who once bowed to the same altar of open exchange now sharpen different blades. What took decades to weave is being unraveled in seasons. The loom itself is breaking.",analysis:"Geoeconomic confrontation tops 2026 global risk rankings, cited by 18% of experts as the risk most likely to trigger a global crisis. US tariffs, Chinese industrial overcapacity, and EU protectionist policy are simultaneously pressuring trade frameworks that have held since the WTO founding.",confidence:62},
+  {title:"Abelardo de la Espriella will win the Colombia presidential runoff on June 21 2026",category:"Governance",catClass:"cat-geopolitics",excerpt:"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm.",analysis:"De la Espriella surged to 82% favourite in prediction markets after capturing 43.7% of the first-round vote, defying pre-election polls. Centrist voters are more likely to break his way in the runoff. Trump endorsement reinforces momentum. Polymarket odds: 82% de la Espriella. Resolves June 21, 2026.",confidence:82},
+  {title:"No formal Russia-Ukraine ceasefire will be signed before June 30 2026",category:"Conflict",catClass:"cat-geopolitics",excerpt:"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper.",analysis:"Trader consensus prices a Russia-Ukraine ceasefire by end of 2026 at just 25.5%. US-mediated talks produced no breakthroughs on territorial concessions or security guarantees. Short-term pauses collapsed amid mutual violations. Polymarket: 88% No. Resolves June 30, 2026.",confidence:91},
+  {title:"Neither the USA nor Mexico will reach the 2026 FIFA World Cup semi-finals",category:"World Cup",catClass:"cat-society",excerpt:"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed.",analysis:"The USA is listed at +6000 and Mexico at +6500 to reach the World Cup final at FanDuel Sportsbook, among the longest odds in the tournament. Both host nations face elite European and South American opposition. Historical precedent shows host nations with weak international ranking rarely advance past the quarterfinals. Resolves July 19, 2026.",confidence:76},
+  {title:"Spain or France will win the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot.",analysis:"Spain at +475 and France at +500 are co-favourites at FanDuel Sportsbook. Both squads combine youth, tactical discipline, and tournament pedigree unmatched in this field. Germany, England, Brazil and Argentina represent the only realistic challengers. Resolves July 19, 2026 at MetLife Stadium.",confidence:58},
+  {title:"The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026",category:"Governance",catClass:"cat-geopolitics",excerpt:"The two chambers of power turn against each other over blood spent in distant deserts. What the executive wages, the legislature refuses to fund. The oldest fault line of the republic reopens.",analysis:"The US House voted this week to end the war in Iran, demonstrating a historic break between the Trump administration and the GOP-majority legislative body. A president continuing military operations against explicit congressional opposition creates a war powers confrontation not seen since Vietnam. Historical rate of constitutional crisis following such fractures: 73% within 6 months.",confidence:73}
 ];
 function openModal(idx){
   const p=prophecies[idx];
