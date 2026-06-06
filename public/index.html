@@ -153,37 +153,50 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 .divergence-flag{font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.05em;margin-left:4px}
 /* Mobile */
 @media(max-width:768px){
-  nav{padding:14px 20px}
+  nav{padding:12px 16px;flex-wrap:wrap}
   .nav-links{display:none}
-  .hero{padding:48px 20px 36px}
-  .hero h1{font-size:clamp(28px,8vw,52px)}
-  .hero-desc{font-size:15px}
-  .oracle-stats{gap:16px;flex-wrap:wrap;justify-content:center}
+  .nav-submit{font-size:9px;padding:7px 12px;letter-spacing:.1em}
+  .hero{padding:40px 16px 28px;text-align:left}
+  .hero h1{font-size:clamp(28px,8vw,48px);text-align:left}
+  .hero-sub{text-align:left}
+  .hero-desc{font-size:15px;text-align:left}
+  .oracle-eye{margin:0 0 16px 0}
+  .oracle-stats{gap:12px;flex-wrap:wrap;justify-content:flex-start}
+  .stat-item{min-width:80px}
   .stat-divider{display:none}
   .stat-num{font-size:22px}
-  .ticker-wrap{padding:10px 0}
-  .main-layout{display:block;padding:20px}
-  .feed{width:100%;margin-right:0}
-  .sidebar{width:100%;margin-top:32px}
-  .prophecy-card{padding:20px}
+  .stat-label{font-size:9px}
+  .ticker-wrap{padding:8px 0}
+  .ticker-item{font-size:11px}
+  .main-grid{display:grid;grid-template-columns:1fr;padding:16px;gap:28px}
+  .feed{width:100%;margin-right:0;order:1}
+  .sidebar{width:100%;order:2}
+  .prophecy-card{padding:18px}
   .card-title{font-size:17px}
   .card-excerpt{font-size:17px}
   .card-footer{flex-direction:column;align-items:flex-start;gap:8px}
-  .card-footer-links{margin-top:4px}
-  .modal-inner{width:95%;max-height:90vh;padding:24px 20px;overflow-y:auto}
+  .card-footer-links{margin-top:4px;gap:6px}
+  .market-link{font-size:9px;padding:4px 8px}
+  .modal-inner{width:96%;max-height:88vh;padding:20px 16px;overflow-y:auto}
   .modal h2{font-size:17px}
   .modal-excerpt{font-size:16px}
   .modal-analysis{font-size:15px}
-  .acc-text{font-size:14px}
+  .acc-text{font-size:13px}
+  .acc-badge{font-size:9px}
+  .accuracy-item{padding:8px 0}
   .category-tags{gap:6px}
   .cat-tag{font-size:9px;padding:5px 10px}
+  .oracle-verdict{padding:18px}
+  .verdict-text{font-size:15px}
+  .section-header{padding:0 16px 20px}
 }
 @media(max-width:480px){
   .hero h1{font-size:26px}
-  .prophecy-card{padding:16px}
+  .prophecy-card{padding:14px}
   .card-title{font-size:16px}
   .stat-num{font-size:20px}
-  .modal-inner{padding:16px 14px}
+  .modal-inner{padding:14px 12px}
+  .nav-sigil{font-size:10px;letter-spacing:.15em}
 }
 </head>
 <body>
