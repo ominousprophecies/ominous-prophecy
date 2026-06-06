@@ -141,7 +141,50 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 .vote-fulfill:hover{background:rgba(76,175,80,.15)}
 .vote-doubt{border:1px solid rgba(192,57,43,.4);color:#ff8080}
 .vote-doubt:hover{background:rgba(192,57,43,.15)}
-</style>
+/* Market links */
+.market-link{display:inline-flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:10px;text-decoration:none;border:1px solid;padding:4px 9px;border-radius:2px;transition:all .2s;white-space:nowrap}
+.market-link-poly{color:#00d4ff;border-color:rgba(0,212,255,.35)}
+.market-link-poly:hover{background:rgba(0,212,255,.1)}
+.market-link-fd{color:#1da1f2;border-color:rgba(29,161,242,.35)}
+.market-link-fd:hover{background:rgba(29,161,242,.1)}
+.market-link-dk{color:#f9c23c;border-color:rgba(249,194,60,.35)}
+.market-link-dk:hover{background:rgba(249,194,60,.1)}
+.card-footer-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.divergence-flag{font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.05em;margin-left:4px}
+/* Mobile */
+@media(max-width:768px){
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+  .hero{padding:48px 20px 36px}
+  .hero h1{font-size:clamp(28px,8vw,52px)}
+  .hero-desc{font-size:15px}
+  .oracle-stats{gap:16px;flex-wrap:wrap;justify-content:center}
+  .stat-divider{display:none}
+  .stat-num{font-size:22px}
+  .ticker-wrap{padding:10px 0}
+  .main-layout{display:block;padding:20px}
+  .feed{width:100%;margin-right:0}
+  .sidebar{width:100%;margin-top:32px}
+  .prophecy-card{padding:20px}
+  .card-title{font-size:17px}
+  .card-excerpt{font-size:17px}
+  .card-footer{flex-direction:column;align-items:flex-start;gap:8px}
+  .card-footer-links{margin-top:4px}
+  .modal-inner{width:95%;max-height:90vh;padding:24px 20px;overflow-y:auto}
+  .modal h2{font-size:17px}
+  .modal-excerpt{font-size:16px}
+  .modal-analysis{font-size:15px}
+  .acc-text{font-size:14px}
+  .category-tags{gap:6px}
+  .cat-tag{font-size:9px;padding:5px 10px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:26px}
+  .prophecy-card{padding:16px}
+  .card-title{font-size:16px}
+  .stat-num{font-size:20px}
+  .modal-inner{padding:16px 14px}
+}
 </head>
 <body>
 <div class="stars" id="stars"></div>
@@ -257,7 +300,10 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <div class="card-excerpt">"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm."</div>
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>82%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:82%"></div></div></div>
-          <div class="card-votes">0 judgments · Polymarket: 82%</div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://polymarket.com/event/colombia-presidential-election" target="_blank" class="market-link market-link-poly">&#9670; Polymarket 82%</a>
         </div>
       </div>
       <div class="prophecy-card danger" onclick="openModal(4)">
@@ -266,7 +312,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <div class="card-excerpt">"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper."</div>
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>91%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:91%"></div></div></div>
-          <div class="card-votes">0 judgments · Polymarket: 88% No</div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://polymarket.com/event/russia-x-ukraine-ceasefire-by-june-30-2026" target="_blank" class="market-link market-link-poly">&#9670; Polymarket 88% No</a>
+          <span class="divergence-flag">&#9650; Oracle diverges from market</span>
         </div>
       </div>
       <div class="prophecy-card warning" onclick="openModal(5)">
@@ -275,7 +325,10 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <div class="card-excerpt">"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed."</div>
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>76%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:76%"></div></div></div>
-          <div class="card-votes">0 judgments · FanDuel: USA +6000</div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: USA +6000</a>
         </div>
       </div>
       <div class="prophecy-card warning" onclick="openModal(6)">
@@ -284,7 +337,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <div class="card-excerpt">"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot."</div>
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
-          <div class="card-votes">0 judgments · FanDuel: Spain +475, France +500</div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: Spain +475</a>
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">France +500</a>
         </div>
       </div>
       <div class="prophecy-card neutral" onclick="openModal(7)">
@@ -305,6 +362,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>91%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:91%"></div></div></div>
           <div class="card-votes">0 judgments · Defending champions</div>
         </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: -200</a>
+        </div>
       </div>
       <div class="prophecy-card danger" onclick="openModal(9)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves June 27 · FanDuel: -270</span></div>
@@ -313,6 +373,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>88%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:88%"></div></div></div>
           <div class="card-votes">0 judgments · Group C vs Haiti, Scotland, Morocco</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -270</a>
         </div>
       </div>
       <div class="prophecy-card warning" onclick="openModal(10)">
@@ -332,6 +395,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>82%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:82%"></div></div></div>
           <div class="card-votes">0 judgments · Group E vs Curacao, Ivory Coast, Ecuador</div>
         </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -280</a>
+        </div>
       </div>
       <div class="prophecy-card danger" onclick="openModal(12)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves June 27 · FanDuel: -360</span></div>
@@ -341,6 +407,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>87%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:87%"></div></div></div>
           <div class="card-votes">0 judgments · Group L vs Croatia, Ghana, Panama</div>
         </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -360</a>
+        </div>
       </div>
       <div class="prophecy-card warning" onclick="openModal(13)">
         <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Resolves July 19 · DraftKings: +900</span></div>
@@ -349,6 +418,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>74%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:74%"></div></div></div>
           <div class="card-votes">0 judgments · Back-to-back wins: last achieved 1962</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: +900 to win</a>
         </div>
       </div>
       <div class="prophecy-card warning" onclick="openModal(14)">
@@ -376,6 +448,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>68%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:68%"></div></div></div>
           <div class="card-votes">0 judgments · Ranked No.1, opposite pathway to Argentina</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: +240 to final</a>
         </div>
       </div>
       <div class="prophecy-card warning" onclick="openModal(17)">
