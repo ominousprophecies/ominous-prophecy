@@ -1,15 +1,646 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Background -->
-  <rect width="32" height="32" fill="#080608" rx="4"/>
-  <!-- Outer eye shape -->
-  <path d="M2 16 Q8 8 16 7 Q24 8 30 16 Q24 24 16 25 Q8 24 2 16Z" stroke="#c9a84c" stroke-width="1" fill="none"/>
-  <!-- Iris -->
-  <circle cx="16" cy="16" r="6" fill="#8b1a1a" stroke="#c9a84c" stroke-width="0.8"/>
-  <!-- Pupil -->
-  <circle cx="16" cy="16" r="2.5" fill="#c9a84c"/>
-  <!-- Cross hairs -->
-  <line x1="16" y1="1" x2="16" y2="5" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
-  <line x1="16" y1="27" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
-  <line x1="1" y1="16" x2="5" y2="16" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
-  <line x1="27" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
-</svg>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ominous Prophecy — The AI Oracle</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080608;--deep:#0d0a10;--void:#120e16;--crimson:#8b1a1a;--blood:#c0392b;--ember:#e85d04;--gold:#c9a84c;--pale-gold:#e8d5a3;--silver:#e2deee;--mist:#eae6f4;--white:#f0edf5;--glow:rgba(201,168,76,0.15);--glow-red:rgba(139,26,26,0.3)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--white);font-family:'IM Fell English',Georgia,serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.6}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite;animation-delay:var(--delay,0s);opacity:0}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:var(--max-op,.6);transform:scale(1)}}
+.vignette{position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(8,6,8,.85) 100%);pointer-events:none;z-index:2}
+nav{position:relative;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;border-bottom:1px solid rgba(201,168,76,.15)}
+.nav-sigil{font-family:'Cinzel Decorative',serif;font-size:11px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;opacity:.8}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;color:var(--silver);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-submit{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--black);background:var(--gold);border:none;padding:9px 20px;cursor:pointer;transition:opacity .2s}
+.nav-submit:hover{opacity:.85}
+.hero{position:relative;z-index:10;text-align:center;padding:80px 48px 60px;overflow:hidden;max-width:1296px;margin:0 auto}
+.hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(139,26,26,.12) 0%,transparent 70%);pointer-events:none}
+.oracle-eye{width:80px;height:80px;margin:0 auto 32px;animation:pulse-eye 4s ease-in-out infinite}
+@keyframes pulse-eye{0%,100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(201,168,76,.4))}50%{transform:scale(1.05);filter:drop-shadow(0 0 20px rgba(201,168,76,.7))}}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--crimson);text-transform:uppercase;margin-bottom:20px;animation:fade-in 1s ease .3s both;text-align:center}
+.hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(32px,6vw,68px);font-weight:900;line-height:1.05;color:var(--pale-gold);letter-spacing:.05em;margin-bottom:8px;animation:fade-up 1s ease .5s both;text-shadow:0 0 60px rgba(201,168,76,.2);text-align:center;word-wrap:break-word}
+.hero-sub{font-family:'Cinzel Decorative',serif;font-size:clamp(14px,2.5vw,22px);color:var(--crimson);letter-spacing:.1em;margin-bottom:28px;animation:fade-up 1s ease .7s both;text-align:center}
+.hero-desc{font-family:'IM Fell English',serif;font-size:18px;color:#eae6e0;max-width:560px;margin:0 auto 48px;line-height:1.8;animation:fade-up 1s ease .9s both;text-align:center;word-wrap:break-word}
+@keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+.oracle-stats{display:flex;justify-content:center;gap:48px;margin-bottom:60px;animation:fade-in 1s ease 1.2s both}
+.stat-item{text-align:center}
+.stat-num{font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold);display:block;line-height:1;margin-bottom:6px}
+.stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.3em;color:#e0dcea;text-transform:uppercase;opacity:1}
+.stat-divider{width:1px;background:rgba(201,168,76,.2);align-self:stretch}
+.ticker-wrap{position:relative;z-index:10;background:rgba(139,26,26,.08);border-top:1px solid rgba(139,26,26,.3);border-bottom:1px solid rgba(139,26,26,.3);padding:12px 0;overflow:hidden;margin-bottom:48px}
+.ticker-label{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;padding:0 20px;background:var(--crimson);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--white);text-transform:uppercase;z-index:2;white-space:nowrap}
+.ticker-track{display:flex;gap:80px;animation:ticker 40s linear infinite;padding-left:140px;white-space:nowrap}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:flex;align-items:center;gap:12px;font-family:'IM Fell English',serif;font-size:14px;color:var(--mist)}
+.ticker-prob{font-family:'Space Mono',monospace;font-size:11px;font-style:normal;padding:2px 8px;border-radius:2px;font-weight:700}
+.prob-high{background:rgba(139,26,26,.4);color:#ff6b6b}
+.prob-med{background:rgba(201,168,76,.2);color:var(--gold)}
+.prob-low{background:rgba(100,100,120,.3);color:var(--silver)}
+.ticker-sep{color:var(--crimson);opacity:.5}
+.main-grid{position:relative;z-index:10;max-width:1296px;margin:0 auto;padding:0 48px 80px;display:grid;grid-template-columns:1fr 360px;gap:48px}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.section-header h2{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.section-header::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,168,76,.3),transparent)}
+.prophecy-card{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);margin-bottom:20px;padding:24px 28px;position:relative;transition:border-color .3s,transform .2s;cursor:pointer;overflow:hidden;animation:card-appear .6s ease both}
+.prophecy-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border-color,var(--gold));opacity:.6}
+.prophecy-card:hover{border-color:rgba(201,168,76,.3);transform:translateX(4px)}
+.prophecy-card.danger{--border-color:var(--blood)}
+.prophecy-card.warning{--border-color:var(--ember)}
+.prophecy-card.neutral{--border-color:var(--silver)}
+.prophecy-card:nth-child(1){animation-delay:.1s}
+.prophecy-card:nth-child(2){animation-delay:.2s}
+.prophecy-card:nth-child(3){animation-delay:.3s}
+.prophecy-card:nth-child(4){animation-delay:.4s}
+@keyframes card-appear{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+.card-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.card-category{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:3px 10px;border-radius:2px}
+.cat-geopolitics{background:rgba(139,26,26,.3);color:#ff8080}
+.cat-climate{background:rgba(0,100,60,.3);color:#80ffb0}
+.cat-tech{background:rgba(40,60,139,.3);color:#80a0ff}
+.cat-economy{background:rgba(139,100,0,.3);color:var(--gold)}
+.cat-society{background:rgba(100,0,139,.3);color:#d080ff}
+.cat-governance{background:rgba(40,80,139,.3);color:#87ceeb}
+.cat-conflict{background:rgba(139,26,26,.4);color:#ff6b6b}
+.cat-climate{background:rgba(0,100,60,.3);color:#80ffb0}
+.cat-health{background:rgba(0,139,100,.3);color:#80ffe0}
+.cat-energy{background:rgba(139,100,0,.4);color:#ffb347}
+.cat-sport{background:rgba(100,0,139,.3);color:#d080ff}
+.card-date{font-family:'Space Mono',monospace;font-size:10px;color:#e0dcee;opacity:1;margin-left:auto}
+.card-title{font-family:'Cinzel',serif;font-size:19px;color:var(--pale-gold);line-height:1.45;margin-bottom:12px;font-weight:600}
+.card-excerpt{font-family:'IM Fell English',serif;font-style:italic;font-size:19px;color:var(--silver);line-height:1.85;margin-bottom:18px}
+.card-footer{display:flex;align-items:center;justify-content:space-between}
+.probability-bar-wrap{flex:1;margin-right:20px}
+.prob-label{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:11px;color:#e0dcea;opacity:1;margin-bottom:5px}
+.probability-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.probability-fill{height:100%;border-radius:2px;transition:width 1s ease;background:var(--fill-color,var(--gold))}
+.fill-high{--fill-color:#ff6b6b}
+.fill-med{--fill-color:var(--gold)}
+.fill-low{--fill-color:var(--silver)}
+.card-votes{font-family:'Space Mono',monospace;font-size:11px;color:#e0dcee;opacity:1;white-space:nowrap}
+.oracle-input-section{background:rgba(13,10,16,.9);border:1px solid rgba(201,168,76,.15);padding:32px;margin-bottom:48px}
+.oracle-input-section h3{font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--gold);margin-bottom:6px;letter-spacing:.05em}
+.oracle-input-section p{font-family:'IM Fell English',serif;font-size:13px;color:#e2deee;opacity:1;margin-bottom:20px;line-height:1.6}
+.oracle-textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.2);color:var(--mist);font-family:'IM Fell English',serif;font-size:15px;padding:16px;resize:none;height:100px;outline:none;transition:border-color .3s;margin-bottom:12px}
+.oracle-textarea::placeholder{color:rgba(168,164,184,.3);font-style:italic}
+.oracle-textarea:focus{border-color:rgba(201,168,76,.5)}
+.oracle-submit{width:100%;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;text-transform:uppercase;padding:14px;cursor:pointer;transition:all .3s}
+.oracle-submit:hover{background:var(--gold);color:var(--black)}
+.oracle-verdict{background:linear-gradient(135deg,rgba(139,26,26,.15),rgba(13,10,16,.9));border:1px solid rgba(139,26,26,.3);padding:28px;margin-bottom:28px;text-align:center}
+.verdict-eye{margin:0 auto 16px;width:48px;height:48px;animation:pulse-eye 3s ease-in-out infinite}
+.verdict-title{font-family:'Cinzel Decorative',serif;font-size:11px;letter-spacing:.2em;color:var(--crimson);text-transform:uppercase;margin-bottom:12px}
+.verdict-text{font-family:'IM Fell English',serif;font-size:15px;color:var(--pale-gold);line-height:1.7;margin-bottom:16px}
+.verdict-confidence{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:#dedad8;opacity:1;text-transform:uppercase}
+.accuracy-panel{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);padding:24px;margin-bottom:28px}
+.accuracy-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.accuracy-item{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.acc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-fulfilled{background:#4caf50;box-shadow:0 0 6px rgba(76,175,80,.5)}
+.dot-pending{background:var(--gold);box-shadow:0 0 6px rgba(201,168,76,.4)}
+.dot-failed{background:var(--blood);box-shadow:0 0 6px rgba(192,57,43,.4)}
+.acc-text{font-family:'IM Fell English',serif;font-size:15px;color:var(--silver);flex:1;line-height:1.5;opacity:1}
+.acc-badge{font-family:'Space Mono',monospace;font-size:10px;padding:3px 8px;border-radius:2px;white-space:nowrap}
+.badge-fulfilled{background:rgba(76,175,80,.2);color:#80ff84}
+.badge-pending{background:rgba(201,168,76,.15);color:var(--gold)}
+.badge-failed{background:rgba(192,57,43,.2);color:#ff8080}
+.category-panel{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);padding:24px}
+.category-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:16px}
+.category-tags{display:flex;flex-wrap:wrap;gap:8px}
+.cat-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;padding:5px 12px;border:1px solid rgba(201,168,76,.2);color:var(--silver);text-transform:uppercase;cursor:pointer;transition:all .2s}
+.cat-tag:hover,.cat-tag.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.05)}
+footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Cinzel Decorative',serif;font-size:12px;letter-spacing:.2em;color:var(--gold);opacity:.9}
+.footer-tagline{font-family:'IM Fell English',serif;font-size:13px;color:var(--silver);opacity:.8}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--silver);text-decoration:none;text-transform:uppercase;opacity:.4;transition:opacity .2s}
+.footer-links a:hover{opacity:.8}
+.modal-overlay{position:fixed;inset:0;background:rgba(8,6,8,.92);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--void);border:1px solid rgba(201,168,76,.25);padding:48px;max-width:600px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--silver);font-size:20px;cursor:pointer;opacity:.5;transition:opacity .2s;font-family:'Cinzel',serif}
+.modal-close:hover{opacity:1}
+.modal h2{font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--pale-gold);margin-bottom:8px;letter-spacing:.05em}
+.modal-category-display{margin-bottom:16px}
+.modal-excerpt{font-family:'IM Fell English',serif;font-style:italic;font-size:20px;color:var(--silver);line-height:1.85;margin-bottom:28px;opacity:1}
+.modal-analysis-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;opacity:1}
+.modal-analysis{font-family:'IM Fell English',serif;font-size:16px;color:var(--mist);line-height:1.85;margin-bottom:28px;border-left:2px solid rgba(201,168,76,.2);padding-left:20px}
+.modal-vote-section{display:flex;gap:12px}
+.vote-btn{flex:1;background:transparent;font-family:'Cinzel',serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:14px;cursor:pointer;transition:all .3s}
+.vote-fulfill{border:1px solid rgba(76,175,80,.4);color:#80ff84}
+.vote-fulfill:hover{background:rgba(76,175,80,.15)}
+.vote-doubt{border:1px solid rgba(192,57,43,.4);color:#ff8080}
+.vote-doubt:hover{background:rgba(192,57,43,.15)}
+/* Market links */
+.market-link{display:inline-flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:10px;text-decoration:none;border:1px solid;padding:4px 9px;border-radius:2px;transition:all .2s;white-space:nowrap}
+.market-link-poly{color:#00d4ff;border-color:rgba(0,212,255,.35)}
+.market-link-poly:hover{background:rgba(0,212,255,.1)}
+.market-link-fd{color:#1da1f2;border-color:rgba(29,161,242,.35)}
+.market-link-fd:hover{background:rgba(29,161,242,.1)}
+.market-link-dk{color:#f9c23c;border-color:rgba(249,194,60,.35)}
+.market-link-dk:hover{background:rgba(249,194,60,.1)}
+.card-footer-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.divergence-flag{font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.05em;margin-left:4px}
+/* Mobile */
+@media(max-width:768px){
+  nav{padding:12px 16px;flex-wrap:wrap}
+  .nav-links{display:none}
+  .nav-submit{font-size:9px;padding:7px 12px;letter-spacing:.1em}
+  .hero{padding:40px 16px 28px;text-align:center}
+  .hero h1{font-size:clamp(28px,8vw,48px);text-align:center}
+  .hero-sub{text-align:center}
+  .hero-desc{font-size:15px;text-align:center}
+  .oracle-eye{margin:0 auto 16px}
+  .oracle-stats{gap:12px;flex-wrap:wrap;justify-content:center}
+  .stat-item{min-width:80px}
+  .stat-divider{display:none}
+  .stat-num{font-size:22px}
+  .stat-label{font-size:9px}
+  .ticker-wrap{padding:8px 0;margin-bottom:28px}
+  .ticker-label{font-size:8px;padding:0 12px;letter-spacing:.1em}
+  .ticker-track{padding-left:100px;gap:48px}
+  .ticker-item{font-size:11px;gap:8px}
+  .ticker-prob{font-size:9px;padding:2px 5px}
+  .main-grid{display:grid;grid-template-columns:1fr;padding:16px;gap:28px}
+  .feed{width:100%;margin-right:0;order:1}
+  .sidebar{width:100%;order:2}
+  .prophecy-card{padding:18px}
+  .card-title{font-size:17px}
+  .card-excerpt{font-size:17px}
+  .card-footer{flex-direction:column;align-items:flex-start;gap:8px}
+  .card-footer-links{margin-top:4px;gap:6px}
+  .market-link{font-size:9px;padding:4px 8px}
+  .modal-inner{width:96%;max-height:88vh;padding:20px 16px;overflow-y:auto}
+  .modal h2{font-size:17px}
+  .modal-excerpt{font-size:16px}
+  .modal-analysis{font-size:15px}
+  .acc-text{font-size:13px}
+  .acc-badge{font-size:9px}
+  .accuracy-item{padding:8px 0}
+  .category-tags{gap:6px}
+  .cat-tag{font-size:9px;padding:5px 10px}
+  .oracle-verdict{padding:18px}
+  .verdict-text{font-size:15px}
+  .section-header{padding:0 16px 20px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:26px}
+  .prophecy-card{padding:14px}
+  .card-title{font-size:16px}
+  .stat-num{font-size:20px}
+  .modal-inner{padding:14px 12px}
+  .nav-sigil{font-size:10px;letter-spacing:.15em}
+}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="vignette"></div>
+<nav>
+  <div class="nav-sigil">Ominous Prophecy</div>
+  <ul class="nav-links">
+    <li><a href="#">The Oracle</a></li>
+    <li><a href="#">Prophecies</a></li>
+    <li><a href="#">Fulfilled</a></li>
+    <li><a href="#">Scoreboard</a></li>
+    <li><a href="#">Methodology</a></li>
+  </ul>
+  <button class="nav-submit" onclick="document.querySelector('.oracle-input-section').scrollIntoView({behavior:'smooth',block:'center'})">Submit a Prophecy</button>
+</nav>
+<div class="hero">
+  <div class="oracle-eye">
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="40" cy="40" rx="38" ry="38" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+      <ellipse cx="40" cy="40" rx="30" ry="30" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+      <path d="M4 40 Q20 20 40 18 Q60 20 76 40 Q60 60 40 62 Q20 60 4 40Z" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" fill="none"/>
+      <circle cx="40" cy="40" r="12" fill="rgba(139,26,26,0.6)" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
+      <circle cx="40" cy="40" r="5" fill="rgba(201,168,76,0.8)"/>
+      <circle cx="37" cy="37" r="1.5" fill="rgba(255,255,255,0.6)"/>
+      <line x1="40" y1="2" x2="40" y2="12" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+      <line x1="40" y1="68" x2="40" y2="78" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+      <line x1="2" y1="40" x2="12" y2="40" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+      <line x1="68" y1="40" x2="78" y2="40" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="hero-eyebrow">&#9670; AI-Powered Prophecy Engine &#9670;</div>
+  <h1>Ominous Prophecy</h1>
+  <div class="hero-sub">What the oracle foresees</div>
+  <p class="hero-desc">AI analyses global events, historical patterns, and emerging signals to issue probability-scored prophecies. Each is tracked. Each is judged. Nothing is forgotten.</p>
+  <div class="oracle-stats">
+    <div class="stat-item"><span class="stat-num">37</span><span class="stat-label">Prophecies Issued</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="stat-num">—</span><span class="stat-label">Oracle Accuracy</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="stat-num">0</span><span class="stat-label">Fulfilled</span></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><span class="stat-num">37</span><span class="stat-label">Pending Judgment</span></div>
+  </div>
+</div>
+<div class="ticker-wrap">
+  <div class="ticker-label">&#9670; Live Signals</div>
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-prob prob-high">78%</span> EU AI Act enforcement deadline August 2026 — US tech firms unprepared</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-med">71%</span> Taiwan Strait — 202 PLA aircraft detected in April, median line crossings accelerating</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-med">62%</span> Geoeconomic confrontation ranked #1 global crisis risk for 2026 by WEF</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-high">85%</span> Colombia presidential runoff June 21 — left vs right, outcome uncertain</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-med">67%</span> US-Iran nuclear talks stalling — key differences remain unresolved entering June</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-high">79%</span> Doomsday Clock at 89 seconds to midnight — closest ever recorded</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-high">78%</span> EU AI Act enforcement deadline August 2026 — US tech firms unprepared</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-med">71%</span> Taiwan Strait — 202 PLA aircraft detected in April, median line crossings accelerating</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-med">62%</span> Geoeconomic confrontation ranked #1 global crisis risk for 2026 by WEF</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-high">85%</span> Colombia presidential runoff June 21 — left vs right, outcome uncertain</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-med">67%</span> US-Iran nuclear talks stalling — key differences remain unresolved entering June</span>
+    <span class="ticker-sep">&#10022;</span>
+    <span class="ticker-item"><span class="ticker-prob prob-high">79%</span> Doomsday Clock at 89 seconds to midnight — closest ever recorded</span>
+  </div>
+</div>
+<div class="main-grid">
+  <div class="feed">
+    <div class="section-header"><h2>Current Prophecies</h2></div>
+    <div class="oracle-input-section">
+      <h3>Consult the Oracle</h3>
+      <p>Describe a world event, trend, or question. The Oracle will analyse it and issue a probability-scored prophecy.</p>
+      <textarea class="oracle-textarea" placeholder="What do you wish to know of what is to come..."></textarea>
+      <button class="oracle-submit" id="oracle-btn">&#9670; Invoke the Oracle &#9670;</button>
+    </div>
+    <div id="prophecy-feed">
+      <div class="prophecy-card danger" onclick="openModal(0)">
+        <div class="card-meta"><span class="card-category cat-geopolitics">Geopolitics</span><span class="card-date">Issued: June 5, 2026</span></div>
+        <div class="card-title">A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026</div>
+        <div class="card-excerpt">"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks — and in that blink, a threshold is crossed that cannot be uncrossed."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>71%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:71%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(1)">
+        <div class="card-meta"><span class="card-category cat-tech">Technology</span><span class="card-date">Issued: June 5, 2026</span></div>
+        <div class="card-title">The EU AI Act August 2026 enforcement deadline will trigger the first major regulatory action against a US technology company in Europe</div>
+        <div class="card-excerpt">"The scribes of the old continent have drawn their lines in the sand of law. What was built in haste and hubris now faces the weight of consequence. The first stone cast will echo across every shore where the machine has taken root."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>78%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:78%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+      </div>
+      <div class="prophecy-card neutral" onclick="openModal(2)">
+        <div class="card-meta"><span class="card-category cat-economy">Economy</span><span class="card-date">Issued: June 5, 2026</span></div>
+        <div class="card-title">A geoeconomic confrontation between two G20 nations will result in the first formal severance of a bilateral trade agreement in the post-WTO era</div>
+        <div class="card-excerpt">"The merchants who once bowed to the same altar of open exchange now sharpen different blades. What took decades to weave is being unraveled in seasons. The loom itself is breaking."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>62%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:62%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+      </div>
+      <div class="prophecy-card danger" onclick="openModal(3)">
+        <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 5, 2026 · Resolves June 21</span></div>
+        <div class="card-title">Abelardo de la Espriella will win the Colombia presidential runoff on June 21 2026</div>
+        <div class="card-excerpt">"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>82%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:82%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://polymarket.com/event/colombia-presidential-election" target="_blank" class="market-link market-link-poly">&#9670; Polymarket 82%</a>
+        </div>
+      </div>
+      <div class="prophecy-card danger" onclick="openModal(4)">
+        <div class="card-meta"><span class="card-category cat-conflict">Conflict</span><span class="card-date">Issued: June 5, 2026 · Resolves June 30</span></div>
+        <div class="card-title">No formal Russia-Ukraine ceasefire will be signed before June 30 2026</div>
+        <div class="card-excerpt">"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>91%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:91%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://polymarket.com/event/russia-x-ukraine-ceasefire-by-june-30-2026" target="_blank" class="market-link market-link-poly">&#9670; Polymarket 88% No</a>
+          <span class="divergence-flag">&#9650; Oracle diverges from market</span>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(5)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19</span></div>
+        <div class="card-title">Neither the USA nor Mexico will reach the 2026 FIFA World Cup semi-finals</div>
+        <div class="card-excerpt">"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>76%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:76%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: USA +6000</a>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(6)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19</span></div>
+        <div class="card-title">Spain or France will win the 2026 FIFA World Cup</div>
+        <div class="card-excerpt">"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: Spain +475</a>
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">France +500</a>
+        </div>
+      </div>
+      <div class="prophecy-card neutral" onclick="openModal(7)">
+        <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
+        <div class="card-title">The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026</div>
+        <div class="card-excerpt">"The two chambers of power turn against each other over blood spent in distant deserts. What the executive wages, the legislature refuses to fund. The oldest fault line of the republic reopens."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>73%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:73%"></div></div></div>
+          <div class="card-votes">0 judgments</div>
+        </div>
+      </div>
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Stanley Cup Final — Game by Game</div>
+      <div class="prophecy-card warning" onclick="openModal(8)">
+        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Resolves June 6 · Series tied 1-1</span></div>
+        <div class="card-title">The Vegas Golden Knights will win Game 3 of the 2026 Stanley Cup Final</div>
+        <div class="card-excerpt">"The fortress of neon and noise swallows the road team whole. What was taken on enemy ice cannot be defended on ones own. The golden city roars and the hurricane loses its wind."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
+          <div class="card-votes">0 judgments · T-Mobile Arena · 5pm PDT</div>
+        </div>
+      </div>
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; World Cup Oracle — Resolves June 27 to July 19</div>
+      <div class="prophecy-card danger" onclick="openModal(8)">
+        <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves June 27 · DraftKings: -200</span></div>
+        <div class="card-title">Argentina will advance from the group stage of the 2026 FIFA World Cup</div>
+        <div class="card-excerpt">"The ageing king makes one final procession through the tournament he conquered. The crown weighs heavy but the shoulders beneath it have carried it before."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>91%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:91%"></div></div></div>
+          <div class="card-votes">0 judgments · Defending champions</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: -200</a>
+        </div>
+      </div>
+      <div class="prophecy-card danger" onclick="openModal(9)">
+        <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves June 27 · FanDuel: -270</span></div>
+        <div class="card-title">Brazil will advance from the group stage of the 2026 FIFA World Cup</div>
+        <div class="card-excerpt">"Five crowns weigh upon this nation like a debt unpaid. The talent is undeniable. The doubt is structural. But the first gate they will pass."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>88%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:88%"></div></div></div>
+          <div class="card-votes">0 judgments · Group C vs Haiti, Scotland, Morocco</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -270</a>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(10)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Resolves June 27</span></div>
+        <div class="card-title">Canada will fail to advance from the group stage of the 2026 FIFA World Cup</div>
+        <div class="card-excerpt">"The host nation that has never won a World Cup match now finds itself in the company of wolves. The home crowd cannot carry what the squad cannot provide."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>72%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:72%"></div></div></div>
+          <div class="card-votes">0 judgments · Group B vs Switzerland, Bosnia, Qatar</div>
+        </div>
+      </div>
+      <div class="prophecy-card danger" onclick="openModal(11)">
+        <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves June 27 · FanDuel: -280</span></div>
+        <div class="card-title">Germany will advance from the group stage after failing to do so in their last two World Cup appearances</div>
+        <div class="card-excerpt">"The sleeping giant stirs. Two humiliations have sharpened the blade. What was once assumed now must be earned and Germany earns what it sets its mind to."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>82%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:82%"></div></div></div>
+          <div class="card-votes">0 judgments · Group E vs Curacao, Ivory Coast, Ecuador</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -280</a>
+        </div>
+      </div>
+      <div class="prophecy-card danger" onclick="openModal(12)">
+        <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves June 27 · FanDuel: -360</span></div>
+        <div class="card-title">England will advance from Group L at the 2026 FIFA World Cup</div>
+        <div class="card-excerpt">"The three lions have learned to stop devouring themselves. The talent has always been there. The composure is new. The group is a formality."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>87%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:87%"></div></div></div>
+          <div class="card-votes">0 judgments · Group L vs Croatia, Ghana, Panama</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -360</a>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(13)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Resolves July 19 · DraftKings: +900</span></div>
+        <div class="card-title">Argentina will not successfully defend their FIFA World Cup title and will be eliminated before the final</div>
+        <div class="card-excerpt">"The dynasty does not repeat itself. What was seized in Qatar cannot be held in New Jersey. The king abdicates not willingly, but inevitably."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>74%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:74%"></div></div></div>
+          <div class="card-votes">0 judgments · Back-to-back wins: last achieved 1962</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: +900 to win</a>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(14)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Resolves July 8</span></div>
+        <div class="card-title">At least one nation ranked outside the top 20 will reach the 2026 FIFA World Cup quarter-finals</div>
+        <div class="card-excerpt">"In the expanded tournament the walls that once protected the powerful have more gates. One will open for the unexpected visitor."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>83%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:83%"></div></div></div>
+          <div class="card-votes">0 judgments · Has happened every WC since 1990</div>
+        </div>
+      </div>
+      <div class="prophecy-card danger" onclick="openModal(15)">
+        <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves July 19</span></div>
+        <div class="card-title">The 2026 FIFA World Cup will produce more total goals than the 172 scored in the 2022 Qatar tournament</div>
+        <div class="card-excerpt">"More nations. More matches. More hunger. The nets will strain under the weight of ambition unleashed. The arithmetic of expansion cannot be denied."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>94%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:94%"></div></div></div>
+          <div class="card-votes">0 judgments · 104 matches vs 64 in 2022</div>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(16)">
+        <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Resolves July 8 · DraftKings: +240 final</span></div>
+        <div class="card-title">Spain will reach the 2026 FIFA World Cup semi-finals</div>
+        <div class="card-excerpt">"The technicians of the beautiful game have built the most complete machine in the tournament. It does not rely on one man. It does not tire. It does not panic. It advances."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>68%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:68%"></div></div></div>
+          <div class="card-votes">0 judgments · Ranked No.1, opposite pathway to Argentina</div>
+        </div>
+        <div class="card-footer-links">
+          <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: +240 to final</a>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(17)">
+        <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Resolves July 8</span></div>
+        <div class="card-title">Lionel Messi will score at least one goal in the 2026 FIFA World Cup his final tournament</div>
+        <div class="card-excerpt">"The greatest does not exit without one final statement. The story is too perfectly written for the pen to run dry at the last page."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>79%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:79%"></div></div></div>
+          <div class="card-votes">0 judgments · Scored in every WC: 2006, 2014, 2018, 2022</div>
+        </div>
+      </div>
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Climate · Health · Energy</div>
+      <div class="prophecy-card danger" onclick="openModal(18)">
+        <div class="card-meta"><span class="card-category cat-climate">Climate</span><span class="card-date">Resolves Dec 31, 2026</span></div>
+        <div class="card-title">El Nino conditions in 2026 will make this year one of the three hottest on record globally</div>
+        <div class="card-excerpt">"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>89%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:89%"></div></div></div>
+          <div class="card-votes">0 judgments · WMO: 98% El Nino probability confirmed</div>
+        </div>
+      </div>
+      <div class="prophecy-card warning" onclick="openModal(19)">
+        <div class="card-meta"><span class="card-category cat-health">Health</span><span class="card-date">Resolves Dec 31, 2026</span></div>
+        <div class="card-title">The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained</div>
+        <div class="card-excerpt">"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>74%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:74%"></div></div></div>
+          <div class="card-votes">0 judgments · WHO PHEIC declared May 17 2026</div>
+        </div>
+      </div>
+      <div class="prophecy-card neutral" onclick="openModal(20)">
+        <div class="card-meta"><span class="card-category cat-energy">Energy</span><span class="card-date">Resolves Dec 31, 2026</span></div>
+        <div class="card-title">Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises</div>
+        <div class="card-excerpt">"The black tide that surged when the narrow gate closed will recede as the gate reopens. What fear inflated normalcy deflates. The price of fire returns toward earth."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>78%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:78%"></div></div></div>
+          <div class="card-votes">0 judgments · EIA forecasts $79/barrel in 2027</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="oracle-verdict">
+      <div class="verdict-eye">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 24 Q12 12 24 11 Q36 12 46 24 Q36 36 24 37 Q12 36 2 24Z" stroke="rgba(201,168,76,0.5)" stroke-width="1" fill="none"/>
+          <circle cx="24" cy="24" r="8" fill="rgba(139,26,26,0.5)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+          <circle cx="24" cy="24" r="3" fill="rgba(201,168,76,0.7)"/>
+        </svg>
+      </div>
+      <div class="verdict-title">&#9670; Oracle Launch Reading &#9670;</div>
+      <div class="verdict-text">"36 prophecies cast. 9 domains watched. The world will judge them all in time — and the record will be honest."</div>
+      <div class="verdict-confidence">Issued June 5, 2026 &middot; Inaugural Run</div>
+    </div>
+    <div class="accuracy-panel">
+      <div class="accuracy-title">Judgment Record</div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">VGK wins Stanley Cup Game 3</div><span class="acc-badge badge-pending">Jun 6</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Scheffler misses US Open</div><span class="acc-badge badge-pending">Jun 21</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">De la Espriella wins Colombia runoff</div><span class="acc-badge badge-pending">Jun 21</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Argentina advance from group stage</div><span class="acc-badge badge-pending">Jun 27</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Brazil advance from group stage</div><span class="acc-badge badge-pending">Jun 27</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Germany advance from group stage</div><span class="acc-badge badge-pending">Jun 27</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">England advance from Group L</div><span class="acc-badge badge-pending">Jun 27</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Canada fail to advance</div><span class="acc-badge badge-pending">Jun 27</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">No Russia-Ukraine ceasefire before June 30</div><span class="acc-badge badge-pending">Jun 30</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Messi scores · Spain semis · Upset nation QF</div><span class="acc-badge badge-pending">Jul 8</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Spain or France wins World Cup</div><span class="acc-badge badge-pending">Jul 19</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Sinner · Swiatek out · Wimbledon</div><span class="acc-badge badge-pending">Jul 12</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Aonishiki wins Nagoya Basho</div><span class="acc-badge badge-pending">Jul 26</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Solar eclipse crosses Spain</div><span class="acc-badge badge-pending">Aug 12</span></div>
+    </div>
+    <div class="category-panel">
+      <div class="category-title">Domains of Prophecy</div>
+      <div class="category-tags">
+        <span class="cat-tag active">All</span>
+        <span class="cat-tag">Geopolitics</span>
+        <span class="cat-tag">Climate</span>
+        <span class="cat-tag">Technology</span>
+        <span class="cat-tag">Economy</span>
+        <span class="cat-tag">Society</span>
+        <span class="cat-tag">Conflict</span>
+        <span class="cat-tag">Health</span>
+        <span class="cat-tag">Energy</span>
+        <span class="cat-tag">Governance</span>
+      </div>
+    </div>
+    <div style="background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.3);padding:24px;margin-bottom:28px;text-align:center">
+      <div style="font-family:'Cinzel Decorative',serif;font-size:11px;letter-spacing:.2em;color:#7289da;text-transform:uppercase;margin-bottom:12px">&#9670; Oracle's Circle &#9670;</div>
+      <div style="font-family:'IM Fell English',serif;font-size:15px;color:var(--silver);line-height:1.6;margin-bottom:20px">"Debate the prophecies. Share the signals. Watch the verdicts fall."</div>
+      <a href="https://discord.gg/jxkXfw5x8" target="_blank" style="display:block;background:#5865f2;color:#fff;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:12px;text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">&#9670; Join the Discord &#9670;</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-brand">Ominous Prophecy</div>
+  <div class="footer-tagline">"The future is not hidden. It is merely unread."</div>
+  <div class="footer-links"><a href="#">Methodology</a><a href="#">API</a><a href="#">Archive</a><a href="#">About</a></div>
+</footer>
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal"><button class="modal-close" onclick="closeModal()">&#10005;</button><div id="modal-content"></div></div>
+</div>
+<script>
+const starsEl=document.getElementById('stars');
+for(let i=0;i<180;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;--max-op:${.2+Math.random()*.5}`;starsEl.appendChild(s)}
+const prophecies=[
+  {title:"A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026",category:"Geopolitics",catClass:"cat-geopolitics",excerpt:"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks and in that blink a threshold is crossed that cannot be uncrossed.",analysis:"Taiwan detected 202 Chinese military aircraft around the island in April 2026, of which at least 145 crossed the unofficial median line. The PLA has conducted larger and more frequent drills simulating blockades and precision strikes. A Dutch frigate was tracked by Chinese naval and air forces in June 2026. Historical pattern analysis shows triggering incidents follow sustained median line crossings at 71 percent frequency within 8 months.",confidence:71},
+  {title:"The EU AI Act August 2026 enforcement deadline will trigger the first major regulatory action against a US technology company in Europe",category:"Technology",catClass:"cat-tech",excerpt:"The scribes of the old continent have drawn their lines in the sand of law. What was built in haste and hubris now faces the weight of consequence. The first stone cast will echo across every shore where the machine has taken root.",analysis:"The EU AI Act enforcement deadline of August 2, 2026 is weeks away. Penalties reach 35 million euros or 7 percent of global annual revenue, whichever is higher. Multiple independent legal sources confirm major companies are not ready. The EU acted within 90 days of GDPR enforcement opening. Base rate for action: 85 percent.",confidence:78},
+  {title:"A geoeconomic confrontation between two G20 nations will result in the first formal severance of a bilateral trade agreement in the post-WTO era",category:"Economy",catClass:"cat-economy",excerpt:"The merchants who once bowed to the same altar of open exchange now sharpen different blades. What took decades to weave is being unraveled in seasons. The loom itself is breaking.",analysis:"Geoeconomic confrontation tops 2026 global risk rankings, cited by 18 percent of experts as the risk most likely to trigger a global crisis. US tariffs, Chinese industrial overcapacity, and EU protectionist policy are simultaneously pressuring trade frameworks that have held since the WTO founding.",confidence:62},
+  {title:"Abelardo de la Espriella will win the Colombia presidential runoff on June 21 2026",category:"Governance",catClass:"cat-geopolitics",excerpt:"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm.",analysis:"De la Espriella surged to 82 percent favourite in prediction markets after capturing 43.7 percent of the first-round vote, defying pre-election polls. Centrist voters are more likely to break his way in the runoff. Trump endorsement reinforces momentum. Polymarket odds: 82 percent de la Espriella. Resolves June 21, 2026.",confidence:82},
+  {title:"No formal Russia-Ukraine ceasefire will be signed before June 30 2026",category:"Conflict",catClass:"cat-geopolitics",excerpt:"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper.",analysis:"Trader consensus prices a Russia-Ukraine ceasefire by end of 2026 at just 25.5 percent. US-mediated talks produced no breakthroughs on territorial concessions or security guarantees. Short-term pauses collapsed amid mutual violations. Polymarket: 88 percent No. Resolves June 30, 2026.",confidence:91},
+  {title:"Neither the USA nor Mexico will reach the 2026 FIFA World Cup semi-finals",category:"World Cup",catClass:"cat-society",excerpt:"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed.",analysis:"The USA is listed at +6000 and Mexico at +6500 to reach the World Cup final at FanDuel Sportsbook, among the longest odds in the tournament. Both host nations face elite European and South American opposition. Historical precedent shows host nations with weak international ranking rarely advance past the quarterfinals. Resolves July 19, 2026.",confidence:76},
+  {title:"Spain or France will win the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot.",analysis:"Spain at +475 and France at +500 are co-favourites at FanDuel Sportsbook. Both squads combine youth, tactical discipline, and tournament pedigree unmatched in this field. Germany, England, Brazil and Argentina represent the only realistic challengers. Resolves July 19, 2026 at MetLife Stadium.",confidence:58},
+  {title:"The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026",category:"Governance",catClass:"cat-geopolitics",excerpt:"The two chambers of power turn against each other over blood spent in distant deserts. What the executive wages, the legislature refuses to fund. The oldest fault line of the republic reopens.",analysis:"The US House voted this week to end the war in Iran, demonstrating a historic break between the Trump administration and the GOP-majority legislative body. A president continuing military operations against explicit congressional opposition creates a war powers confrontation not seen since Vietnam. Historical rate of constitutional crisis following such fractures: 73 percent within 6 months.",confidence:73},
+  {title:"The Vegas Golden Knights will win Game 3 of the 2026 Stanley Cup Final",category:"NHL",catClass:"cat-society",excerpt:"The fortress of neon and noise swallows the road team whole. What was taken on enemy ice cannot be defended on ones own. The golden city roars and the hurricane loses its wind.",analysis:"Carter Hart has posted a .929 save percentage across 8 postseason home games at T-Mobile Arena. VGK opened the series with a historic road win at Carolina and now return home with momentum and crowd. Carolina dominates possession at 63.3 percent Corsi but road environments suppress that advantage. Stone and Eichel have been quiet through two games and the home crowd is exactly the catalyst elite players need. VGK slight home favourite. Series tied 1-1. Resolves June 6.",confidence:58},
+  {title:"Argentina will advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The ageing king makes one final procession through the tournament he conquered. The crown weighs heavy but the shoulders beneath it have carried it before.",analysis:"Argentina enters as defending champion with strong odds to advance. Group J opponents Algeria, Austria and Jordan present no structural threat. Messi leads a balanced squad with tournament experience no other team can match. DraftKings: Argentina -200 to advance. Resolves June 27.",confidence:91},
+  {title:"Brazil will advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"Five crowns weigh upon this nation like a debt unpaid. The talent is undeniable. The doubt is structural. But the first gate they will pass.",analysis:"Brazil face Morocco on June 13, a tough opener, but Raphinha and Vinicius Jr are match-winners on either flank. Group C with Haiti and Scotland offers a straightforward path. FanDuel: Brazil -270 to advance. Resolves June 27.",confidence:88},
+  {title:"Canada will fail to advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"The host nation that has never won a World Cup match now finds itself in the company of wolves. The home crowd cannot carry what the squad cannot provide.",analysis:"Canada has never won or drawn a match at the World Cup, let alone made it out of the group stage. Group B includes Switzerland, Bosnia and Qatar. Switzerland are heavily favoured to advance. Co-host status raises expectations but not quality. Resolves June 27.",confidence:72},
+  {title:"Germany will advance from the group stage after failing to do so in their last two World Cup appearances",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The sleeping giant stirs. Two humiliations have sharpened the blade. What was once assumed now must be earned and Germany earns what it sets its mind to.",analysis:"Germany has not made it out of the group stage in the last two World Cups but has won four titles. Group E with Curacao, Ivory Coast and Ecuador is navigable. The rebuild is complete. FanDuel: Germany -280 to advance. Resolves June 27.",confidence:82},
+  {title:"England will advance from Group L at the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The three lions have learned to stop devouring themselves. The talent has always been there. The composure is new. The group is a formality.",analysis:"England are in Group L alongside Croatia, Ghana and Panama. They enter at -360 to advance. Croatia, Ghana and Panama present manageable opposition. Squad depth is significant. FanDuel: England -360 to advance. Resolves June 27.",confidence:87},
+  {title:"Argentina will not successfully defend their FIFA World Cup title and will be eliminated before the final",category:"World Cup",catClass:"cat-society",excerpt:"The dynasty does not repeat itself. What was seized in Qatar cannot be held in New Jersey. The king abdicates not willingly, but inevitably.",analysis:"Back-to-back World Cup wins have happened only once in history, Brazil in 1958 and 1962. The expanded 48-team format increases variance and the path is longer at 8 matches. Argentina are priced at +900 to win, implying roughly 10 percent probability. History is against repetition. Resolves July 19.",confidence:74},
+  {title:"At least one nation ranked outside the top 20 will reach the 2026 FIFA World Cup quarter-finals",category:"World Cup",catClass:"cat-society",excerpt:"In the expanded tournament the walls that once protected the powerful have more gates. One will open for the unexpected visitor. The giant does not see the stone until it has already been thrown.",analysis:"The expanded 48-team format with a new Round of 32 creates significantly more variance than previous tournaments. Every World Cup since 1990 has produced at least one quarterfinalist ranked outside the top 20. Expansion is the enemy of certainty. Resolves July 8.",confidence:83},
+  {title:"The 2026 FIFA World Cup will produce more total goals than the 172 scored in the 2022 Qatar tournament",category:"World Cup",catClass:"cat-society",excerpt:"More nations. More matches. More hunger. The nets will strain under the weight of ambition unleashed. The arithmetic of expansion cannot be denied.",analysis:"The 2026 tournament features 104 matches compared to 64 in 2022, a 63 percent increase. Even at the same goals-per-game average as 2022 the total would reach approximately 280 goals. The expanded field includes weaker teams likely to concede heavily in group stage matches. This prophecy approaches mathematical certainty. Resolves July 19.",confidence:94},
+  {title:"Spain will reach the 2026 FIFA World Cup semi-finals",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The technicians of the beautiful game have built the most complete machine in the tournament. It does not rely on one man. It does not tire. It does not panic. It advances.",analysis:"Spain is the highest-ranked team in the tournament. The draw created two pathways to the semi-finals preventing top teams from meeting before the final. Spain and Argentina are in opposite pathways, clearing the road. DraftKings: Spain -390 to reach Round of 16, +240 to reach the final. Resolves July 8.",confidence:68},
+  {title:"Lionel Messi will score at least one goal in the 2026 FIFA World Cup his final tournament",category:"World Cup",catClass:"cat-society",excerpt:"The greatest does not exit without one final statement. The story is too perfectly written for the pen to run dry at the last page.",analysis:"Messi has scored in every World Cup he has appeared in, 2006, 2014, 2018 and 2022. He is 38 years old but still playing at elite level. Argentina carry the emotional pull of a Messi farewell tournament. The oracle reads the narrative as clearly as the statistics. He scores. Resolves July 8.",confidence:79},
+  {title:"El Nino conditions in 2026 will make this year one of the three hottest on record globally",category:"Climate",catClass:"cat-climate",excerpt:"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed. The record falls again.",analysis:"The Climate Prediction Center issued an El Nino Watch with 98 percent probability of El Nino during May-July 2026. The WMO forecasts a 75 percent chance that average global temperature between 2026 and 2030 will exceed 1.5 degrees above pre-industrial levels. Both France and the UK declared the hottest day in May on record. Subsurface Pacific temperatures show anomalies reaching 6 degrees Celsius above normal.",confidence:89},
+  {title:"The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained",category:"Health",catClass:"cat-health",excerpt:"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath. The world watches and argues while the fire spreads to new rooms.",analysis:"On May 17 2026 the WHO declared the Ebola Bundibugyo outbreak in DRC a public health emergency of international concern. At least 750 suspected cases and 177 deaths recorded. An American doctor was evacuated to Germany. The US implemented entry bans for travelers from DRC, Uganda and South Sudan. The Bundibugyo strain is harder to control than the more common Zaire ebolavirus. Historical pattern: PHEICs of this scale spread to 3 or more countries 78 percent of the time.",confidence:74},
+  {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide that surged when the narrow gate closed will recede as the gate reopens. What fear inflated normalcy deflates. The price of fire returns toward earth.",analysis:"Brent crude reached 138 dollars per barrel on April 7 following the de facto closure of the Strait of Hormuz, averaging 117 dollars in April. The EIA forecasts crude oil dropping to an average of 89 dollars per barrel in Q4 2026 and 79 dollars in 2027 as Middle East production normalises. The UAE departed OPEC effective May 1 2026. With supply returning the oracle reads the trajectory as clearly downward.",confidence:78}
+];
+function openModal(idx){
+  const p=prophecies[idx];
+  const fill=p.confidence>=70?'fill-high':p.confidence>=50?'fill-med':'fill-low';
+  document.getElementById('modal-content').innerHTML=`<div class="card-meta modal-category-display"><span class="card-category ${p.catClass}">${p.category}</span></div><h2>${p.title}</h2><div class="modal-excerpt">"${p.excerpt}"</div><div class="modal-analysis-title">&#9670; Oracle Analysis</div><div class="modal-analysis">${p.analysis}</div><div class="probability-bar-wrap" style="margin-bottom:24px"><div class="prob-label"><span>Oracle Confidence</span><span>${p.confidence}%</span></div><div class="probability-bar" style="height:4px"><div class="probability-fill ${fill}" style="width:${p.confidence}%"></div></div></div><div class="modal-vote-section"><button class="vote-btn vote-fulfill" onclick="vote('fulfill')">&#10003; This Will Occur</button><button class="vote-btn vote-doubt" onclick="vote('doubt')">&#10007; I Doubt It</button></div>`;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
+function vote(type){const btn=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');btn.textContent=type==='fulfill'?'Recorded':'Recorded';btn.style.opacity='.5';btn.style.cursor='default';setTimeout(closeModal,800)}
+document.getElementById('oracle-btn').addEventListener('click',function(){
+  const ta=document.querySelector('.oracle-textarea');
+  const val=ta.value.trim();
+  if(!val)return;
+  const btn=this;
+  btn.textContent='The Oracle Stirs...';
+  btn.disabled=true;
+  setTimeout(()=>{
+    btn.innerHTML='&#9670; Invoke the Oracle &#9670;';
+    btn.disabled=false;
+    ta.value='';
+    const prob=Math.floor(30+Math.random()*60);
+    const fill=prob>=70?'fill-high':prob>=50?'fill-med':'fill-low';
+    const card=document.createElement('div');
+    card.className='prophecy-card warning';
+    card.style.borderColor='rgba(201,168,76,.4)';
+    card.innerHTML=`<div class="card-meta"><span class="card-category cat-geopolitics">Oracle Response</span><span class="card-date">Issued: Just now</span></div><div class="card-title">${val.length>120?val.substring(0,120)+'...':val}</div><div class="card-excerpt">"The patterns observed suggest this question carries weight. The Oracle has considered the signals."</div><div class="card-footer"><div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>${prob}%</span></div><div class="probability-bar"><div class="probability-fill ${fill}" style="width:${prob}%"></div></div></div><div class="card-votes">0 judgments</div></div>`;
+    const feed=document.getElementById('prophecy-feed');
+    feed.insertBefore(card,feed.children[1]);
+  },2200);
+});
+document.querySelectorAll('.cat-tag').forEach(tag=>{
+  tag.addEventListener('click',function(){document.querySelectorAll('.cat-tag').forEach(t=>t.classList.remove('active'));this.classList.add('active')});
+});
+</script>
+</body>
+</html>
