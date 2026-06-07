@@ -223,40 +223,38 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   <div class="oracle-eye">
     <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
-        @keyframes eyeLook {
+        @keyframes eyeShift {
           0%   { transform: translateX(0px); }
-          20%  { transform: translateX(6px); }
-          40%  { transform: translateX(6px); }
-          60%  { transform: translateX(-6px); }
-          80%  { transform: translateX(-6px); }
+          15%  { transform: translateX(0px); }
+          30%  { transform: translateX(8px); }
+          48%  { transform: translateX(8px); }
+          65%  { transform: translateX(-8px); }
+          83%  { transform: translateX(-8px); }
           100% { transform: translateX(0px); }
         }
-        @keyframes eyeBlink {
-          0%,  44%, 46%, 100% { transform: scaleY(1); }
-          45% { transform: scaleY(0.05); }
-        }
-        @keyframes lidBlink {
-          0%,  44%, 46%, 100% { d: path("M4 40 Q20 20 40 18 Q60 20 76 40 Q60 60 40 62 Q20 60 4 40Z"); }
-          45% { d: path("M4 40 Q20 38 40 39 Q60 38 76 40 Q60 42 40 41 Q20 42 4 40Z"); }
-        }
-        .eye-pupil { animation: eyeLook 6s ease-in-out infinite; transform-origin: 40px 40px; }
-        .eye-lid   { animation: eyeBlink 5s ease-in-out infinite; transform-origin: 40px 40px; }
+        .eyeball { animation: eyeShift 9s ease-in-out infinite; transform-origin: 40px 40px; }
       </style>
-      <!-- Outer rings -->
+      <!-- Outer frame rings — static -->
       <ellipse cx="40" cy="40" rx="38" ry="38" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
-      <ellipse cx="40" cy="40" rx="30" ry="30" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
-      <!-- Eye lid shape — blinks -->
-      <path class="eye-lid" d="M4 40 Q20 20 40 18 Q60 20 76 40 Q60 60 40 62 Q20 60 4 40Z" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" fill="rgba(8,6,8,1)"/>
-      <!-- Pupil group — moves side to side -->
-      <g class="eye-pupil">
-        <circle cx="40" cy="40" r="12" fill="rgba(139,26,26,0.8)" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
-        <circle cx="40" cy="40" r="5" fill="rgba(201,168,76,0.9)"/>
+      <line x1="40" y1="2" x2="40" y2="10" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+      <line x1="40" y1="70" x2="40" y2="78" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+      <line x1="2" y1="40" x2="10" y2="40" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+      <line x1="70" y1="40" x2="78" y2="40" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
+      <!-- Eyeball — whole thing moves left/right -->
+      <g class="eyeball">
+        <!-- Sclera -->
+        <path d="M8 40 Q20 22 40 20 Q60 22 72 40 Q60 58 40 60 Q20 58 8 40Z" fill="#e8e0d0"/>
+        <!-- Iris -->
+        <circle cx="40" cy="40" r="13" fill="#8b1a1a"/>
+        <circle cx="40" cy="40" r="10" fill="none" stroke="rgba(100,10,10,0.4)" stroke-width="1.5"/>
+        <!-- Pupil -->
+        <circle cx="40" cy="40" r="6" fill="#050305"/>
+        <!-- Gold limbal ring -->
+        <circle cx="40" cy="40" r="13" fill="none" stroke="rgba(201,168,76,0.8)" stroke-width="1"/>
+        <!-- Light reflections -->
+        <circle cx="35" cy="35" r="2.5" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="44" cy="43" r="1" fill="rgba(255,255,255,0.25)"/>
       </g>
-      <!-- Crosshairs -->
-      <line x1="40" y1="2" x2="40" y2="12" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
-      <line x1="40" y1="68" x2="40" y2="78" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
-      <line x1="2" y1="40" x2="12" y2="40" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
-      <line x1="68" y1="40" x2="78" y2="40" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
     </svg>
   </div>
   <div class="hero-eyebrow">&#9670; AI-Powered Prophecy Engine &#9670;</div>
