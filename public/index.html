@@ -222,12 +222,37 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 <div class="hero">
   <div class="oracle-eye">
     <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        @keyframes eyeLook {
+          0%   { transform: translateX(0px); }
+          20%  { transform: translateX(6px); }
+          40%  { transform: translateX(6px); }
+          60%  { transform: translateX(-6px); }
+          80%  { transform: translateX(-6px); }
+          100% { transform: translateX(0px); }
+        }
+        @keyframes eyeBlink {
+          0%,  44%, 46%, 100% { transform: scaleY(1); }
+          45% { transform: scaleY(0.05); }
+        }
+        @keyframes lidBlink {
+          0%,  44%, 46%, 100% { d: path("M4 40 Q20 20 40 18 Q60 20 76 40 Q60 60 40 62 Q20 60 4 40Z"); }
+          45% { d: path("M4 40 Q20 38 40 39 Q60 38 76 40 Q60 42 40 41 Q20 42 4 40Z"); }
+        }
+        .eye-pupil { animation: eyeLook 6s ease-in-out infinite; transform-origin: 40px 40px; }
+        .eye-lid   { animation: eyeBlink 5s ease-in-out infinite; transform-origin: 40px 40px; }
+      </style>
+      <!-- Outer rings -->
       <ellipse cx="40" cy="40" rx="38" ry="38" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
       <ellipse cx="40" cy="40" rx="30" ry="30" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
-      <path d="M4 40 Q20 20 40 18 Q60 20 76 40 Q60 60 40 62 Q20 60 4 40Z" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" fill="none"/>
-      <circle cx="40" cy="40" r="12" fill="rgba(139,26,26,0.6)" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
-      <circle cx="40" cy="40" r="5" fill="rgba(201,168,76,0.8)"/>
-      <circle cx="37" cy="37" r="1.5" fill="rgba(255,255,255,0.6)"/>
+      <!-- Eye lid shape — blinks -->
+      <path class="eye-lid" d="M4 40 Q20 20 40 18 Q60 20 76 40 Q60 60 40 62 Q20 60 4 40Z" stroke="rgba(201,168,76,0.5)" stroke-width="1.5" fill="rgba(8,6,8,1)"/>
+      <!-- Pupil group — moves side to side -->
+      <g class="eye-pupil">
+        <circle cx="40" cy="40" r="12" fill="rgba(139,26,26,0.8)" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
+        <circle cx="40" cy="40" r="5" fill="rgba(201,168,76,0.9)"/>
+      </g>
+      <!-- Crosshairs -->
       <line x1="40" y1="2" x2="40" y2="12" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
       <line x1="40" y1="68" x2="40" y2="78" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
       <line x1="2" y1="40" x2="12" y2="40" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
