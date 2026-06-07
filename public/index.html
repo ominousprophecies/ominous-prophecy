@@ -283,13 +283,13 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   <div class="hero-sub">What the oracle foresees</div>
   <p class="hero-desc">AI analyses global events, historical patterns, and emerging signals to issue probability-scored prophecies. Each is tracked. Each is judged. Nothing is forgotten.</p>
   <div class="oracle-stats">
-    <div class="stat-item"><span class="stat-num">43</span><span class="stat-label">Prophecies Issued</span></div>
+    <div class="stat-item"><span class="stat-num">44</span><span class="stat-label">Prophecies Issued</span></div>
     <div class="stat-divider"></div>
     <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Oracle Accuracy</span></div>
     <div class="stat-divider"></div>
     <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">Fulfilled</span></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><span class="stat-num">42</span><span class="stat-label">Pending Judgment</span></div>
+    <div class="stat-item"><span class="stat-num">43</span><span class="stat-label">Pending Judgment</span></div>
   </div>
 </div>
 <div class="ticker-wrap">
@@ -343,8 +343,17 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </div>
       </div>
 
-      <!-- JUNE 8 -->
-      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 8 — Baseball</div>
+      <!-- JUNE 9 -->
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 9 — Stanley Cup Game 4</div>
+      <div class="prophecy-card warning" onclick="openModal(1)">
+        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · Resolves June 9</span></div>
+        <div class="card-title">The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes</div>
+        <div class="card-excerpt">"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>62%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:62%"></div></div></div>
+          <div class="card-votes">0 judgments · T-Mobile Arena · VGK leads series 2-1</div>
+        </div>
+      </div>
       <div class="prophecy-card danger" onclick="openModal(1)">
         <div class="card-meta"><span class="card-category cat-society">MLB</span><span class="card-date">Issued: June 6, 2026 · 02:57 GMT · Resolves June 8</span></div>
         <div class="card-title">The Atlanta Braves will win the series against Pittsburgh taking at least 2 of 3 games June 6 to 8 2026</div>
@@ -727,6 +736,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div class="accuracy-title">Judgment Record</div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">FULFILLED</div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">VGK wins Stanley Cup Game 3 — 5-4 2OT</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 9</div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">VGK wins Game 4 · Series 3-1</div><span class="acc-badge badge-pending">Jun 9</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 8</div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Atlanta wins Pittsburgh series</div><span class="acc-badge badge-pending">Jun 8</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Washington sweeps Arizona</div><span class="acc-badge badge-pending">Jun 8</span></div>
@@ -829,6 +840,7 @@ const prophecies=[
   {title:"El Nino conditions in 2026 will make this year one of the three hottest on record globally",category:"Climate",catClass:"cat-climate",excerpt:"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed. The record falls again.",analysis:"The Climate Prediction Center issued an El Nino Watch with 98 percent probability of El Nino during May-July 2026. The WMO forecasts a 75 percent chance that average global temperature between 2026 and 2030 will exceed 1.5 degrees above pre-industrial levels. Both France and the UK declared the hottest day in May on record. Subsurface Pacific temperatures show anomalies reaching 6 degrees Celsius above normal.",confidence:89},
   {title:"The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained",category:"Health",catClass:"cat-health",excerpt:"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath. The world watches and argues while the fire spreads to new rooms.",analysis:"On May 17 2026 the WHO declared the Ebola Bundibugyo outbreak in DRC a public health emergency of international concern. At least 750 suspected cases and 177 deaths recorded. An American doctor was evacuated to Germany. The US implemented entry bans for travelers from DRC, Uganda and South Sudan. The Bundibugyo strain is harder to control than the more common Zaire ebolavirus. Historical pattern: PHEICs of this scale spread to 3 or more countries 78 percent of the time.",confidence:74},
   {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide that surged when the narrow gate closed will recede as the gate reopens. What fear inflated normalcy deflates. The price of fire returns toward earth.",analysis:"Brent crude reached 138 dollars per barrel on April 7 following the de facto closure of the Strait of Hormuz, averaging 117 dollars in April. The EIA forecasts crude oil dropping to an average of 89 dollars per barrel in Q4 2026 and 79 dollars in 2027 as Middle East production normalises. The UAE departed OPEC effective May 1 2026. With supply returning the oracle reads the trajectory as clearly downward.",confidence:78},
+  {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"VGK leads 2-1 with home ice advantage for Game 4 at T-Mobile Arena Tuesday June 9. Mitch Marner scored the fastest natural hat trick in Stanley Cup Final history in Game 3. VGK swept Colorado 4-0 in the conference finals demonstrating elite closing ability. A 3-1 series lead has historically converted to a championship 87 percent of the time. Carolina is desperate but road teams in must-win Game 4 situations win only 42 percent of the time historically.",confidence:62},
   {title:"The Atlanta Braves will win the series against Pittsburgh taking at least 2 of 3 games June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The city of the hammer does not lose at home to those who come without thunder. The best record in the National League was not built by accident. The Pirates sail into a harbour that belongs to the Braves.",analysis:"Atlanta is 44-21 best record in the NL. They won games 1 and 2 of this series 6-3 and 6-3. Pittsburgh is 34-31 but outclassed at this level. Series already 2-0 Atlanta. Spencer Strider pitching game 2. Resolves June 8.",confidence:91},
   {title:"The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third.",analysis:"Washington destroyed Arizona 14-1 and 6-1 in consecutive games. Those margins represent complete team collapse from Arizona at home. Washington at 31-32 does not need to be good when Arizona is giving away games at this scale. The sweep is the logical conclusion. Resolves June 8.",confidence:78},
   {title:"The Milwaukee Brewers will win the series against Colorado at Coors Field June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The thin air of the mountain city gives equal advantage to those who visit. But the Brewers bring better arms and better bats. The altitude cannot compensate for the gap in talent.",analysis:"Milwaukee is 37-23 NL Central leaders. Colorado is 24-39 worst record in the NL West on pace for 100 losses. Milwaukee won game 1 at Coors 9-7 and leads game 2. The talent gap is enormous. Even at hitter-friendly Coors Field Milwaukee pitching depth is superior. Resolves June 8.",confidence:76}
