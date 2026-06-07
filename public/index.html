@@ -153,7 +153,17 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 .market-link-dk:hover{background:rgba(249,194,60,.1)}
 .card-footer-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
 .divergence-flag{font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.05em;margin-left:4px}
-/* Mobile */
+/* Floating scroll eye */
+.float-eye{position:fixed;right:20px;top:50%;transform:translateY(-50%);width:48px;height:48px;z-index:200;opacity:0;transition:opacity .5s;pointer-events:none}
+.float-eye.visible{opacity:.7}
+.float-eye:hover{opacity:1;pointer-events:all}
+.float-eye svg{width:100%;height:100%}
+@keyframes floatEyeShift{
+  0%,100%{transform:translateX(0px)}
+  25%{transform:translateX(4px)}
+  75%{transform:translateX(-4px)}
+}
+.float-eyeball{animation:floatEyeShift 6s ease-in-out infinite;transform-origin:24px 24px}
 @media(max-width:768px){
   nav{padding:12px 16px;flex-wrap:wrap}
   .nav-links{display:none}
@@ -208,6 +218,17 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 <body>
 <div class="stars" id="stars"></div>
 <div class="vignette"></div>
+<div class="float-eye" id="float-eye">
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="24" cy="24" rx="23" ry="23" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+    <g class="float-eyeball">
+      <path d="M4 24 Q12 13 24 12 Q36 13 44 24 Q36 35 24 36 Q12 35 4 24Z" fill="#e8e0d0"/>
+      <circle cx="24" cy="24" r="8" fill="#8b1a1a" stroke="rgba(201,168,76,0.8)" stroke-width="0.8"/>
+      <circle cx="24" cy="24" r="3.5" fill="#050305"/>
+      <circle cx="21" cy="21" r="1.5" fill="rgba(255,255,255,0.5)"/>
+    </g>
+  </svg>
+</div>
 <nav>
   <div class="nav-sigil">Ominous Prophecy</div>
   <ul class="nav-links">
@@ -232,7 +253,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           83%  { transform: translateX(-8px); }
           100% { transform: translateX(0px); }
         }
-        .eyeball { animation: eyeShift 9s ease-in-out infinite; transform-origin: 40px 40px; }
+        .eyeball { transform-origin: 40px 40px; }
       </style>
       <!-- Outer frame rings — static -->
       <ellipse cx="40" cy="40" rx="38" ry="38" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
@@ -809,7 +830,72 @@ document.getElementById('oracle-btn').addEventListener('click',function(){
     feed.insertBefore(card,feed.children[1]);
   },2200);
 });
-document.querySelectorAll('.cat-tag').forEach(tag=>{
+// Hero eye and float eye mouse tracking
+const heroEyeEl = document.querySelector('.oracle-eye svg .eyeball');
+const floatEyeEl = document.querySelector('.float-eye svg .float-eyeball');
+
+document.addEventListener('mousemove', (e) => {
+  // Hero eye tracking
+  if (heroEyeEl) {
+    const eyeContainer = document.querySelector('.oracle-eye');
+    if (eyeContainer) {
+      const rect = eyeContainer.getBoundingClientRect();
+      const eyeCenterX = rect.left + rect.width / 2;
+      const eyeCenterY = rect.top + rect.height / 2;
+      const dx = e.clientX - eyeCenterX;
+      const dy = e.clientY - eyeCenterY;
+      const angle = Math.atan2(dy, dx);
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const maxMove = 8;
+      const moveX = Math.cos(angle) * Math.min(dist / 120 * maxMove, maxMove);
+      const moveY = Math.sin(angle) * Math.min(dist / 120 * maxMove, maxMove);
+      heroEyeEl.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      heroEyeEl.style.transition = 'transform 0.1s ease-out';
+    }
+  }
+  // Float eye tracking
+  if (floatEyeEl) {
+    const floatContainer = document.querySelector('.float-eye');
+    if (floatContainer) {
+      const rect = floatContainer.getBoundingClientRect();
+      const eyeCenterX = rect.left + rect.width / 2;
+      const eyeCenterY = rect.top + rect.height / 2;
+      const dx = e.clientX - eyeCenterX;
+      const dy = e.clientY - eyeCenterY;
+      const angle = Math.atan2(dy, dx);
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const maxMove = 5;
+      const moveX = Math.cos(angle) * Math.min(dist / 200 * maxMove, maxMove);
+      const moveY = Math.sin(angle) * Math.min(dist / 200 * maxMove, maxMove);
+      floatEyeEl.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      floatEyeEl.style.transition = 'transform 0.15s ease-out';
+    }
+  }
+});
+
+document.addEventListener('mouseleave', () => {
+  if (heroEyeEl) {
+    heroEyeEl.style.transform = 'translate(0px, 0px)';
+    heroEyeEl.style.transition = 'transform 0.5s ease-out';
+  }
+  if (floatEyeEl) {
+    floatEyeEl.style.transform = 'translate(0px, 0px)';
+    floatEyeEl.style.transition = 'transform 0.5s ease-out';
+  }
+});
+const floatEye = document.getElementById('float-eye');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    floatEye.classList.add('visible');
+  } else {
+    floatEye.classList.remove('visible');
+  }
+});
+floatEye.addEventListener('click', () => {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  floatEye.style.pointerEvents = 'all';
+});
+floatEye.title = 'Return to the top';
   tag.addEventListener('click',function(){document.querySelectorAll('.cat-tag').forEach(t=>t.classList.remove('active'));this.classList.add('active')});
 });
 </script>
