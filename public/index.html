@@ -253,7 +253,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           83%  { transform: translateX(-8px); }
           100% { transform: translateX(0px); }
         }
-        .eyeball { transform-origin: 40px 40px; }
+        .eyeball { animation: eyeShift 9s ease-in-out infinite; transform-origin: 40px 40px; }
       </style>
       <!-- Outer frame rings — static -->
       <ellipse cx="40" cy="40" rx="38" ry="38" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
@@ -863,59 +863,7 @@ document.getElementById('oracle-btn').addEventListener('click',function(){
     feed.insertBefore(card,feed.children[1]);
   },2200);
 });
-// Hero eye and float eye mouse tracking
-const heroEyeEl = document.querySelector('.oracle-eye svg .eyeball');
-const floatEyeEl = document.querySelector('.float-eye svg .float-eyeball');
-
-document.addEventListener('mousemove', (e) => {
-  // Hero eye tracking
-  if (heroEyeEl) {
-    const eyeContainer = document.querySelector('.oracle-eye');
-    if (eyeContainer) {
-      const rect = eyeContainer.getBoundingClientRect();
-      const eyeCenterX = rect.left + rect.width / 2;
-      const eyeCenterY = rect.top + rect.height / 2;
-      const dx = e.clientX - eyeCenterX;
-      const dy = e.clientY - eyeCenterY;
-      const angle = Math.atan2(dy, dx);
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      const maxMove = 8;
-      const moveX = Math.cos(angle) * Math.min(dist / 120 * maxMove, maxMove);
-      const moveY = Math.sin(angle) * Math.min(dist / 120 * maxMove, maxMove);
-      heroEyeEl.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      heroEyeEl.style.transition = 'transform 0.1s ease-out';
-    }
-  }
-  // Float eye tracking
-  if (floatEyeEl) {
-    const floatContainer = document.querySelector('.float-eye');
-    if (floatContainer) {
-      const rect = floatContainer.getBoundingClientRect();
-      const eyeCenterX = rect.left + rect.width / 2;
-      const eyeCenterY = rect.top + rect.height / 2;
-      const dx = e.clientX - eyeCenterX;
-      const dy = e.clientY - eyeCenterY;
-      const angle = Math.atan2(dy, dx);
-      const dist = Math.sqrt(dx*dx + dy*dy);
-      const maxMove = 5;
-      const moveX = Math.cos(angle) * Math.min(dist / 200 * maxMove, maxMove);
-      const moveY = Math.sin(angle) * Math.min(dist / 200 * maxMove, maxMove);
-      floatEyeEl.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      floatEyeEl.style.transition = 'transform 0.15s ease-out';
-    }
-  }
-});
-
-document.addEventListener('mouseleave', () => {
-  if (heroEyeEl) {
-    heroEyeEl.style.transform = 'translate(0px, 0px)';
-    heroEyeEl.style.transition = 'transform 0.5s ease-out';
-  }
-  if (floatEyeEl) {
-    floatEyeEl.style.transform = 'translate(0px, 0px)';
-    floatEyeEl.style.transition = 'transform 0.5s ease-out';
-  }
-});
+// Floating eye scroll behaviour
 const floatEye = document.getElementById('float-eye');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
