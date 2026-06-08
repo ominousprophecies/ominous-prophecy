@@ -78,6 +78,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .cat-health{background:rgba(0,139,100,.3);color:#80ffe0}
 .cat-energy{background:rgba(139,100,0,.4);color:#ffb347}
 .cat-sport{background:rgba(100,0,139,.3);color:#d080ff}
+.cat-sports{background:rgba(100,0,139,.3);color:#d080ff}
 .card-date{font-family:'Space Mono',monospace;font-size:10px;color:#e0dcee;opacity:1;margin-left:auto}
 .card-title{font-family:'Cinzel',serif;font-size:19px;color:var(--pale-gold);line-height:1.45;margin-bottom:12px;font-weight:600}
 .card-excerpt{font-family:'IM Fell English',serif;font-style:italic;font-size:19px;color:var(--silver);line-height:1.85;margin-bottom:18px}
@@ -232,11 +233,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 <nav>
   <div class="nav-sigil">Ominous Prophecy</div>
   <ul class="nav-links">
-    <li><a href="#">The Oracle</a></li>
-    <li><a href="#">Prophecies</a></li>
-    <li><a href="#">Fulfilled</a></li>
-    <li><a href="#">Scoreboard</a></li>
-    <li><a href="#">Methodology</a></li>
+    <li><a href="#oracle-section">The Oracle</a></li>
+    <li><a href="#prophecy-feed">Prophecies</a></li>
+    <li><a href="#fulfilled-section">Fulfilled</a></li>
+    <li><a href="#scoreboard-section">Scoreboard</a></li>
+    <li><a href="#methodology-section">Methodology</a></li>
   </ul>
   <button class="nav-submit" onclick="document.querySelector('.oracle-input-section').scrollIntoView({behavior:'smooth',block:'center'})">Submit a Prophecy</button>
 </nav>
@@ -323,7 +324,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 <div class="main-grid">
   <div class="feed">
     <div class="section-header"><h2>Current Prophecies</h2></div>
-    <div class="oracle-input-section">
+    <div class="oracle-input-section" id="oracle-section">
       <h3>Consult the Oracle</h3>
       <p>Describe a world event, trend, or question. The Oracle will analyse it and issue a probability-scored prophecy.</p>
       <textarea class="oracle-textarea" placeholder="What do you wish to know of what is to come..."></textarea>
@@ -845,7 +846,6 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">New York Knicks win NBA Championship</div><span class="acc-badge badge-pending">Jun 21</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Wembanyama scores 30+ in one Finals game</div><span class="acc-badge badge-pending">Jun 21</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">De la Espriella wins Colombia runoff</div><span class="acc-badge badge-pending">Jun 21</span></div>
-      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Scheffler misses US Open</div><span class="acc-badge badge-pending">Jun 21</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 27</div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Argentina advance from group stage</div><span class="acc-badge badge-pending">Jun 27</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Brazil advance from group stage</div><span class="acc-badge badge-pending">Jun 27</span></div>
@@ -902,6 +902,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <span class="cat-tag">Health</span>
         <span class="cat-tag">Energy</span>
         <span class="cat-tag">Governance</span>
+        <span class="cat-tag">Sports</span>
       </div>
     </div>
     <div style="background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.3);padding:24px;margin-bottom:28px;text-align:center">
@@ -914,7 +915,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 <footer>
   <div class="footer-brand">Ominous Prophecy</div>
   <div class="footer-tagline">"The future is not hidden. It is merely unread."</div>
-  <div class="footer-links"><a href="#">Methodology</a><a href="#">API</a><a href="#">Archive</a><a href="#">About</a></div>
+  <div class="footer-links"><a href="#methodology-section">Methodology</a><a href="mailto:emilio.bruno@gmail.com">API</a><a href="#prophecy-feed">Archive</a><a href="https://discord.gg/jxkXfw5x8" target="_blank">About</a></div>
 </footer>
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal"><button class="modal-close" onclick="closeModal()">&#10005;</button><div id="modal-content"></div></div>
