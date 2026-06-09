@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ominous Prophecy — The AI Oracle</title>
-<link rel="icon" type="image/svg+xml" id="animated-favicon">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -89,7 +90,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .fill-high{--fill-color:#ff6b6b}
 .fill-med{--fill-color:var(--gold)}
 .fill-low{--fill-color:var(--silver)}
-.card-votes{font-family:'Space Mono',monospace;font-size:11px;color:#e0dcee;opacity:1;white-space:nowrap}
+.card-votes{font-family:'Space Mono',monospace;font-size:11px;color:#e0dcee;opacity:1;white-space:normal;line-height:1.5}
 .oracle-input-section{background:rgba(13,10,16,.9);border:1px solid rgba(201,168,76,.15);padding:32px;margin-bottom:48px}
 .oracle-input-section h3{font-family:'Cinzel Decorative',serif;font-size:14px;color:var(--gold);margin-bottom:6px;letter-spacing:.05em}
 .oracle-input-section p{font-family:'IM Fell English',serif;font-size:13px;color:#e2deee;opacity:1;margin-bottom:20px;line-height:1.6}
@@ -120,7 +121,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .category-tags{display:flex;flex-wrap:wrap;gap:8px}
 .cat-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;padding:5px 12px;border:1px solid rgba(201,168,76,.2);color:var(--silver);text-transform:uppercase;cursor:pointer;transition:all .2s}
 .cat-tag:hover,.cat-tag.active{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.05)}
-footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);padding:40px 48px;display:flex;align-items:center;justify-content:space-between}
+footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-brand{font-family:'Cinzel Decorative',serif;font-size:12px;letter-spacing:.2em;color:var(--gold);opacity:.9}
 .footer-tagline{font-family:'IM Fell English',serif;font-size:13px;color:var(--silver);opacity:.8}
 .footer-links{display:flex;gap:28px}
@@ -128,7 +129,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 .footer-links a:hover{opacity:.8}
 .modal-overlay{position:fixed;inset:0;background:rgba(8,6,8,.92);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 .modal-overlay.open{opacity:1;pointer-events:all}
-.modal{background:var(--void);border:1px solid rgba(201,168,76,.25);padding:48px;max-width:600px;width:90%;position:relative;transform:translateY(20px);transition:transform .3s}
+.modal{background:var(--void);border:1px solid rgba(201,168,76,.25);padding:40px;max-width:600px;width:92%;max-height:90vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .3s}
 .modal-overlay.open .modal{transform:translateY(0)}
 .modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--silver);font-size:20px;cursor:pointer;opacity:.5;transition:opacity .2s;font-family:'Cinzel',serif}
 .modal-close:hover{opacity:1}
@@ -204,6 +205,28 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   .oracle-verdict{padding:18px}
   .verdict-text{font-size:15px}
   .section-header{padding:0 16px 20px}
+  /* Footer */
+  footer{padding:24px 16px;flex-direction:column;gap:12px;text-align:center}
+  .footer-links{gap:16px;flex-wrap:wrap;justify-content:center}
+  /* Modal */
+  .modal{padding:24px 16px;width:95%;max-height:90vh;overflow-y:auto}
+  .modal-close{top:12px;right:12px}
+  /* Card votes */
+  .card-votes{white-space:normal;font-size:10px;line-height:1.5}
+  /* Vote buttons */
+  .modal-vote-section{flex-direction:column;gap:8px}
+  .vote-btn{padding:12px;font-size:10px;letter-spacing:.1em}
+  /* Vote email section */
+  #vote-email-section input{font-size:12px;padding:10px}
+  /* Ticker */
+  .ticker-wrap{display:none}
+  /* Nav alignment */
+  nav{gap:8px}
+  .nav-sigil{font-size:9px}
+  /* Stats bar */
+  .oracle-stats{padding:16px}
+  /* Date headers */
+  .main-grid > div > div[style*="margin:28px"]{font-size:11px;letter-spacing:.2em}
 }
 @media(max-width:480px){
   .hero h1{font-size:26px}
