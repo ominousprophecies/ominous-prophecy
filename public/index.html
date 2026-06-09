@@ -1072,12 +1072,41 @@ function openModal(idx){
   if(idx===99||idx>=prophecies.length||!prophecies[idx]){document.getElementById('modal-content').innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-family:\'Cinzel Decorative\',serif;font-size:13px;letter-spacing:.2em;color:#c9a84c;margin-bottom:16px">&#9670; VERDICT PENDING &#9670;</div><div style="font-family:\'IM Fell English\',serif;font-size:16px;color:#888;line-height:1.8">The oracle watches. The judgment has not yet been issued for this prophecy.<br><br>Return when the signs are clearer.</div></div>';document.getElementById('modal-overlay').classList.add('open');return;}
   const p=prophecies[idx];
   const fill=p.confidence>=70?'fill-high':p.confidence>=50?'fill-med':'fill-low';
-  document.getElementById('modal-content').innerHTML=`<div class="card-meta modal-category-display"><span class="card-category ${p.catClass}">${p.category}</span></div><h2>${p.title}</h2><div class="modal-excerpt">"${p.excerpt}"</div><div class="modal-analysis-title">&#9670; Oracle Analysis</div><div class="modal-analysis">${p.analysis}</div><div class="probability-bar-wrap" style="margin-bottom:24px"><div class="prob-label"><span>Oracle Confidence</span><span>${p.confidence}%</span></div><div class="probability-bar" style="height:4px"><div class="probability-fill ${fill}" style="width:${p.confidence}%"></div></div></div><div class="modal-vote-section"><button class="vote-btn vote-fulfill" onclick="vote('fulfill','+idx+')">◈ The Oracle Speaks Truth</button><button class="vote-btn vote-doubt" onclick="vote('doubt','+idx+')">✦ I Cast Doubt</button><div style="margin-top:12px"><div style="height:3px;background:#111;border-radius:2px;overflow:hidden"><div class="modal-vote-bar" style="height:100%;width:50%;background:linear-gradient(90deg,#c9a84c,#e8c96d);transition:width .6s"></div></div><div style="font-family:Space Mono,monospace;font-size:9px;color:#444;margin-top:5px;letter-spacing:.05em">Cast your voice below</div></div></div>`;
+  document.getElementById('modal-content').innerHTML=`<div class="card-meta modal-category-display"><span class="card-category ${p.catClass}">${p.category}</span></div><h2>${p.title}</h2><div class="modal-excerpt">"${p.excerpt}"</div><div class="modal-analysis-title">&#9670; Oracle Analysis</div><div class="modal-analysis">${p.analysis}</div><div class="probability-bar-wrap" style="margin-bottom:24px"><div class="prob-label"><span>Oracle Confidence</span><span>${p.confidence}%</span></div><div class="probability-bar" style="height:4px"><div class="probability-fill ${fill}" style="width:${p.confidence}%"></div></div></div><div class="modal-vote-section"><button class="vote-btn vote-fulfill" onclick="selectVote('fulfill','+idx+')">◈ The Oracle Speaks Truth</button><button class="vote-btn vote-doubt" onclick="selectVote('doubt','+idx+')">✦ I Cast Doubt</button><div id="vote-email-section" style="display:none;margin-top:16px"><div style="font-family:Space Mono,monospace;font-size:9px;color:#666;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Seal your ballot with an address</div><div style="display:flex;gap:8px"><input id="vote-email-input" type="email" placeholder="your@email.com" style="flex:1;background:#0d0d0d;border:1px solid #2a2218;color:#e0dcee;font-family:Space Mono,monospace;font-size:11px;padding:10px 12px;outline:none" /><button onclick="submitVote()" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:Cinzel,serif;font-size:10px;letter-spacing:.15em;padding:10px 14px;cursor:pointer;white-space:nowrap">Cast Vote</button></div><div style="font-family:Space Mono,monospace;font-size:8px;color:#333;margin-top:6px;letter-spacing:.05em">A ballot confirmation will be sent to your address</div></div><div style="margin-top:12px"><div style="height:3px;background:#111;border-radius:2px;overflow:hidden"><div class="modal-vote-bar" style="height:100%;width:50%;background:linear-gradient(90deg,#c9a84c,#e8c96d);transition:width .6s"></div></div><div style="font-family:Space Mono,monospace;font-size:9px;color:#444;margin-top:5px;letter-spacing:.05em">Cast your voice below</div></div></div>`;
   document.getElementById('modal-overlay').classList.add('open');
 }
 function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
 function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
-function getSessionId(){let id=localStorage.getItem('op_session_id');if(!id){id=crypto.randomUUID();localStorage.setItem('op_session_id',id);}return id;}function vote(type,prophecyId){const sessionId=getSessionId();const voteKey='op_vote_'+prophecyId;if(localStorage.getItem(voteKey)){return;}const fulfillBtn=document.querySelector('.vote-fulfill');const doubtBtn=document.querySelector('.vote-doubt');fulfillBtn.disabled=true;doubtBtn.disabled=true;fetch('/api/vote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prophecy_id:'card-'+prophecyId,vote_type:type,session_id:sessionId})}).then(r=>r.json()).then(data=>{localStorage.setItem(voteKey,type);const chosen=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');chosen.textContent=type==='fulfill'?'✓ Belief Recorded':'✗ Doubt Cast';chosen.style.opacity='1';const other=document.querySelector(type==='fulfill'?'.vote-doubt':'.vote-fulfill');other.style.opacity='.3';if(data.vote_fulfill!==undefined){const total=data.vote_fulfill+data.vote_doubt;const pct=total>0?Math.round(data.vote_fulfill/total*100):50;const bar=document.querySelector('.modal-vote-bar');if(bar){bar.style.width=pct+'%';bar.nextElementSibling.textContent=pct+'% believe · '+(100-pct)+'% doubt · '+total+' voices';}}setTimeout(closeModal,1200);}).catch(()=>{localStorage.setItem(voteKey,type);const btn=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');btn.textContent='Recorded';btn.style.opacity='.5';setTimeout(closeModal,800);});}
+function getSessionId(){let id=localStorage.getItem('op_session_id');if(!id){id=crypto.randomUUID();localStorage.setItem('op_session_id',id);}return id;}
+let _pendingVoteType=null;let _pendingVoteIdx=null;
+function selectVote(type,idx){
+  const voteKey='op_vote_'+idx;
+  if(localStorage.getItem(voteKey)){const b=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');b.textContent='Already spoken';b.style.opacity='.5';return;}
+  _pendingVoteType=type;_pendingVoteIdx=idx;
+  document.querySelector('.vote-fulfill').style.opacity=type==='fulfill'?'1':'.35';
+  document.querySelector('.vote-doubt').style.opacity=type==='doubt'?'1':'.35';
+  document.querySelector('.vote-fulfill').style.borderColor=type==='fulfill'?'rgba(201,168,76,.8)':'rgba(201,168,76,.2)';
+  document.querySelector('.vote-doubt').style.borderColor=type==='doubt'?'rgba(139,58,58,.8)':'rgba(139,58,58,.2)';
+  document.getElementById('vote-email-section').style.display='block';
+  document.getElementById('vote-email-input').focus();
+}
+function submitVote(){
+  const email=document.getElementById('vote-email-input').value.trim();
+  if(!email||!email.includes('@')){document.getElementById('vote-email-input').style.borderColor='#8b1a1a';return;}
+  const type=_pendingVoteType;const idx=_pendingVoteIdx;
+  const sessionId=getSessionId();const voteKey='op_vote_'+idx;
+  document.getElementById('vote-email-section').innerHTML='<div style="font-family:Space Mono,monospace;font-size:9px;color:#c9a84c;letter-spacing:.1em;padding:8px 0">&#9670; Sealing ballot...</div>';
+  fetch('/api/vote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prophecy_id:'card-'+idx,vote_type:type,session_id:sessionId,email:email,prophecy_title:document.querySelector('#modal-content h2').textContent,prophecy_confidence:document.querySelector('#modal-content .prob-label span:last-child').textContent})})
+  .then(r=>r.json()).then(data=>{
+    localStorage.setItem(voteKey,type);
+    document.querySelector('.vote-fulfill').disabled=true;document.querySelector('.vote-doubt').disabled=true;
+    const chosen=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');
+    chosen.textContent=type==='fulfill'?'◈ Belief Recorded':'✦ Doubt Cast';chosen.style.opacity='1';
+    document.getElementById('vote-email-section').innerHTML='<div style="font-family:Space Mono,monospace;font-size:9px;color:#555;letter-spacing:.08em;padding:6px 0">&#9670; Ballot sealed. A confirmation has been sent to your address.</div>';
+    if(data.vote_fulfill!==undefined){const total=data.vote_fulfill+data.vote_doubt;const pct=total>0?Math.round(data.vote_fulfill/total*100):50;const bar=document.querySelector('.modal-vote-bar');if(bar){bar.style.width=pct+'%';bar.nextElementSibling.textContent=pct+'% believe · '+(100-pct)+'% doubt · '+total+' voices';}}
+    setTimeout(closeModal,2000);
+  }).catch(()=>{localStorage.setItem(voteKey,type);document.getElementById('vote-email-section').innerHTML='<div style="font-family:Space Mono,monospace;font-size:9px;color:#555;padding:6px 0">Ballot recorded.</div>';setTimeout(closeModal,1500);});
+}
 document.getElementById('oracle-btn').addEventListener('click',function(){
   const ta=document.querySelector('.oracle-textarea');
   const val=ta.value.trim();
@@ -1133,6 +1162,7 @@ floatEye.addEventListener('click', () => {
   floatEye.style.pointerEvents = 'all';
 });
 floatEye.title = 'Return to the top';
+document.querySelectorAll('.cat-tag').forEach(tag=>{
   tag.addEventListener('click',function(){document.querySelectorAll('.cat-tag').forEach(t=>t.classList.remove('active'));this.classList.add('active')});
 });
 </script>
