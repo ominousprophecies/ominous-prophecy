@@ -1085,7 +1085,7 @@ function vote(type,prophecyId){
   const fulfillBtn=document.querySelector('.vote-fulfill');
   const doubtBtn=document.querySelector('.vote-doubt');
   fulfillBtn.disabled=true;doubtBtn.disabled=true;
-  fetch('/api/prophecy/vote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prophecy_id:prophecyId,vote_type:type,session_id:sessionId})})
+  fetch('/api/vote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prophecy_id:prophecyId,vote_type:type,session_id:sessionId})})
   .then(r=>r.json()).then(data=>{
     localStorage.setItem(voteKey,type);
     const chosen=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');
