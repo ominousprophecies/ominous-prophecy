@@ -1148,7 +1148,7 @@ setInterval(() => {
   const svg = faviconFrames[faviconFrame % faviconFrames.length];
   faviconLink.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
   faviconFrame++;
-}, 180);
+}, 400);
 const floatEye = document.getElementById('float-eye');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
