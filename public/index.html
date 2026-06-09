@@ -27,7 +27,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .nav-submit:hover{opacity:.85}
 .hero{position:relative;z-index:10;text-align:center;padding:80px 48px 60px;overflow:hidden;max-width:1296px;margin:0 auto}
 .hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(139,26,26,.12) 0%,transparent 70%);pointer-events:none}
-.oracle-eye{width:80px;height:80px;margin:0 auto 32px;animation:pulse-eye 4s ease-in-out infinite}
+.oracle-eye{width:320px;height:200px;margin:0 auto 32px}
 @keyframes pulse-eye{0%,100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(201,168,76,.4))}50%{transform:scale(1.05);filter:drop-shadow(0 0 20px rgba(201,168,76,.7))}}
 .hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.4em;color:var(--crimson);text-transform:uppercase;margin-bottom:20px;animation:fade-in 1s ease .3s both;text-align:center}
 .hero h1{font-family:'Cinzel Decorative',serif;font-size:clamp(32px,6vw,68px);font-weight:900;line-height:1.05;color:var(--pale-gold);letter-spacing:.05em;margin-bottom:8px;animation:fade-up 1s ease .5s both;text-shadow:0 0 60px rgba(201,168,76,.2);text-align:center;word-wrap:break-word}
@@ -173,7 +173,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   .hero h1{font-size:clamp(28px,8vw,48px);text-align:center}
   .hero-sub{text-align:center}
   .hero-desc{font-size:15px;text-align:center}
-  .oracle-eye{margin:0 auto 16px}
+  .oracle-eye{width:260px;height:162px;margin:0 auto 16px}
   .oracle-stats{gap:12px;flex-wrap:wrap;justify-content:center}
   .stat-item{min-width:80px}
   .stat-divider{display:none}
@@ -265,40 +265,148 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 </nav>
 <div class="hero">
   <div class="oracle-eye">
-    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <defs>
+        <radialGradient id="hbg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1a0a0a"/><stop offset="100%" stop-color="#080608"/>
+        </radialGradient>
+        <radialGradient id="hscl" cx="38%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#ede4d4"/><stop offset="55%" stop-color="#ddd4be"/><stop offset="100%" stop-color="#c8bca8"/>
+        </radialGradient>
+        <radialGradient id="hiris" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#2a1e08"/>
+          <stop offset="22%" stop-color="#3e2e10"/>
+          <stop offset="40%" stop-color="#3a3214"/>
+          <stop offset="56%" stop-color="#3a3e24"/>
+          <stop offset="74%" stop-color="#384030"/>
+          <stop offset="90%" stop-color="#2a3022"/>
+          <stop offset="100%" stop-color="#141810"/>
+        </radialGradient>
+        <radialGradient id="hlight" cx="35%" cy="30%" r="65%">
+          <stop offset="0%"  stop-color="rgba(220,210,160,0.24)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+        </radialGradient>
+        <radialGradient id="hshadow" cx="70%" cy="72%" r="55%">
+          <stop offset="0%"  stop-color="rgba(0,0,0,0.22)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+        </radialGradient>
+        <radialGradient id="hpu" cx="38%" cy="34%" r="55%">
+          <stop offset="0%"  stop-color="#100212"/><stop offset="65%" stop-color="#050105"/><stop offset="100%" stop-color="#020002"/>
+        </radialGradient>
+        <radialGradient id="hcorn" cx="36%" cy="20%" r="60%">
+          <stop offset="0%"  stop-color="rgba(255,248,235,0.20)"/><stop offset="100%" stop-color="rgba(255,248,235,0)"/>
+        </radialGradient>
+        <linearGradient id="hulgr" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#050305"/>
+          <stop offset="75%"  stop-color="#090608"/>
+          <stop offset="100%" stop-color="#110a10"/>
+        </linearGradient>
+        <clipPath id="hec">
+          <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"/>
+        </clipPath>
+        <clipPath id="hic"><circle cx="340" cy="210" r="77"/></clipPath>
+      </defs>
+
       <style>
-        @keyframes eyeShift {
-          0%   { transform: translateX(0px); }
-          15%  { transform: translateX(0px); }
-          30%  { transform: translateX(8px); }
-          48%  { transform: translateX(8px); }
-          65%  { transform: translateX(-8px); }
-          83%  { transform: translateX(-8px); }
-          100% { transform: translateX(0px); }
+        #hgaze{animation:hgz 20s ease-in-out infinite;}
+        #hulid{animation:hub 5s linear infinite;}
+        #hllid{animation:hlb 5s linear infinite;}
+        #hpupil{transform-origin:340px 210px;animation:hpd 20s ease-in-out infinite;}
+        @keyframes hub{0%,80%{transform:translateY(0);}84%{transform:translateY(182px);}90%,100%{transform:translateY(0);}}
+        @keyframes hlb{0%,80%{transform:translateY(0);}84%{transform:translateY(-51px);}90%,100%{transform:translateY(0);}}
+        @keyframes hgz{
+          0%,10%{transform:translate(0,0);}
+          18%,32%{transform:translate(-38px,2px);}
+          40%,48%{transform:translate(0,0);}
+          56%,70%{transform:translate(40px,3px);}
+          78%,83%{transform:translate(0,0);}
+          88%,93%{transform:translate(6px,-22px);}
+          100%{transform:translate(0,0);}
         }
-        .eyeball { animation: eyeShift 9s ease-in-out infinite; transform-origin: 40px 40px; }
+        @keyframes hpd{
+          0%,10%{transform:scale(1);}
+          18%,32%{transform:scale(0.94);}
+          40%,48%{transform:scale(1);}
+          56%,70%{transform:scale(0.94);}
+          78%,83%{transform:scale(1);}
+          88%,93%{transform:scale(1.15);}
+          100%{transform:scale(1);}
+        }
       </style>
-      <!-- Outer frame rings — static -->
-      <ellipse cx="40" cy="40" rx="38" ry="38" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
-      <line x1="40" y1="2" x2="40" y2="10" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
-      <line x1="40" y1="70" x2="40" y2="78" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
-      <line x1="2" y1="40" x2="10" y2="40" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
-      <line x1="70" y1="40" x2="78" y2="40" stroke="rgba(201,168,76,0.35)" stroke-width="1"/>
-      <!-- Eyeball — whole thing moves left/right -->
-      <g class="eyeball">
-        <!-- Sclera -->
-        <path d="M8 40 Q20 22 40 20 Q60 22 72 40 Q60 58 40 60 Q20 58 8 40Z" fill="#e8e0d0"/>
-        <!-- Iris -->
-        <circle cx="40" cy="40" r="13" fill="#8b1a1a"/>
-        <circle cx="40" cy="40" r="10" fill="none" stroke="rgba(100,10,10,0.4)" stroke-width="1.5"/>
-        <!-- Pupil -->
-        <circle cx="40" cy="40" r="6" fill="#050305"/>
-        <!-- Gold limbal ring -->
-        <circle cx="40" cy="40" r="13" fill="none" stroke="rgba(201,168,76,0.8)" stroke-width="1"/>
-        <!-- Light reflections -->
-        <circle cx="35" cy="35" r="2.5" fill="rgba(255,255,255,0.55)"/>
-        <circle cx="44" cy="43" r="1" fill="rgba(255,255,255,0.25)"/>
+
+      <g clip-path="url(#hec)">
+        <rect x="-20" y="-60" width="720" height="540" fill="url(#hscl)"/>
+        <path d="M155 196 Q200 204 238 208" fill="none" stroke="#c88888" stroke-width="0.4" opacity="0.2"/>
+        <path d="M525 202 Q490 208 455 212" fill="none" stroke="#c88888" stroke-width="0.4" opacity="0.18"/>
+
+        <g id="hgaze">
+          <circle cx="340" cy="210" r="77" fill="url(#hiris)"/>
+          <circle cx="340" cy="210" r="77" fill="url(#hlight)"/>
+          <circle cx="340" cy="210" r="77" fill="url(#hshadow)"/>
+          <circle cx="340" cy="210" r="77" fill="none" stroke="#050505" stroke-width="8"/>
+          <circle cx="340" cy="210" r="72" fill="none" stroke="#0c0c0c" stroke-width="3" opacity="0.85"/>
+          <g clip-path="url(#hic)" stroke-linecap="round" fill="none" opacity="0.5">
+            <line x1="340" y1="140" x2="340" y2="175" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="361" y1="141" x2="352" y2="175" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="381" y1="147" x2="364" y2="178" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="399" y1="157" x2="374" y2="183" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="413" y1="171" x2="382" y2="191" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="415" y1="190" x2="384" y2="202" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="416" y1="210" x2="384" y2="210" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="415" y1="230" x2="384" y2="218" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="413" y1="249" x2="382" y2="229" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="399" y1="263" x2="374" y2="237" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="381" y1="273" x2="364" y2="242" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="361" y1="279" x2="352" y2="245" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="340" y1="280" x2="340" y2="245" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="319" y1="279" x2="328" y2="245" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="299" y1="273" x2="316" y2="242" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="281" y1="263" x2="306" y2="237" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="267" y1="249" x2="298" y2="229" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="265" y1="230" x2="296" y2="218" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="264" y1="210" x2="296" y2="210" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="265" y1="190" x2="296" y2="202" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="267" y1="171" x2="298" y2="191" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="281" y1="157" x2="306" y2="183" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="299" y1="147" x2="316" y2="178" stroke="#0a0c08" stroke-width="0.5"/>
+            <line x1="319" y1="141" x2="328" y2="175" stroke="#0a0c08" stroke-width="0.5"/>
+          </g>
+          <circle cx="340" cy="210" r="44" fill="none" stroke="#1a1610" stroke-width="1.5" opacity="0.6" stroke-dasharray="4,2,3,2,5,1,4,3"/>
+          <g fill="#060606" opacity="0.72">
+            <ellipse cx="340" cy="137" rx="4.5" ry="2.8"/>
+            <ellipse cx="302" cy="148" rx="4" ry="2.5" transform="rotate(-22 302 148)"/>
+            <ellipse cx="374" cy="146" rx="3.5" ry="2.2" transform="rotate(18 374 146)"/>
+            <ellipse cx="270" cy="175" rx="4" ry="2.5" transform="rotate(-40 270 175)"/>
+            <ellipse cx="410" cy="173" rx="3.5" ry="2.2" transform="rotate(35 410 173)"/>
+            <ellipse cx="263" cy="212" rx="3.5" ry="2.2"/>
+            <ellipse cx="417" cy="210" rx="4" ry="2.5"/>
+            <ellipse cx="270" cy="250" rx="4" ry="2.5" transform="rotate(36 270 250)"/>
+            <ellipse cx="410" cy="248" rx="3.5" ry="2.2" transform="rotate(-28 410 248)"/>
+            <ellipse cx="302" cy="276" rx="4" ry="2.5" transform="rotate(16 302 276)"/>
+            <ellipse cx="374" cy="274" rx="3.5" ry="2.2" transform="rotate(-14 374 274)"/>
+            <ellipse cx="340" cy="283" rx="4.5" ry="2.8"/>
+          </g>
+          <g id="hpupil">
+            <circle cx="340" cy="210" r="30" fill="url(#hpu)"/>
+            <circle cx="340" cy="210" r="30" fill="none" stroke="#050105" stroke-width="2"/>
+          </g>
+          <ellipse cx="332" cy="196" rx="46" ry="32" fill="url(#hcorn)" transform="rotate(-10 332 196)"/>
+          <rect x="312" y="193" width="14" height="10" rx="2" fill="rgba(255,255,255,0.88)" transform="rotate(-8 319 198)"/>
+          <rect x="348" y="200" width="9" height="7" rx="1.5" fill="rgba(255,255,255,0.72)" transform="rotate(5 352 203)"/>
+        </g>
+
+        <g id="hulid">
+          <path d="M-20,-60 L700,-60 L700,210 Q560,158 500,146 Q430,133 340,129 Q250,133 180,146 Q120,158 -20,210 Z" fill="url(#hulgr)"/>
+          <path d="M118 210 Q200 162 280 146 Q310 140 340 138 Q370 140 400 146 Q480 162 562 210 Q500 148 340 129 Q180 148 118 210 Z" fill="url(#hulgr)" opacity="0.7"/>
+        </g>
+        <g id="hllid">
+          <path d="M-20,480 L700,480 L700,210 Q500,272 340,291 Q180,272 -20,210 Z" fill="#080608"/>
+        </g>
       </g>
+
+      <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"
+        fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
+      <path d="M118 210 Q127 203 136 209 Q127 217 118 210Z" fill="#080608"/>
     </svg>
   </div>
   <div class="hero-eyebrow">&#9670; AI-Powered Prophecy Engine &#9670;</div>
