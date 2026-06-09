@@ -1077,31 +1077,6 @@ function openModal(idx){
 function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
 function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
 function getSessionId(){let id=localStorage.getItem('op_session_id');if(!id){id=crypto.randomUUID();localStorage.setItem('op_session_id',id);}return id;}function vote(type,prophecyId){const sessionId=getSessionId();const voteKey='op_vote_'+prophecyId;if(localStorage.getItem(voteKey)){return;}const fulfillBtn=document.querySelector('.vote-fulfill');const doubtBtn=document.querySelector('.vote-doubt');fulfillBtn.disabled=true;doubtBtn.disabled=true;fetch('/api/vote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prophecy_id:'card-'+prophecyId,vote_type:type,session_id:sessionId})}).then(r=>r.json()).then(data=>{localStorage.setItem(voteKey,type);const chosen=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');chosen.textContent=type==='fulfill'?'✓ Belief Recorded':'✗ Doubt Cast';chosen.style.opacity='1';const other=document.querySelector(type==='fulfill'?'.vote-doubt':'.vote-fulfill');other.style.opacity='.3';if(data.vote_fulfill!==undefined){const total=data.vote_fulfill+data.vote_doubt;const pct=total>0?Math.round(data.vote_fulfill/total*100):50;const bar=document.querySelector('.modal-vote-bar');if(bar){bar.style.width=pct+'%';bar.nextElementSibling.textContent=pct+'% believe · '+(100-pct)+'% doubt · '+total+' voices';}}setTimeout(closeModal,1200);}).catch(()=>{localStorage.setItem(voteKey,type);const btn=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');btn.textContent='Recorded';btn.style.opacity='.5';setTimeout(closeModal,800);});}
-function vote(type,prophecyId){
-  if(!prophecyId){const btn=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');btn.textContent='Recorded';btn.style.opacity='.5';btn.style.cursor='default';setTimeout(closeModal,800);return;}
-  const sessionId=getSessionId();
-  const voteKey='op_vote_'+prophecyId;
-  if(localStorage.getItem(voteKey)){return;}
-  const fulfillBtn=document.querySelector('.vote-fulfill');
-  const doubtBtn=document.querySelector('.vote-doubt');
-  fulfillBtn.disabled=true;doubtBtn.disabled=true;
-  fetch('/api/vote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prophecy_id:prophecyId,vote_type:type,session_id:sessionId})})
-  .then(r=>r.json()).then(data=>{
-    localStorage.setItem(voteKey,type);
-    const chosen=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');
-    chosen.textContent=type==='fulfill'?'✓ Belief Recorded':'✗ Doubt Cast';
-    chosen.style.opacity='1';
-    const other=document.querySelector(type==='fulfill'?'.vote-doubt':'.vote-fulfill');
-    other.style.opacity='.3';
-    if(data.vote_fulfill!==undefined){
-      const total=data.vote_fulfill+data.vote_doubt;
-      const pct=total>0?Math.round(data.vote_fulfill/total*100):50;
-      const bar=document.querySelector('.modal-vote-bar');
-      if(bar){bar.style.width=pct+'%';bar.nextElementSibling.textContent=pct+'% believe · '+(100-pct)+'% doubt · '+total+' voices';}
-    }
-    setTimeout(closeModal,1200);
-  }).catch(()=>{localStorage.setItem(voteKey,type);const btn=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');btn.textContent='Recorded';btn.style.opacity='.5';setTimeout(closeModal,800);});
-}
 document.getElementById('oracle-btn').addEventListener('click',function(){
   const ta=document.querySelector('.oracle-textarea');
   const val=ta.value.trim();
