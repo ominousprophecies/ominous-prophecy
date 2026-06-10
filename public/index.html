@@ -53,7 +53,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
 .section-header h2{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .section-header::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,168,76,.3),transparent)}
-.prophecy-card{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);margin-bottom:20px;padding:24px 28px;position:relative;transition:border-color .3s,transform .2s;cursor:pointer;overflow:hidden;animation:card-appear .6s ease both}.prophecy-card.fulfilled{border-color:rgba(60,160,80,.45);box-shadow:0 0 12px rgba(60,160,80,.08)}.prophecy-card.danger{border-color:rgba(160,50,50,.45);box-shadow:0 0 12px rgba(160,50,50,.08)}
+.prophecy-card{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);margin-bottom:20px;padding:24px 28px;position:relative;transition:border-color .3s,transform .2s;cursor:pointer;overflow:hidden;animation:card-appear .6s ease both}.prophecy-card.oracle-fulfilled{border-color:rgba(60,160,80,.45)!important;box-shadow:0 0 14px rgba(60,160,80,.12)}.prophecy-card.oracle-failed{border-color:rgba(160,50,50,.45)!important;box-shadow:0 0 14px rgba(160,50,50,.12)}
 .prophecy-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border-color,var(--gold));opacity:.6}
 .prophecy-card:hover{border-color:rgba(201,168,76,.3);transform:translateX(4px)}
 .prophecy-card.danger{--border-color:var(--blood)}
@@ -516,8 +516,19 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
     <div id="prophecy-feed">
 
       <!-- FULFILLED -->
+      <!-- JUNE 11 — GAME 5 -->
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 11 — Stanley Cup Game 5</div>
+      <div class="prophecy-card warning" onclick="openModal(99)">
+        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 9, 2026 · 23:30 GMT · Resolves June 12</span></div>
+        <div class="card-title">Carolina Hurricanes will win Game 5 of the Stanley Cup Final on home ice</div>
+        <div class="card-excerpt">"The storm returns to its birthplace. What was scattered on foreign soil reconvenes at the source — the Hurricanes, emboldened by the road, shall make their fortress speak. Two goals from the elder Staal have written the shape of this series."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>68%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:68%"></div></div></div>
+          <div class="card-votes">0 judgments · PNC Arena, Carolina · June 11, 8PM EDT</div>
+        </div>
+      </div>
       <div style="margin:0 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#4caf50;text-transform:uppercase;border-bottom:1px solid rgba(76,175,80,.2);padding-bottom:12px">&#9670; Fulfilled</div>
-      <div class="prophecy-card danger" onclick="openModal(0)">
+      <div class="prophecy-card oracle-fulfilled" onclick="openModal(0)">
         <div class="card-meta"><span class="card-category cat-society">NHL ✓ FULFILLED</span><span class="card-date">Issued: June 6, 2026 · 02:34 GMT · Resolved June 7</span></div>
         <div class="card-title">The Vegas Golden Knights will win Game 3 of the 2026 Stanley Cup Final</div>
         <div class="card-excerpt">"The fortress of neon and noise swallows the road team whole. What was taken on enemy ice cannot be defended on ones own. The golden city roars and the hurricane loses its wind."</div>
@@ -529,8 +540,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JUNE 9 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; FAILED — CAR wins Game 4, 5-3 · Series tied 2-2</div>
-      <div class="prophecy-card warning" onclick="openModal(1)">
-        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · Resolves June 9</span></div>
+      <div class="prophecy-card oracle-failed" onclick="openModal(1)">
+        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · FAILED June 9</span></div>
         <div class="card-title">The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes</div>
         <div class="card-excerpt">"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely."</div>
         <div class="card-footer">
@@ -547,7 +558,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">FULFILLED · Swept Pittsburgh 3-0 · Won 6-3, 6-3, 3-2</div>
         </div>
       </div>
-      <div class="prophecy-card neutral" onclick="openModal(2)">
+      <div class="prophecy-card oracle-failed" onclick="openModal(2)">
         <div class="card-meta"><span class="card-category cat-society">MLB ✗ FAILED</span><span class="card-date">Issued: June 6, 2026 · 02:57 GMT · Resolved June 7</span></div>
         <div class="card-title">The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026</div>
         <div class="card-excerpt">"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third."</div>
@@ -1123,7 +1134,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </svg>
       </div>
       <div class="verdict-title">&#9670; The Record Speaks &#9670;</div>
-      <div class="verdict-text">"Three prophecies fulfilled. One has failed. The oracle does not hide its misses — it records them honestly. 3 from 4. The record is what it is. The eye remains open."</div>
+      <div class="verdict-text">"Three prophecies fulfilled. Two have failed. The oracle does not hide its misses — it records them honestly. 3 from 5. The record is what it is. The eye remains open."</div>
       <div class="verdict-confidence">Updated June 8, 2026 &middot; Accuracy: 75%</div>
     </div>
     <div class="accuracy-panel">
@@ -2450,7 +2461,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- FULFILLED -->
       <div style="margin:0 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#4caf50;text-transform:uppercase;border-bottom:1px solid rgba(76,175,80,.2);padding-bottom:12px">&#9670; Fulfilled</div>
-      <div class="prophecy-card danger" onclick="openModal(0)">
+      <div class="prophecy-card oracle-fulfilled" onclick="openModal(0)">
         <div class="card-meta"><span class="card-category cat-society">NHL ✓ FULFILLED</span><span class="card-date">Issued: June 6, 2026 · 02:34 GMT · Resolved June 7</span></div>
         <div class="card-title">The Vegas Golden Knights will win Game 3 of the 2026 Stanley Cup Final</div>
         <div class="card-excerpt">"The fortress of neon and noise swallows the road team whole. What was taken on enemy ice cannot be defended on ones own. The golden city roars and the hurricane loses its wind."</div>
@@ -2462,8 +2473,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JUNE 9 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; FAILED — CAR wins Game 4, 5-3 · Series tied 2-2</div>
-      <div class="prophecy-card warning" onclick="openModal(1)">
-        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · Resolves June 9</span></div>
+      <div class="prophecy-card oracle-failed" onclick="openModal(1)">
+        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · FAILED June 9</span></div>
         <div class="card-title">The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes</div>
         <div class="card-excerpt">"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely."</div>
         <div class="card-footer">
@@ -2480,7 +2491,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">FULFILLED · Swept Pittsburgh 3-0 · Won 6-3, 6-3, 3-2</div>
         </div>
       </div>
-      <div class="prophecy-card neutral" onclick="openModal(2)">
+      <div class="prophecy-card oracle-failed" onclick="openModal(2)">
         <div class="card-meta"><span class="card-category cat-society">MLB ✗ FAILED</span><span class="card-date">Issued: June 6, 2026 · 02:57 GMT · Resolved June 7</span></div>
         <div class="card-title">The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026</div>
         <div class="card-excerpt">"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third."</div>
@@ -3045,7 +3056,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </svg>
       </div>
       <div class="verdict-title">&#9670; The Record Speaks &#9670;</div>
-      <div class="verdict-text">"Three prophecies fulfilled. One has failed. The oracle does not hide its misses — it records them honestly. 3 from 4. The record is what it is. The eye remains open."</div>
+      <div class="verdict-text">"Three prophecies fulfilled. Two have failed. The oracle does not hide its misses — it records them honestly. 3 from 5. The record is what it is. The eye remains open."</div>
       <div class="verdict-confidence">Updated June 8, 2026 &middot; Accuracy: 75%</div>
     </div>
     <div class="accuracy-panel">
@@ -3155,7 +3166,6 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   <div class="modal"><button class="modal-close" onclick="closeModal()">&#10005;</button><div id="modal-content"></div></div>
 </div>
 <script>
-const starsEl=document.getElementById('stars');
 for(let i=0;i<180;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;--max-op:${.2+Math.random()*.5}`;starsEl.appendChild(s)}
 const prophecies=[
   {title:"A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026",category:"Geopolitics",catClass:"cat-geopolitics",excerpt:"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks and in that blink a threshold is crossed that cannot be uncrossed.",analysis:"Taiwan detected 202 Chinese military aircraft around the island in April 2026, of which at least 145 crossed the unofficial median line. The PLA has conducted larger and more frequent drills simulating blockades and precision strikes. A Dutch frigate was tracked by Chinese naval and air forces in June 2026. Historical pattern analysis shows triggering incidents follow sustained median line crossings at 71 percent frequency within 8 months.",confidence:71},
