@@ -53,7 +53,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
 .section-header h2{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .section-header::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,168,76,.3),transparent)}
-.prophecy-card{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);margin-bottom:20px;padding:24px 28px;position:relative;transition:border-color .3s,transform .2s;cursor:pointer;overflow:hidden;animation:card-appear .6s ease both}
+.prophecy-card{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);margin-bottom:20px;padding:24px 28px;position:relative;transition:border-color .3s,transform .2s;cursor:pointer;overflow:hidden;animation:card-appear .6s ease both}.prophecy-card.fulfilled{border-color:rgba(60,160,80,.45);box-shadow:0 0 12px rgba(60,160,80,.08)}.prophecy-card.danger{border-color:rgba(160,50,50,.45);box-shadow:0 0 12px rgba(160,50,50,.08)}
 .prophecy-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border-color,var(--gold));opacity:.6}
 .prophecy-card:hover{border-color:rgba(201,168,76,.3);transform:translateX(4px)}
 .prophecy-card.danger{--border-color:var(--blood)}
@@ -528,14 +528,14 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
       <!-- JUNE 9 -->
-      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 9 — Stanley Cup Game 4</div>
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; FAILED — CAR wins Game 4, 5-3 · Series tied 2-2</div>
       <div class="prophecy-card warning" onclick="openModal(1)">
         <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · Resolves June 9</span></div>
         <div class="card-title">The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes</div>
         <div class="card-excerpt">"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely."</div>
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>62%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:62%"></div></div></div>
-          <div class="card-votes">0 judgments · T-Mobile Arena · VGK leads series 2-1</div>
+          <div class="card-votes">FAILED · CAR 5-3 · Series tied 2-2</div>
         </div>
       </div>
       <div class="prophecy-card danger" onclick="openModal(1)">
@@ -567,6 +567,17 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
       <!-- JUNE 14 -->
+      <!-- JUNE 11 — GAME 5 -->
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 11 — Stanley Cup Game 5</div>
+      <div class="prophecy-card" onclick="openModal(99)">
+        <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 9, 2026</span></div>
+        <div class="card-title">Carolina Hurricanes will win Game 5 of the Stanley Cup Final on home ice</div>
+        <div class="card-excerpt">"The storm returns to its birthplace. What was scattered on foreign soil reconvenes at the source — the Hurricanes, emboldened by the road, shall make their fortress speak."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>68%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:68%"></div></div></div>
+          <div class="card-votes">Game 5 · PNC Arena, Carolina · June 11, 8PM EDT</div>
+        </div>
+      </div>
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 14 — Le Mans &amp; UFC Freedom 250</div>
       <div class="prophecy-card warning" onclick="openModal(99)">
         <div class="card-meta"><span class="card-category cat-tech">Le Mans</span><span class="card-date">Issued: June 7, 2026 · 05:14 GMT · Resolves June 14</span></div>
@@ -1120,7 +1131,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">FULFILLED</div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">VGK wins Stanley Cup Game 3 — 5-4 2OT</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 9</div>
-      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">VGK wins Game 4 · Series 3-1</div><span class="acc-badge badge-pending">Jun 9</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-failed"></div><div class="acc-text">VGK wins Game 4 — FAILED · CAR won 5-3</div><span class="acc-badge badge-failed">FAILED</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">CAR wins Game 5 at home · 68%</div><span class="acc-badge badge-pending">Jun 11</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 8</div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">Atlanta sweeps Pittsburgh 3-0</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-failed"></div><div class="acc-text">Washington sweeps Arizona — won series 2-1 not sweep</div><span class="acc-badge badge-failed">FAILED</span></div>
@@ -1246,7 +1258,8 @@ const prophecies=[
   {title:"El Nino conditions in 2026 will make this year one of the three hottest on record globally",category:"Climate",catClass:"cat-climate",excerpt:"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed. The record falls again.",analysis:"The Climate Prediction Center issued an El Nino Watch with 98 percent probability of El Nino during May-July 2026. The WMO forecasts a 75 percent chance that average global temperature between 2026 and 2030 will exceed 1.5 degrees above pre-industrial levels. Both France and the UK declared the hottest day in May on record. Subsurface Pacific temperatures show anomalies reaching 6 degrees Celsius above normal.",confidence:89},
   {title:"The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained",category:"Health",catClass:"cat-health",excerpt:"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath. The world watches and argues while the fire spreads to new rooms.",analysis:"On May 17 2026 the WHO declared the Ebola Bundibugyo outbreak in DRC a public health emergency of international concern. At least 750 suspected cases and 177 deaths recorded. An American doctor was evacuated to Germany. The US implemented entry bans for travelers from DRC, Uganda and South Sudan. The Bundibugyo strain is harder to control than the more common Zaire ebolavirus. Historical pattern: PHEICs of this scale spread to 3 or more countries 78 percent of the time.",confidence:74},
   {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide that surged when the narrow gate closed will recede as the gate reopens. What fear inflated normalcy deflates. The price of fire returns toward earth.",analysis:"Brent crude reached 138 dollars per barrel on April 7 following the de facto closure of the Strait of Hormuz, averaging 117 dollars in April. The EIA forecasts crude oil dropping to an average of 89 dollars per barrel in Q4 2026 and 79 dollars in 2027 as Middle East production normalises. The UAE departed OPEC effective May 1 2026. With supply returning the oracle reads the trajectory as clearly downward.",confidence:78},
-  {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"VGK leads 2-1 with home ice advantage for Game 4 at T-Mobile Arena Tuesday June 9. Mitch Marner scored the fastest natural hat trick in Stanley Cup Final history in Game 3. VGK swept Colorado 4-0 in the conference finals demonstrating elite closing ability. A 3-1 series lead has historically converted to a championship 87 percent of the time. Carolina is desperate but road teams in must-win Game 4 situations win only 42 percent of the time historically.",confidence:62},
+  {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"VGK leads 2-1 with home ice advantage for Game 4 at T-Mobile Arena Tuesday June 9. Mitch Marner scored the fastest natural hat trick in Stanley Cup Final history in Game 3. VGK swept Colorado 4-0 in the conference finals demonstrating elite closing ability. A 3-1 series lead has historically converted to a championship 87 percent of the time. Carolina is desperate but road teams in must-win Game 4 situations win only 42 percent of the time historically. RESULT: CAR won 5-3. Series tied 2-2. Prophecy failed.",confidence:62,status:"failed"},
+  {title:"Carolina Hurricanes will win Game 5 of the Stanley Cup Final on home ice",category:"NHL",catClass:"cat-society",excerpt:"The storm returns to its birthplace. What was scattered on foreign soil reconvenes at the source — the Hurricanes, emboldened by the road, shall make their fortress speak. Two goals from the elder Staal have written the shape of this series.",analysis:"Carolina enters Game 5 having won Game 4 convincingly 5-3 on the road, with Jordan Staal scoring twice and Nikolaj Ehlers adding three points. The Hurricanes demonstrated superior puck possession (56.9% faceoffs, 28 vs 21 shots on goal) in Game 4 and have shown road resilience throughout this postseason. Historical base rate for home teams in tied Game 5 situations sits at approximately 58%. Live win probability models place Carolina at 57.7%. The oracle issues this prophecy at 68% confidence — enough to speak, not enough to be certain. Game 5, June 11, PNC Arena, Carolina.",confidence:68},
   {title:"The Atlanta Braves will win the series against Pittsburgh taking at least 2 of 3 games June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The city of the hammer does not lose at home to those who come without thunder. The best record in the National League was not built by accident. The Pirates sail into a harbour that belongs to the Braves.",analysis:"Atlanta is 44-21 best record in the NL. They won games 1 and 2 of this series 6-3 and 6-3. Pittsburgh is 34-31 but outclassed at this level. Series already 2-0 Atlanta. Spencer Strider pitching game 2. Resolves June 8.",confidence:91},
   {title:"The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third.",analysis:"Washington destroyed Arizona 14-1 and 6-1 in consecutive games. Those margins represent complete team collapse from Arizona at home. Washington at 31-32 does not need to be good when Arizona is giving away games at this scale. The sweep is the logical conclusion. Resolves June 8.",confidence:78},
   {title:"The Milwaukee Brewers will win the series against Colorado at Coors Field June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The thin air of the mountain city gives equal advantage to those who visit. But the Brewers bring better arms and better bats. The altitude cannot compensate for the gap in talent.",analysis:"Milwaukee is 37-23 NL Central leaders. Colorado is 24-39 worst record in the NL West on pace for 100 losses. Milwaukee won game 1 at Coors 9-7 and leads game 2. The talent gap is enormous. Even at hitter-friendly Coors Field Milwaukee pitching depth is superior. Resolves June 8.",confidence:76}
@@ -1258,18 +1271,39 @@ function openModal(idx){
   document.getElementById('modal-content').innerHTML=`<div class="card-meta modal-category-display"><span class="card-category ${p.catClass}">${p.category}</span></div><h2>${p.title}</h2><div class="modal-excerpt">"${p.excerpt}"</div><div class="modal-analysis-title">&#9670; Oracle Analysis</div><div class="modal-analysis">${p.analysis}</div><div class="probability-bar-wrap" style="margin-bottom:24px"><div class="prob-label"><span>Oracle Confidence</span><span>${p.confidence}%</span></div><div class="probability-bar" style="height:4px"><div class="probability-fill ${fill}" style="width:${p.confidence}%"></div></div></div><div class="modal-vote-section"><button class="vote-btn vote-fulfill" onclick="selectVote('fulfill','+idx+')">◈ The Oracle Speaks Truth</button><button class="vote-btn vote-doubt" onclick="selectVote('doubt','+idx+')">✦ I Cast Doubt</button><div id="vote-email-section" style="display:none;margin-top:16px"><div style="font-family:Space Mono,monospace;font-size:9px;color:#666;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Seal your ballot with an address</div><div style="display:flex;gap:8px"><input id="vote-email-input" type="email" placeholder="your@email.com" style="flex:1;background:#0d0d0d;border:1px solid #2a2218;color:#e0dcee;font-family:Space Mono,monospace;font-size:11px;padding:10px 12px;outline:none" /><button onclick="submitVote()" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:Cinzel,serif;font-size:10px;letter-spacing:.15em;padding:10px 14px;cursor:pointer;white-space:nowrap">Cast Vote</button></div><div style="font-family:Space Mono,monospace;font-size:8px;color:#333;margin-top:6px;letter-spacing:.05em">A ballot confirmation will be sent to your address</div></div><div style="margin-top:12px"><div style="height:3px;background:#111;border-radius:2px;overflow:hidden"><div class="modal-vote-bar" style="height:100%;width:50%;background:linear-gradient(90deg,#c9a84c,#e8c96d);transition:width .6s"></div></div><div style="font-family:Space Mono,monospace;font-size:9px;color:#444;margin-top:5px;letter-spacing:.05em">Cast your voice below</div></div></div>`;
   document.getElementById('modal-overlay').classList.add('open');
 }
-function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+function closeModal(){
+  if(_pendingVoteType && !localStorage.getItem('op_vote_'+_pendingVoteIdx)){
+    // Vote selected but not submitted — warn
+    const emailSec=document.getElementById('vote-email-section');
+    if(emailSec && emailSec.style.display!=='none'){
+      emailSec.innerHTML='<div style="font-family:Space Mono,monospace;font-size:9px;color:#8b3a3a;letter-spacing:.08em;padding:6px 0">&#9670; Your vote was not sealed — enter your email to confirm.</div>';
+      setTimeout(function(){document.getElementById('modal-overlay').classList.remove('open');_pendingVoteType=null;},2200);
+      return;
+    }
+  }
+  _pendingVoteType=null;
+  document.getElementById('modal-overlay').classList.remove('open');
+}
 function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
 function getSessionId(){let id=localStorage.getItem('op_session_id');if(!id){id=crypto.randomUUID();localStorage.setItem('op_session_id',id);}return id;}
 let _pendingVoteType=null;let _pendingVoteIdx=null;
 function selectVote(type,idx){
   const voteKey='op_vote_'+idx;
-  if(localStorage.getItem(voteKey)){const b=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');b.textContent='Already spoken';b.style.opacity='.5';return;}
+  if(localStorage.getItem(voteKey)){
+    const b=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');
+    b.textContent='Already spoken';b.style.opacity='.5';return;
+  }
   _pendingVoteType=type;_pendingVoteIdx=idx;
-  document.querySelector('.vote-fulfill').style.opacity=type==='fulfill'?'1':'.35';
-  document.querySelector('.vote-doubt').style.opacity=type==='doubt'?'1':'.35';
-  document.querySelector('.vote-fulfill').style.borderColor=type==='fulfill'?'rgba(201,168,76,.8)':'rgba(201,168,76,.2)';
-  document.querySelector('.vote-doubt').style.borderColor=type==='doubt'?'rgba(139,58,58,.8)':'rgba(139,58,58,.2)';
+  // Activate selected, DISABLE opposite
+  const fulfillBtn=document.querySelector('.vote-fulfill');
+  const doubtBtn=document.querySelector('.vote-doubt');
+  if(type==='fulfill'){
+    fulfillBtn.style.opacity='1';fulfillBtn.style.borderColor='rgba(201,168,76,.8)';fulfillBtn.disabled=false;
+    doubtBtn.style.opacity='.25';doubtBtn.style.borderColor='rgba(201,168,76,.1)';doubtBtn.disabled=true;
+  } else {
+    doubtBtn.style.opacity='1';doubtBtn.style.borderColor='rgba(139,58,58,.8)';doubtBtn.disabled=false;
+    fulfillBtn.style.opacity='.25';fulfillBtn.style.borderColor='rgba(201,168,76,.1)';fulfillBtn.disabled=true;
+  }
   document.getElementById('vote-email-section').style.display='block';
   document.getElementById('vote-email-input').focus();
 }
@@ -2427,14 +2461,14 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
       <!-- JUNE 9 -->
-      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 9 — Stanley Cup Game 4</div>
+      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; FAILED — CAR wins Game 4, 5-3 · Series tied 2-2</div>
       <div class="prophecy-card warning" onclick="openModal(1)">
         <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · Resolves June 9</span></div>
         <div class="card-title">The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes</div>
         <div class="card-excerpt">"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely."</div>
         <div class="card-footer">
           <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>62%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:62%"></div></div></div>
-          <div class="card-votes">0 judgments · T-Mobile Arena · VGK leads series 2-1</div>
+          <div class="card-votes">FAILED · CAR 5-3 · Series tied 2-2</div>
         </div>
       </div>
       <div class="prophecy-card danger" onclick="openModal(1)">
@@ -3019,7 +3053,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">FULFILLED</div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">VGK wins Stanley Cup Game 3 — 5-4 2OT</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 9</div>
-      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">VGK wins Game 4 · Series 3-1</div><span class="acc-badge badge-pending">Jun 9</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-failed"></div><div class="acc-text">VGK wins Game 4 — FAILED · CAR won 5-3</div><span class="acc-badge badge-failed">FAILED</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">CAR wins Game 5 at home · 68%</div><span class="acc-badge badge-pending">Jun 11</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 8</div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">Atlanta sweeps Pittsburgh 3-0</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-failed"></div><div class="acc-text">Washington sweeps Arizona — won series 2-1 not sweep</div><span class="acc-badge badge-failed">FAILED</span></div>
@@ -3145,7 +3180,8 @@ const prophecies=[
   {title:"El Nino conditions in 2026 will make this year one of the three hottest on record globally",category:"Climate",catClass:"cat-climate",excerpt:"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed. The record falls again.",analysis:"The Climate Prediction Center issued an El Nino Watch with 98 percent probability of El Nino during May-July 2026. The WMO forecasts a 75 percent chance that average global temperature between 2026 and 2030 will exceed 1.5 degrees above pre-industrial levels. Both France and the UK declared the hottest day in May on record. Subsurface Pacific temperatures show anomalies reaching 6 degrees Celsius above normal.",confidence:89},
   {title:"The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained",category:"Health",catClass:"cat-health",excerpt:"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath. The world watches and argues while the fire spreads to new rooms.",analysis:"On May 17 2026 the WHO declared the Ebola Bundibugyo outbreak in DRC a public health emergency of international concern. At least 750 suspected cases and 177 deaths recorded. An American doctor was evacuated to Germany. The US implemented entry bans for travelers from DRC, Uganda and South Sudan. The Bundibugyo strain is harder to control than the more common Zaire ebolavirus. Historical pattern: PHEICs of this scale spread to 3 or more countries 78 percent of the time.",confidence:74},
   {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide that surged when the narrow gate closed will recede as the gate reopens. What fear inflated normalcy deflates. The price of fire returns toward earth.",analysis:"Brent crude reached 138 dollars per barrel on April 7 following the de facto closure of the Strait of Hormuz, averaging 117 dollars in April. The EIA forecasts crude oil dropping to an average of 89 dollars per barrel in Q4 2026 and 79 dollars in 2027 as Middle East production normalises. The UAE departed OPEC effective May 1 2026. With supply returning the oracle reads the trajectory as clearly downward.",confidence:78},
-  {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"VGK leads 2-1 with home ice advantage for Game 4 at T-Mobile Arena Tuesday June 9. Mitch Marner scored the fastest natural hat trick in Stanley Cup Final history in Game 3. VGK swept Colorado 4-0 in the conference finals demonstrating elite closing ability. A 3-1 series lead has historically converted to a championship 87 percent of the time. Carolina is desperate but road teams in must-win Game 4 situations win only 42 percent of the time historically.",confidence:62},
+  {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"VGK leads 2-1 with home ice advantage for Game 4 at T-Mobile Arena Tuesday June 9. Mitch Marner scored the fastest natural hat trick in Stanley Cup Final history in Game 3. VGK swept Colorado 4-0 in the conference finals demonstrating elite closing ability. A 3-1 series lead has historically converted to a championship 87 percent of the time. Carolina is desperate but road teams in must-win Game 4 situations win only 42 percent of the time historically. RESULT: CAR won 5-3. Series tied 2-2. Prophecy failed.",confidence:62,status:"failed"},
+  {title:"Carolina Hurricanes will win Game 5 of the Stanley Cup Final on home ice",category:"NHL",catClass:"cat-society",excerpt:"The storm returns to its birthplace. What was scattered on foreign soil reconvenes at the source — the Hurricanes, emboldened by the road, shall make their fortress speak. Two goals from the elder Staal have written the shape of this series.",analysis:"Carolina enters Game 5 having won Game 4 convincingly 5-3 on the road, with Jordan Staal scoring twice and Nikolaj Ehlers adding three points. The Hurricanes demonstrated superior puck possession (56.9% faceoffs, 28 vs 21 shots on goal) in Game 4 and have shown road resilience throughout this postseason. Historical base rate for home teams in tied Game 5 situations sits at approximately 58%. Live win probability models place Carolina at 57.7%. The oracle issues this prophecy at 68% confidence — enough to speak, not enough to be certain. Game 5, June 11, PNC Arena, Carolina.",confidence:68},
   {title:"The Atlanta Braves will win the series against Pittsburgh taking at least 2 of 3 games June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The city of the hammer does not lose at home to those who come without thunder. The best record in the National League was not built by accident. The Pirates sail into a harbour that belongs to the Braves.",analysis:"Atlanta is 44-21 best record in the NL. They won games 1 and 2 of this series 6-3 and 6-3. Pittsburgh is 34-31 but outclassed at this level. Series already 2-0 Atlanta. Spencer Strider pitching game 2. Resolves June 8.",confidence:91},
   {title:"The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third.",analysis:"Washington destroyed Arizona 14-1 and 6-1 in consecutive games. Those margins represent complete team collapse from Arizona at home. Washington at 31-32 does not need to be good when Arizona is giving away games at this scale. The sweep is the logical conclusion. Resolves June 8.",confidence:78},
   {title:"The Milwaukee Brewers will win the series against Colorado at Coors Field June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The thin air of the mountain city gives equal advantage to those who visit. But the Brewers bring better arms and better bats. The altitude cannot compensate for the gap in talent.",analysis:"Milwaukee is 37-23 NL Central leaders. Colorado is 24-39 worst record in the NL West on pace for 100 losses. Milwaukee won game 1 at Coors 9-7 and leads game 2. The talent gap is enormous. Even at hitter-friendly Coors Field Milwaukee pitching depth is superior. Resolves June 8.",confidence:76}
@@ -3157,18 +3193,39 @@ function openModal(idx){
   document.getElementById('modal-content').innerHTML=`<div class="card-meta modal-category-display"><span class="card-category ${p.catClass}">${p.category}</span></div><h2>${p.title}</h2><div class="modal-excerpt">"${p.excerpt}"</div><div class="modal-analysis-title">&#9670; Oracle Analysis</div><div class="modal-analysis">${p.analysis}</div><div class="probability-bar-wrap" style="margin-bottom:24px"><div class="prob-label"><span>Oracle Confidence</span><span>${p.confidence}%</span></div><div class="probability-bar" style="height:4px"><div class="probability-fill ${fill}" style="width:${p.confidence}%"></div></div></div><div class="modal-vote-section"><button class="vote-btn vote-fulfill" onclick="selectVote('fulfill','+idx+')">◈ The Oracle Speaks Truth</button><button class="vote-btn vote-doubt" onclick="selectVote('doubt','+idx+')">✦ I Cast Doubt</button><div id="vote-email-section" style="display:none;margin-top:16px"><div style="font-family:Space Mono,monospace;font-size:9px;color:#666;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Seal your ballot with an address</div><div style="display:flex;gap:8px"><input id="vote-email-input" type="email" placeholder="your@email.com" style="flex:1;background:#0d0d0d;border:1px solid #2a2218;color:#e0dcee;font-family:Space Mono,monospace;font-size:11px;padding:10px 12px;outline:none" /><button onclick="submitVote()" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:Cinzel,serif;font-size:10px;letter-spacing:.15em;padding:10px 14px;cursor:pointer;white-space:nowrap">Cast Vote</button></div><div style="font-family:Space Mono,monospace;font-size:8px;color:#333;margin-top:6px;letter-spacing:.05em">A ballot confirmation will be sent to your address</div></div><div style="margin-top:12px"><div style="height:3px;background:#111;border-radius:2px;overflow:hidden"><div class="modal-vote-bar" style="height:100%;width:50%;background:linear-gradient(90deg,#c9a84c,#e8c96d);transition:width .6s"></div></div><div style="font-family:Space Mono,monospace;font-size:9px;color:#444;margin-top:5px;letter-spacing:.05em">Cast your voice below</div></div></div>`;
   document.getElementById('modal-overlay').classList.add('open');
 }
-function closeModal(){document.getElementById('modal-overlay').classList.remove('open')}
+function closeModal(){
+  if(_pendingVoteType && !localStorage.getItem('op_vote_'+_pendingVoteIdx)){
+    // Vote selected but not submitted — warn
+    const emailSec=document.getElementById('vote-email-section');
+    if(emailSec && emailSec.style.display!=='none'){
+      emailSec.innerHTML='<div style="font-family:Space Mono,monospace;font-size:9px;color:#8b3a3a;letter-spacing:.08em;padding:6px 0">&#9670; Your vote was not sealed — enter your email to confirm.</div>';
+      setTimeout(function(){document.getElementById('modal-overlay').classList.remove('open');_pendingVoteType=null;},2200);
+      return;
+    }
+  }
+  _pendingVoteType=null;
+  document.getElementById('modal-overlay').classList.remove('open');
+}
 function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal()}
 function getSessionId(){let id=localStorage.getItem('op_session_id');if(!id){id=crypto.randomUUID();localStorage.setItem('op_session_id',id);}return id;}
 let _pendingVoteType=null;let _pendingVoteIdx=null;
 function selectVote(type,idx){
   const voteKey='op_vote_'+idx;
-  if(localStorage.getItem(voteKey)){const b=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');b.textContent='Already spoken';b.style.opacity='.5';return;}
+  if(localStorage.getItem(voteKey)){
+    const b=document.querySelector(type==='fulfill'?'.vote-fulfill':'.vote-doubt');
+    b.textContent='Already spoken';b.style.opacity='.5';return;
+  }
   _pendingVoteType=type;_pendingVoteIdx=idx;
-  document.querySelector('.vote-fulfill').style.opacity=type==='fulfill'?'1':'.35';
-  document.querySelector('.vote-doubt').style.opacity=type==='doubt'?'1':'.35';
-  document.querySelector('.vote-fulfill').style.borderColor=type==='fulfill'?'rgba(201,168,76,.8)':'rgba(201,168,76,.2)';
-  document.querySelector('.vote-doubt').style.borderColor=type==='doubt'?'rgba(139,58,58,.8)':'rgba(139,58,58,.2)';
+  // Activate selected, DISABLE opposite
+  const fulfillBtn=document.querySelector('.vote-fulfill');
+  const doubtBtn=document.querySelector('.vote-doubt');
+  if(type==='fulfill'){
+    fulfillBtn.style.opacity='1';fulfillBtn.style.borderColor='rgba(201,168,76,.8)';fulfillBtn.disabled=false;
+    doubtBtn.style.opacity='.25';doubtBtn.style.borderColor='rgba(201,168,76,.1)';doubtBtn.disabled=true;
+  } else {
+    doubtBtn.style.opacity='1';doubtBtn.style.borderColor='rgba(139,58,58,.8)';doubtBtn.disabled=false;
+    fulfillBtn.style.opacity='.25';fulfillBtn.style.borderColor='rgba(201,168,76,.1)';fulfillBtn.disabled=true;
+  }
   document.getElementById('vote-email-section').style.display='block';
   document.getElementById('vote-email-input').focus();
 }
