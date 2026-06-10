@@ -307,25 +307,74 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </defs>
 
       <style>
-        #hgaze{animation:hgz 20s ease-in-out infinite;}
-        #hulid{animation:hub 5s linear infinite;}
-        #hllid{animation:hlb 5s linear infinite;}
-        #hpupil{transform-origin:340px 210px;animation:hpd 20s ease-in-out infinite;}
-        @keyframes hub{0%,80%{transform:translateY(0);}84%{transform:translateY(182px);}90%,100%{transform:translateY(0);}}
-        @keyframes hlb{0%,80%{transform:translateY(0);}84%{transform:translateY(-51px);}90%,100%{transform:translateY(0);}}
+        #hgaze{animation:hgz 28s ease-in-out infinite;}
+        #hulid{animation:hub 12s ease-in-out infinite;}
+        #hllid{animation:hlb 12s ease-in-out infinite;}
+        #hpupil{transform-origin:340px 210px;animation:hpd 18s ease-in-out infinite;}
+        @keyframes hub{
+          /* Contemptuous rest — heavy lid */
+          0%,20%   {transform:translateY(0);}
+          /* Scanning drift — lid lifts slightly, alert */
+          21%      {transform:translateY(-8px);}
+          /* SNAP onto target — lid drops into SQUINT */
+          24%,44%  {transform:translateY(62px);}
+          /* Squint releases slowly */
+          50%,56%  {transform:translateY(0);}
+          /* Center rest */
+          58%,68%  {transform:translateY(0);}
+          /* Right scan — lid lifts */
+          72%      {transform:translateY(-8px);}
+          /* SNAP right — SQUINT again */
+          76%,88%  {transform:translateY(62px);}
+          /* Release */
+          93%,100% {transform:translateY(0);}
+        }
+        @keyframes hlb{
+          /* Rest */
+          0%,20%   {transform:translateY(0);}
+          /* Alert lift */
+          21%      {transform:translateY(4px);}
+          /* SQUINT — lower lid rises to meet upper */
+          24%,44%  {transform:translateY(-22px);}
+          /* Release */
+          50%,68%  {transform:translateY(0);}
+          /* Right squint */
+          72%      {transform:translateY(4px);}
+          76%,88%  {transform:translateY(-22px);}
+          /* Release */
+          93%,100% {transform:translateY(0);}
+        }
         @keyframes hgz{
-          0%,10%{transform:translate(0,0);}
-          18%,32%{transform:translate(-38px,2px);}
-          40%,55%{transform:translate(0,0);}
-          62%,76%{transform:translate(40px,3px);}
-          85%,100%{transform:translate(0,0);}
+          /* Dead still — contemptuous rest */
+          0%,15%   {transform:translate(0,0);}
+          /* Slow drift left — scanning */
+          20%      {transform:translate(-20px,1px);}
+          /* SNAP — locks on hard */
+          23%,50%  {transform:translate(-42px,2px);}
+          /* Slow return center */
+          57%,68%  {transform:translate(0,0);}
+          /* Drift right — scanning */
+          73%      {transform:translate(20px,1px);}
+          /* SNAP right — locks on */
+          76%,90%  {transform:translate(42px,2px);}
+          /* Return */
+          96%,100% {transform:translate(0,0);}
         }
         @keyframes hpd{
-          0%,10%{transform:scale(1);}
-          18%,32%{transform:scale(0.94);}
-          40%,55%{transform:scale(1);}
-          62%,76%{transform:scale(0.94);}
-          85%,100%{transform:scale(1);}
+          /* Resting — normal light, normal pupil */
+          0%,12%   {transform:scale(1);}
+          /* Gaze moves left/lateral — neutral light, slight drift */
+          20%,30%  {transform:scale(1.04);}
+          /* Squint — lids closer, slightly less light, very mild dilation */
+          36%,46%  {transform:scale(1.08);}
+          /* Return — normal */
+          55%,65%  {transform:scale(1);}
+          /* Right lateral — neutral */
+          72%,82%  {transform:scale(1.04);}
+          /* Right squint */
+          86%,92%  {transform:scale(1.08);}
+          /* Slow return */
+          100%     {transform:scale(1);}
         }
       </style>
 
@@ -392,16 +441,18 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
         <g id="hulid">
           <path d="M-20,-60 L700,-60 L700,210 Q560,158 500,146 Q430,133 340,129 Q250,133 180,146 Q120,158 -20,210 Z" fill="url(#hulgr)"/>
-          <path d="M118 210 Q200 162 280 146 Q310 140 340 138 Q370 140 400 146 Q480 162 562 210 Q500 148 340 129 Q180 148 118 210 Z" fill="url(#hulgr)" opacity="0.7"/>
+
         </g>
         <g id="hllid">
           <path d="M-20,480 L700,480 L700,210 Q500,272 340,291 Q180,272 -20,210 Z" fill="#080608"/>
         </g>
+        <!-- Eye outline inside clip — lids cover it cleanly -->
+        <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"
+          fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
+        <path d="M118 210 Q127 203 136 209 Q127 217 118 210Z" fill="#080608"/>
       </g>
 
-      <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"
-        fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
-      <path d="M118 210 Q127 203 136 209 Q127 217 118 210Z" fill="#080608"/>
+
     </svg>
   </div>
   <div class="hero-eyebrow">&#9670; AI-Powered Prophecy Engine &#9670;</div>
