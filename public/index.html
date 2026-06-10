@@ -154,7 +154,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 .card-footer-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
 .divergence-flag{font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.05em;margin-left:4px}
 /* Floating scroll eye */
-.float-eye{position:fixed;right:20px;top:50%;transform:translateY(-50%);width:48px;height:48px;z-index:200;opacity:0;transition:opacity .5s;pointer-events:none}
+.float-eye{position:fixed;right:16px;top:50%;transform:translateY(-50%);width:160px;height:100px;z-index:200;opacity:0;transition:opacity .5s;pointer-events:none;cursor:pointer}
 .float-eye.visible{opacity:.7}
 .float-eye:hover{opacity:1;pointer-events:all}
 .float-eye svg{width:100%;height:100%}
@@ -241,14 +241,36 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 <div class="stars" id="stars"></div>
 <div class="vignette"></div>
 <div class="float-eye" id="float-eye">
-  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="24" cy="24" rx="23" ry="23" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
-    <g class="float-eyeball">
-      <path d="M4 24 Q12 13 24 12 Q36 13 44 24 Q36 35 24 36 Q12 35 4 24Z" fill="#e8e0d0"/>
-      <circle cx="24" cy="24" r="8" fill="#8b1a1a" stroke="rgba(201,168,76,0.8)" stroke-width="0.8"/>
-      <circle cx="24" cy="24" r="3.5" fill="#050305"/>
-      <circle cx="21" cy="21" r="1.5" fill="rgba(255,255,255,0.5)"/>
+  <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+    <defs>
+      <radialGradient id="fscl" cx="38%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#ede4d4"/><stop offset="55%" stop-color="#ddd4be"/><stop offset="100%" stop-color="#c8bca8"/>
+      </radialGradient>
+      <radialGradient id="firis" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"  stop-color="#3a2c10"/><stop offset="40%" stop-color="#4e4420"/>
+        <stop offset="70%" stop-color="#4c5640"/><stop offset="100%" stop-color="#202418"/>
+      </radialGradient>
+      <radialGradient id="fpu" cx="40%" cy="36%" r="55%">
+        <stop offset="0%" stop-color="#100212"/><stop offset="100%" stop-color="#020002"/>
+      </radialGradient>
+      <radialGradient id="flt" cx="35%" cy="30%" r="65%">
+        <stop offset="0%" stop-color="rgba(220,210,160,0.30)"/><stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+      </radialGradient>
+      <clipPath id="fec">
+        <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"/>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#fec)">
+      <rect x="-20" y="-60" width="720" height="540" fill="url(#fscl)"/>
+      <circle cx="340" cy="210" r="77" fill="url(#firis)"/>
+      <circle cx="340" cy="210" r="77" fill="url(#flt)"/>
+      <circle cx="340" cy="210" r="77" fill="none" stroke="#050505" stroke-width="8"/>
+      <circle cx="340" cy="210" r="30" fill="url(#fpu)"/>
+      <rect x="318" y="197" width="11" height="8" rx="1.5" fill="rgba(255,255,255,0.82)" transform="rotate(-8 323 201)"/>
+      <rect x="350" y="202" width="7" height="5" rx="1" fill="rgba(255,255,255,0.65)"/>
     </g>
+    <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"
+      fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
   </svg>
 </div>
 <nav>
