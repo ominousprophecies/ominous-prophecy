@@ -262,12 +262,14 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
     </defs>
     <g clip-path="url(#fec)">
       <rect x="-20" y="-60" width="720" height="540" fill="url(#fscl)"/>
-      <circle cx="340" cy="210" r="77" fill="url(#firis)"/>
-      <circle cx="340" cy="210" r="77" fill="url(#flt)"/>
-      <circle cx="340" cy="210" r="77" fill="none" stroke="#050505" stroke-width="8"/>
-      <circle cx="340" cy="210" r="30" fill="url(#fpu)"/>
-      <rect x="318" y="197" width="11" height="8" rx="1.5" fill="rgba(255,255,255,0.82)" transform="rotate(-8 323 201)"/>
-      <rect x="350" y="202" width="7" height="5" rx="1" fill="rgba(255,255,255,0.65)"/>
+      <g id="fgaze">
+        <circle cx="340" cy="210" r="77" fill="url(#firis)"/>
+        <circle cx="340" cy="210" r="77" fill="url(#flt)"/>
+        <circle cx="340" cy="210" r="77" fill="none" stroke="#050505" stroke-width="8"/>
+        <circle cx="340" cy="210" r="30" fill="url(#fpu)"/>
+        <rect x="318" y="197" width="11" height="8" rx="1.5" fill="rgba(255,255,255,0.82)" transform="rotate(-8 323 201)"/>
+        <rect x="350" y="202" width="7" height="5" rx="1" fill="rgba(255,255,255,0.65)"/>
+      </g>
     </g>
     <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"
       fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
@@ -1643,11 +1645,49 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     timer = setTimeout(scheduleNext, delay);
   }
 
+  // ── FLOAT EYE SYNC — mirrors hero gaze ──────────────────────────
+  var fgaze = null;
+
+  function syncFloatEye(){
+    fgaze = document.getElementById('fgaze');
+    if(!fgaze) return;
+    // Override setGaze to also move float eye
+    var origSetGaze = setGaze;
+    setGaze = function(x, y){
+      origSetGaze(x, y);
+      if(fgaze) fgaze.style.transform = 'translate('+x+'px,'+y+'px)';
+    };
+    // Override resumeTracking to also update float eye via rAF
+    var origTrackLoop = null;
+    // Patch trackLoop to also update float eye
+    var _origRAF = trackLoop;
+    trackLoop = function(){
+      if(trackingActive && isWatchingMouse && gaze){
+        var dx = mouseX - eyeCX;
+        var dy = mouseY - eyeCY;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        var maxTravel = 38;
+        var scale = dist > 0 ? Math.min(1, maxTravel / dist) * 0.18 : 0;
+        targetX = dx * scale;
+        targetY = dy * scale * 0.5;
+        if(targetY < -8) targetY = -8;
+        if(targetY > 12) targetY = 12;
+        gazeX += (targetX - gazeX) * 0.05;
+        gazeY += (targetY - gazeY) * 0.05;
+        var t = 'translate('+gazeX.toFixed(2)+'px,'+gazeY.toFixed(2)+'px)';
+        gaze.style.transform = t;
+        if(fgaze) fgaze.style.transform = t;
+      }
+      rafId = requestAnimationFrame(trackLoop);
+    };
+  }
+
   // ── INIT ON DOM READY ─────────────────────────────────────────────
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', function(){ init(); syncFloatEye(); });
   } else {
     init();
+    syncFloatEye();
   }
 
 })();
