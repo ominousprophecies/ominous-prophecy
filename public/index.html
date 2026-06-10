@@ -53,7 +53,7 @@ nav{position:relative;z-index:100;display:flex;align-items:center;justify-conten
 .section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
 .section-header h2{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
 .section-header::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(201,168,76,.3),transparent)}
-.prophecy-card{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);margin-bottom:20px;padding:24px 28px;position:relative;transition:border-color .3s,transform .2s;cursor:pointer;overflow:hidden;animation:card-appear .6s ease both}.prophecy-card.oracle-fulfilled{border-color:rgba(60,160,80,.5)!important;box-shadow:0 0 16px rgba(60,160,80,.1)}.prophecy-card.oracle-failed{border-color:rgba(160,50,50,.5)!important;box-shadow:0 0 16px rgba(160,50,50,.1)}.prophecy-card.oracle-fulfilled{border-color:rgba(60,160,80,.45)!important;box-shadow:0 0 14px rgba(60,160,80,.12)}.prophecy-card.oracle-failed{border-color:rgba(160,50,50,.45)!important;box-shadow:0 0 14px rgba(160,50,50,.12)}
+.prophecy-card{background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);margin-bottom:20px;padding:24px 28px;position:relative;transition:border-color .3s,transform .2s;cursor:pointer;overflow:hidden;animation:card-appear .6s ease both}.prophecy-card.oracle-fulfilled{border:1px solid rgba(60,160,80,.5)!important;box-shadow:0 0 18px rgba(60,160,80,.12);--border-color:rgba(60,160,80,.9)}.oracle-fulfilled .card-category{color:#4caf50!important}.prophecy-card.oracle-failed{border:1px solid rgba(160,50,50,.5)!important;box-shadow:0 0 18px rgba(160,50,50,.12);--border-color:rgba(160,50,50,.9)}.oracle-failed .card-category{color:#e05050!important}.prophecy-card.oracle-fulfilled{border-color:rgba(60,160,80,.45)!important;box-shadow:0 0 14px rgba(60,160,80,.12)}.prophecy-card.oracle-failed{border-color:rgba(160,50,50,.45)!important;box-shadow:0 0 14px rgba(160,50,50,.12)}
 .prophecy-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border-color,var(--gold));opacity:.6}
 .prophecy-card:hover{border-color:rgba(201,168,76,.3);transform:translateX(4px)}
 .prophecy-card.danger{--border-color:var(--blood)}
@@ -473,7 +473,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
     <div class="stat-divider"></div>
     <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Fulfilled</span></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><span class="stat-num">57</span><span class="stat-label">Pending Judgment</span></div>
+    <div class="stat-item"><span class="stat-num">59</span><span class="stat-label">Pending Judgment</span></div>
   </div>
 </div>
 <div class="ticker-wrap">
@@ -535,7 +535,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">FULFILLED · Swept Pittsburgh 3-0 · Won 6-3, 6-3, 3-2</div>
         </div>
       </div>
-      <div class="prophecy-card oracle-fulfilled" onclick="openModal(3)">
+      <div class="prophecy-card oracle-fulfilled" onclick="openModal(2)">
         <div class="card-meta"><span class="card-category cat-society">MLB ✓ FULFILLED</span><span class="card-date">Issued: June 6, 2026 · 02:57 GMT · Resolved June 7</span></div>
         <div class="card-title">The Milwaukee Brewers will win the series against Colorado at Coors Field June 6 to 8 2026</div>
         <div class="card-excerpt">"The thin air of the mountain city gives equal advantage to those who visit. But the Brewers bring better arms and better bats. The altitude cannot compensate for the gap in talent."</div>
@@ -546,7 +546,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c05050;text-transform:uppercase;border-bottom:1px solid rgba(160,80,80,.2);padding-bottom:12px">&#9670; Failed</div>
-      <div class="prophecy-card oracle-failed" onclick="openModal(1)">
+      <div class="prophecy-card oracle-failed" onclick="openModal(3)">
         <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 7, 2026 · 05:04 GMT · FAILED June 9</span></div>
         <div class="card-title">The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes</div>
         <div class="card-excerpt">"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely."</div>
@@ -555,7 +555,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">FAILED · CAR 5-3 · Series tied 2-2</div>
         </div>
       </div>
-      <div class="prophecy-card oracle-failed" onclick="openModal(2)">
+      <div class="prophecy-card oracle-failed" onclick="openModal(4)">
         <div class="card-meta"><span class="card-category cat-society">MLB ✗ FAILED</span><span class="card-date">Issued: June 6, 2026 · 02:57 GMT · Resolved June 7</span></div>
         <div class="card-title">The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026</div>
         <div class="card-excerpt">"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third."</div>
@@ -566,7 +566,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 11 — Stanley Cup Game 5</div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(5)">
         <div class="card-meta"><span class="card-category cat-society">NHL</span><span class="card-date">Issued: June 10, 2026 · 06:14 GMT · Resolves June 11</span></div>
         <div class="card-title">Carolina Hurricanes will win Game 5 of the Stanley Cup Final at Lenovo Center, Raleigh</div>
         <div class="card-excerpt">"The tempest has spoken twice on foreign soil and now returns to its throne of noise. Raleigh has not forgotten how to roar. The guardian between the pipes has seen thirteen victories — the golden city's own guardian has seen fewer clean nights. What the hurricane could not finish on enemy ground, it finishes at home."</div>
@@ -577,7 +577,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
 <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 14 — Le Mans &amp; UFC Freedom 250</div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(6)">
         <div class="card-meta"><span class="card-category cat-tech">Le Mans</span><span class="card-date">Issued: June 7, 2026 · 05:14 GMT · Resolves June 14</span></div>
         <div class="card-title">Ferrari will win the 2026 24 Hours of Le Mans Hypercar class for the fourth consecutive year</div>
         <div class="card-excerpt">"The prancing horse has claimed this ancient circuit three times in succession. What was once upset has become dynasty. The red cars know every shadow of every corner. The circuit belongs to them now."</div>
@@ -586,7 +586,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · BMW leads 2026 WEC standings · Race starts June 13</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(7)">
         <div class="card-meta"><span class="card-category cat-society">MMA</span><span class="card-date">Issued: June 8, 2026 · 20:32 GMT · Resolves June 14</span></div>
         <div class="card-title">Ilia Topuria will successfully defend the UFC lightweight title against Justin Gaethje at UFC Freedom 250 at the White House</div>
         <div class="card-excerpt">"The undefeated Georgian arrives at the most theatrical stage in combat sports history — the South Lawn of the American presidency. Three consecutive Hall of Famers have fallen before him. The fourth challenger is worthy. He will fall the same way."</div>
@@ -595,7 +595,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Topuria 17-0 · DraftKings -535 · White House South Lawn</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(8)">
         <div class="card-meta"><span class="card-category cat-society">MMA</span><span class="card-date">Issued: June 8, 2026 · 20:32 GMT · Resolves June 14</span></div>
         <div class="card-title">Ilia Topuria will finish Justin Gaethje by KO or TKO at UFC Freedom 250 — the fight will not go to decision</div>
         <div class="card-excerpt">"The sniper does not miss three times. The finisher who has never needed judges does not need them now. Gaethje will be brave and Gaethje will be dangerous — and Gaethje will be stopped."</div>
@@ -604,7 +604,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · 11 of 17 wins by finish · Gaethje absorbs 7.05 strikes/min</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(9)">
         <div class="card-meta"><span class="card-category cat-society">MMA</span><span class="card-date">Issued: June 8, 2026 · 20:32 GMT · Resolves June 14</span></div>
         <div class="card-title">Alex Pereira will defeat Ciryl Gane for the interim UFC heavyweight title at UFC Freedom 250</div>
         <div class="card-excerpt">"The man who has conquered two weight classes looks upward to a third. The Frenchman is technical and elusive — but Pereira has knocked out men who were told he could not reach them. The uppercut does not care about technique."</div>
@@ -617,7 +617,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <!-- JUNE 21 — NBA -->
       <!-- JUNE 16-21 — Royal Ascot + US Open -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 16-21 — Royal Ascot &amp; US Open</div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(10)">
         <div class="card-meta"><span class="card-category cat-society">Horse Racing</span><span class="card-date">Issued: June 8, 2026 · 20:09 GMT · Resolves June 21</span></div>
         <div class="card-title">Aidan O Brien will train at least two Group 1 winners at Royal Ascot 2026</div>
         <div class="card-excerpt">"The master of Ballydoyle sends his army to the royal meeting and the royal meeting yields to it. Two crowns minimum. The Irish flag flies over the most English of stages."</div>
@@ -626,7 +626,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · June 16-20 · 8 Group 1s · 35 races</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(11)">
         <div class="card-meta"><span class="card-category cat-society">Golf</span><span class="card-date">Issued: June 8, 2026 · 20:09 GMT · Resolves June 21</span></div>
         <div class="card-title">Scottie Scheffler will fail to complete the career grand slam at the 2026 US Open at Shinnecock Hills</div>
         <div class="card-excerpt">"The grand slam has been claimed by six men in the modern era. Each of them waited for their moment. Shinnecock does not yield to pressure — it creates it. The world number one will leave without the final piece."</div>
@@ -635,7 +635,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Needs Masters + PGA + Open + US Open · June 18-21</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(12)">
         <div class="card-meta"><span class="card-category cat-society">Golf</span><span class="card-date">Issued: June 8, 2026 · 20:09 GMT · Resolves June 21</span></div>
         <div class="card-title">The 2026 US Open at Shinnecock Hills will be won by a first-time major champion</div>
         <div class="card-excerpt">"Shinnecock does not reward the familiar. The course that has crowned Goosen, Pavin, Floyd — none of them expected. The oldest examination in American golf produces a new name for the oldest trophy."</div>
@@ -645,7 +645,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </div>
       </div>
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves by June 21 — NBA Finals</div>
-      <div class="prophecy-card danger" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(13)">
         <div class="card-meta"><span class="card-category cat-society">NBA</span><span class="card-date">Issued: June 7, 2026 · 05:14 GMT · Resolves by June 21</span></div>
         <div class="card-title">The New York Knicks will win the 2026 NBA Championship their first title since 1973</div>
         <div class="card-excerpt">"The city that never sleeps has waited half a century. Two road wins in the enemy fortress before the garden even opens its gates. The dynasty is not being born — it has already arrived."</div>
@@ -654,7 +654,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · NYK leads Finals 2-0 · Won Games 1 and 2 on road</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(14)">
         <div class="card-meta"><span class="card-category cat-society">NBA</span><span class="card-date">Issued: June 7, 2026 · 05:14 GMT · Resolves by June 21</span></div>
         <div class="card-title">Victor Wembanyama will score at least 30 points in one game of the 2026 NBA Finals</div>
         <div class="card-excerpt">"The alien does not accept defeat quietly. Down 0-2 the giant from France will demonstrate why the future of basketball wears his face. One night in these Finals will belong entirely to him."</div>
@@ -663,7 +663,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Averaged 32.4 pts vs OKC · 30+ in 6 of last 10 playoff games</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(4)">
+      <div class="prophecy-card" onclick="openModal(15)">
         <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 5, 2026 · Resolves June 21</span></div>
         <div class="card-title">Abelardo de la Espriella will win the Colombia presidential runoff on June 21 2026</div>
         <div class="card-excerpt">"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm."</div>
@@ -675,7 +675,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://polymarket.com/event/colombia-presidential-election" target="_blank" class="market-link market-link-poly">&#9670; Polymarket 82%</a>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(5)">
+      <div class="prophecy-card" onclick="openModal(16)">
         <div class="card-meta"><span class="card-category cat-society">Golf</span><span class="card-date">Issued: June 5, 2026 · Resolves June 21</span></div>
         <div class="card-title">Scottie Scheffler will NOT win the 2026 US Open at Shinnecock Hills</div>
         <div class="card-excerpt">"The best player in the world arrives at the most demanding examination in golf. He is favoured. He is ready. And still the course will find his flaw. Shinnecock humbles everyone eventually."</div>
@@ -687,7 +687,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JUNE 27 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 27 — World Cup Group Stage</div>
-      <div class="prophecy-card danger" onclick="openModal(6)">
+      <div class="prophecy-card" onclick="openModal(17)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves June 27 · DraftKings: -200</span></div>
         <div class="card-title">Argentina will advance from the group stage of the 2026 FIFA World Cup</div>
         <div class="card-excerpt">"The ageing king makes one final procession through the tournament he conquered. The crown weighs heavy but the shoulders beneath it have carried it before."</div>
@@ -699,7 +699,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: -200</a>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(7)">
+      <div class="prophecy-card" onclick="openModal(18)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves June 27 · FanDuel: -270</span></div>
         <div class="card-title">Brazil will advance from the group stage of the 2026 FIFA World Cup</div>
         <div class="card-excerpt">"Five crowns weigh upon this nation like a debt unpaid. The talent is undeniable. The doubt is structural. But the first gate they will pass."</div>
@@ -711,7 +711,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -270</a>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(8)">
+      <div class="prophecy-card" onclick="openModal(19)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves June 27 · FanDuel: -280</span></div>
         <div class="card-title">Germany will advance from the group stage after failing to do so in their last two World Cup appearances</div>
         <div class="card-excerpt">"The sleeping giant stirs. Two humiliations have sharpened the blade. What was once assumed now must be earned and Germany earns what it sets its mind to."</div>
@@ -723,7 +723,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -280</a>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(9)">
+      <div class="prophecy-card" onclick="openModal(20)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves June 27 · FanDuel: -360</span></div>
         <div class="card-title">England will advance from Group L at the 2026 FIFA World Cup</div>
         <div class="card-excerpt">"The three lions have learned to stop devouring themselves. The talent has always been there. The composure is new. The group is a formality."</div>
@@ -735,7 +735,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: -360</a>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(10)">
+      <div class="prophecy-card" onclick="openModal(21)">
         <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves June 27</span></div>
         <div class="card-title">Canada will fail to advance from the group stage of the 2026 FIFA World Cup</div>
         <div class="card-excerpt">"The host nation that has never won a World Cup match now finds itself in the company of wolves. The home crowd cannot carry what the squad cannot provide."</div>
@@ -747,7 +747,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JUNE 30 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 30</div>
-      <div class="prophecy-card danger" onclick="openModal(11)">
+      <div class="prophecy-card" onclick="openModal(22)">
         <div class="card-meta"><span class="card-category cat-conflict">Conflict</span><span class="card-date">Issued: June 5, 2026 · Resolves June 30</span></div>
         <div class="card-title">No formal Russia-Ukraine ceasefire will be signed before June 30 2026</div>
         <div class="card-excerpt">"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper."</div>
@@ -763,7 +763,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JULY 5 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves July 5</div>
-      <div class="prophecy-card warning" onclick="openModal(12)">
+      <div class="prophecy-card" onclick="openModal(23)">
         <div class="card-meta"><span class="card-category cat-society">Cricket</span><span class="card-date">Issued: June 5, 2026 · Resolves July 5</span></div>
         <div class="card-title">Australia or England will win the 2026 Womens T20 Cricket World Cup</div>
         <div class="card-excerpt">"Two empires of the womens game have between them claimed seven of the last ten titles. The tournament held in England favours the hosts but the southern giant travels well."</div>
@@ -775,7 +775,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JULY 8 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves July 8 — World Cup QF</div>
-      <div class="prophecy-card warning" onclick="openModal(13)">
+      <div class="prophecy-card" onclick="openModal(24)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 8 · DraftKings: +240 final</span></div>
         <div class="card-title">Spain will reach the 2026 FIFA World Cup semi-finals</div>
         <div class="card-excerpt">"The technicians of the beautiful game have built the most complete machine in the tournament. It does not rely on one man. It does not tire. It does not panic. It advances."</div>
@@ -787,7 +787,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: +240 to final</a>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(14)">
+      <div class="prophecy-card" onclick="openModal(25)">
         <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 8</span></div>
         <div class="card-title">Lionel Messi will score at least one goal in the 2026 FIFA World Cup his final tournament</div>
         <div class="card-excerpt">"The greatest does not exit without one final statement. The story is too perfectly written for the pen to run dry at the last page."</div>
@@ -796,7 +796,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Scored in every WC: 2006, 2014, 2018, 2022</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(15)">
+      <div class="prophecy-card" onclick="openModal(26)">
         <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 8</span></div>
         <div class="card-title">At least one nation ranked outside the top 20 will reach the 2026 FIFA World Cup quarter-finals</div>
         <div class="card-excerpt">"In the expanded tournament the walls that once protected the powerful have more gates. One will open for the unexpected visitor."</div>
@@ -808,7 +808,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JULY 12 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves July 12 — Wimbledon</div>
-      <div class="prophecy-card warning" onclick="openModal(16)">
+      <div class="prophecy-card" onclick="openModal(27)">
         <div class="card-meta"><span class="card-category cat-society">Tennis</span><span class="card-date">Issued: June 5, 2026 · Resolves July 12 · DraftKings: -280</span></div>
         <div class="card-title">Jannik Sinner will successfully defend his Wimbledon title in 2026</div>
         <div class="card-excerpt">"The champion returns to the cathedral of grass with the field weakened before him. What fortune gives skill consolidates. The Italian does not waste the open door."</div>
@@ -817,7 +817,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Alcaraz sidelined · Sinner -280 favourite</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(17)">
+      <div class="prophecy-card" onclick="openModal(28)">
         <div class="card-meta"><span class="card-category cat-society">Tennis</span><span class="card-date">Issued: June 5, 2026 · Resolves July 12</span></div>
         <div class="card-title">Iga Swiatek will NOT successfully defend her Wimbledon women title in 2026</div>
         <div class="card-excerpt">"The grass remembers those who ruled it before. The challenger who was once favourite now faces a deeper field with sharper teeth. The crown changes hands on the lawns of London."</div>
@@ -829,7 +829,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JULY 19 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves July 19 — World Cup Final</div>
-      <div class="prophecy-card warning" onclick="openModal(18)">
+      <div class="prophecy-card" onclick="openModal(29)">
         <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19</span></div>
         <div class="card-title">Spain or France will win the 2026 FIFA World Cup</div>
         <div class="card-excerpt">"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot."</div>
@@ -842,7 +842,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">France +500</a>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(19)">
+      <div class="prophecy-card" onclick="openModal(30)">
         <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19</span></div>
         <div class="card-title">Neither the USA nor Mexico will reach the 2026 FIFA World Cup semi-finals</div>
         <div class="card-excerpt">"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed."</div>
@@ -854,7 +854,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.fanduel.com/soccer/fifa-world-cup" target="_blank" class="market-link market-link-fd">&#9670; FanDuel: USA +6000</a>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(20)">
+      <div class="prophecy-card" onclick="openModal(31)">
         <div class="card-meta"><span class="card-category cat-society">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19 · DraftKings: +900</span></div>
         <div class="card-title">Argentina will not successfully defend their FIFA World Cup title and will be eliminated before the final</div>
         <div class="card-excerpt">"The dynasty does not repeat itself. What was seized in Qatar cannot be held in New Jersey. The king abdicates not willingly, but inevitably."</div>
@@ -866,7 +866,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <a href="https://sportsbook.draftkings.com/leagues/soccer/fifa-world-cup" target="_blank" class="market-link market-link-dk">&#9670; DraftKings: +900 to win</a>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(21)">
+      <div class="prophecy-card" onclick="openModal(32)">
         <div class="card-meta"><span class="card-category cat-sport">World Cup</span><span class="card-date">Issued: June 5, 2026 · Resolves July 19</span></div>
         <div class="card-title">The 2026 FIFA World Cup will produce more total goals than the 172 scored in the 2022 Qatar tournament</div>
         <div class="card-excerpt">"More nations. More matches. More hunger. The nets will strain under the weight of ambition unleashed. The arithmetic of expansion cannot be denied."</div>
@@ -878,7 +878,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- JULY 26-27 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves July 26-27</div>
-      <div class="prophecy-card warning" onclick="openModal(22)">
+      <div class="prophecy-card" onclick="openModal(33)">
         <div class="card-meta"><span class="card-category cat-society">Sumo</span><span class="card-date">Issued: June 5, 2026 · Resolves July 26</span></div>
         <div class="card-title">Aonishiki will win the Nagoya Basho yusho and reclaim Ozeki rank at the July 2026 Grand Sumo Tournament</div>
         <div class="card-excerpt">"The Ukrainian who conquered Japans oldest sport was knocked from his throne by injury. He returns to the sacred clay hungry. The demotion is temporary. The hunger is permanent."</div>
@@ -887,7 +887,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Demoted to Sekiwake · Both Yokozuna injured</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(23)">
+      <div class="prophecy-card" onclick="openModal(34)">
         <div class="card-meta"><span class="card-category cat-society">Cycling</span><span class="card-date">Issued: June 5, 2026 · Resolves July 27</span></div>
         <div class="card-title">Tadej Pogacar will win the 2026 Tour de France</div>
         <div class="card-excerpt">"The Slovenian climbs as though gravity is a suggestion that applies to others. His fifth yellow jersey approaches not as a foregone ceremony. The mountain belongs to him."</div>
@@ -899,7 +899,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- AUGUST 12 -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves August 2026</div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(35)">
         <div class="card-meta"><span class="card-category cat-tech">F1</span><span class="card-date">Issued: June 8, 2026 · 20:32 GMT · Resolves Aug 1</span></div>
         <div class="card-title">Max Verstappen will fail to win a race in the first half of the 2026 F1 season — his worst start since 2020</div>
         <div class="card-excerpt">"The four-time champion has found himself in unfamiliar territory — behind, watching, waiting. The car that once bent physics to his will now betrays him at the worst moments. Patience is not his strongest virtue."</div>
@@ -908,7 +908,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Red Bull 4th in constructors · DNF at Monaco · 1 podium in 6 races</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(24)">
+      <div class="prophecy-card" onclick="openModal(36)">
         <div class="card-meta"><span class="card-category cat-climate">Astronomy</span><span class="card-date">Issued: June 5, 2026 · Resolves August 12</span></div>
         <div class="card-title">A total solar eclipse will cross Spain on August 12 2026 marking Europes first mainland totality since 1999</div>
         <div class="card-excerpt">"The moon interposes itself between the sun and the old world. For minutes over the Iberian peninsula day becomes night. What astronomers have calculated for centuries arrives precisely on schedule."</div>
@@ -918,7 +918,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </div>
       </div>
 
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(37)">
         <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 8, 2026 · 19:51 GMT · Resolves Aug 12</span></div>
         <div class="card-title">Pope Leo XIV will be present in Spain during the total solar eclipse of August 12 2026 marking a historic convergence of celestial and spiritual authority</div>
         <div class="card-excerpt">"The new shepherd of Rome stands on Iberian soil as the moon swallows the sun. Two great institutions — the oldest science and the oldest faith — converge in the same shadow."</div>
@@ -928,7 +928,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </div>
       </div>
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves December 15 — Formula 1</div>
-      <div class="prophecy-card danger" onclick="openModal(25)">
+      <div class="prophecy-card" onclick="openModal(38)">
         <div class="card-meta"><span class="card-category cat-tech">F1</span><span class="card-date">Issued: June 5, 2026 · Updated June 8 · Resolves December 15</span></div>
         <div class="card-title">Kimi Antonelli will win the 2026 Formula 1 Drivers Championship — the youngest champion in history</div>
         <div class="card-excerpt">"Five victories before the summer. A lead that grows with every race. The boy from Bologna does not slow down. What was once called premature is now called inevitable."</div>
@@ -937,7 +937,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · 5 wins from 6 races · 66-point lead · Youngest Monaco winner ever</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(26)">
+      <div class="prophecy-card" onclick="openModal(39)">
         <div class="card-meta"><span class="card-category cat-tech">F1</span><span class="card-date">Issued: June 5, 2026 · Resolves December 15</span></div>
         <div class="card-title">Mercedes will win the 2026 Formula 1 Constructors Championship</div>
         <div class="card-excerpt">"The silver arrows return to dominance under new technical law. What was built in secret emerges to overwhelm. The factory that mastered one era has mastered the next."</div>
@@ -946,7 +946,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Leads constructors by 77 points · Polymarket: -350</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(40)">
         <div class="card-meta"><span class="card-category cat-tech">F1</span><span class="card-date">Issued: June 8, 2026 · 20:32 GMT · Resolves December 15</span></div>
         <div class="card-title">Lewis Hamilton will finish second in the 2026 F1 Drivers Championship ahead of George Russell</div>
         <div class="card-excerpt">"The team-mate war has a new casualty. What the engine took from Russell, Hamilton claimed. The Ferrari in silver clothing now points at the second crown."</div>
@@ -958,7 +958,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- DECEMBER 31 — LONG VISION -->
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Long Vision — Resolves December 31</div>
-      <div class="prophecy-card neutral" onclick="openModal(27)">
+      <div class="prophecy-card" onclick="openModal(41)">
         <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
         <div class="card-title">The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026</div>
         <div class="card-excerpt">"The two chambers of power turn against each other over blood spent in distant deserts. What the executive wages, the legislature refuses to fund. The oldest fault line of the republic reopens."</div>
@@ -967,7 +967,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(28)">
+      <div class="prophecy-card" onclick="openModal(42)">
         <div class="card-meta"><span class="card-category cat-tech">Technology</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
         <div class="card-title">The EU AI Act August 2026 enforcement deadline will trigger the first major regulatory action against a US technology company in Europe</div>
         <div class="card-excerpt">"The scribes of the old continent have drawn their lines in the sand of law. What was built in haste and hubris now faces the weight of consequence. The first stone cast will echo across every shore where the machine has taken root."</div>
@@ -976,7 +976,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(29)">
+      <div class="prophecy-card" onclick="openModal(43)">
         <div class="card-meta"><span class="card-category cat-geopolitics">Geopolitics</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
         <div class="card-title">A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026</div>
         <div class="card-excerpt">"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks and in that blink a threshold is crossed that cannot be uncrossed."</div>
@@ -985,7 +985,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments</div>
         </div>
       </div>
-      <div class="prophecy-card neutral" onclick="openModal(30)">
+      <div class="prophecy-card" onclick="openModal(44)">
         <div class="card-meta"><span class="card-category cat-economy">Economy</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
         <div class="card-title">A geoeconomic confrontation between two G20 nations will result in the first formal severance of a bilateral trade agreement in the post-WTO era</div>
         <div class="card-excerpt">"The merchants who once bowed to the same altar of open exchange now sharpen different blades. What took decades to weave is being unraveled in seasons. The loom itself is breaking."</div>
@@ -994,7 +994,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(31)">
+      <div class="prophecy-card" onclick="openModal(45)">
         <div class="card-meta"><span class="card-category cat-climate">Climate</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
         <div class="card-title">El Nino conditions in 2026 will make this year one of the three hottest on record globally</div>
         <div class="card-excerpt">"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed."</div>
@@ -1003,7 +1003,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · WMO: 98% El Nino probability confirmed</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(32)">
+      <div class="prophecy-card" onclick="openModal(46)">
         <div class="card-meta"><span class="card-category cat-health">Health</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
         <div class="card-title">The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained</div>
         <div class="card-excerpt">"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath."</div>
@@ -1012,7 +1012,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · WHO PHEIC declared May 17 2026</div>
         </div>
       </div>
-      <div class="prophecy-card neutral" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(47)">
         <div class="card-meta"><span class="card-category cat-economy">Energy</span><span class="card-date">Issued: June 8, 2026 · 19:51 GMT · Resolves Dec 31</span></div>
         <div class="card-title">Brent crude oil will NOT fall below 85 dollars per barrel in 2026 — the oracle amends its previous call</div>
         <div class="card-excerpt">"The oracle looked at the price and saw the trajectory downward. It did not see the war. The narrow gate remains contested. What was closing has reopened. The black tide does not recede when armies still march."</div>
@@ -1021,7 +1021,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Brent at $94.14 today · Israel-Iran reignited</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(48)">
         <div class="card-meta"><span class="card-category cat-conflict">Conflict</span><span class="card-date">Issued: June 8, 2026 · 19:51 GMT · Resolves Dec 31</span></div>
         <div class="card-title">The Israel-Iran war will not produce a permanent ceasefire before the end of 2026</div>
         <div class="card-excerpt">"A hundred days of fire does not end with a phone call. The pause is not peace. The weapons cool but do not sleep. What Trump brokered in hours will unravel in weeks. The desert remembers every strike."</div>
@@ -1030,7 +1030,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Day 100 · Fresh escalation June 8</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(49)">
         <div class="card-meta"><span class="card-category cat-conflict">Conflict</span><span class="card-date">Issued: June 8, 2026 · 19:51 GMT · Resolves Dec 31</span></div>
         <div class="card-title">The Israel-Iran conflict will directly cause at least one additional Middle Eastern nation to be drawn into active military engagement before end of 2026</div>
         <div class="card-excerpt">"The fire that started between two does not stay between two. The neighbors feel the heat. The proxy becomes the principal. The regional war that everyone feared and no one stopped is already arriving."</div>
@@ -1039,7 +1039,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Houthis · Hezbollah · 100 days old</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(50)">
         <div class="card-meta"><span class="card-category cat-society">Society</span><span class="card-date">Issued: June 8, 2026 · 19:51 GMT · Resolves Dec 31</span></div>
         <div class="card-title">The Philippines magnitude 7.8 earthquake of June 8 2026 will trigger a major international humanitarian response involving at least 10 nations</div>
         <div class="card-excerpt">"The earth opens and the world responds. What the ground destroys in seconds takes years to rebuild. The archipelago has survived the shaking before — but never without the hands that cross the water to help."</div>
@@ -1049,7 +1049,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </div>
       </div>
 
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(51)">
         <div class="card-meta"><span class="card-category cat-conflict">Conflict</span><span class="card-date">Issued: June 8, 2026 · 20:19 GMT · Resolves Dec 31</span></div>
         <div class="card-title">The Ethiopia-Eritrea border conflict will escalate into active military engagement before end of 2026</div>
         <div class="card-excerpt">"Two ancient enemies have never truly made peace — they merely paused. The dam that feeds one nation starves the trust of another. The Red Sea demands its toll in blood before it yields its passage."</div>
@@ -1058,7 +1058,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Red Sea access dispute · Grand Ethiopian Renaissance Dam</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(52)">
         <div class="card-meta"><span class="card-category cat-geopolitics">Geopolitics</span><span class="card-date">Issued: June 8, 2026 · 20:19 GMT · Resolves Dec 31</span></div>
         <div class="card-title">The Venezuelan government will face a decisive regime change event before end of 2026</div>
         <div class="card-excerpt">"The strongman who has outlasted every prediction of his fall approaches the moment when survival is no longer enough. The opposition has international backing. The army has private doubts. The wall is cracking."</div>
@@ -1067,7 +1067,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · Trump pressure strategy · International isolation</div>
         </div>
       </div>
-      <div class="prophecy-card danger" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(53)">
         <div class="card-meta"><span class="card-category cat-tech">Technology</span><span class="card-date">Issued: June 8, 2026 · 20:19 GMT · Resolves Dec 31</span></div>
         <div class="card-title">A major AI-enabled cyberattack will cause a critical infrastructure outage affecting at least one G7 nation before end of 2026</div>
         <div class="card-excerpt">"The weapon that thinks faster than the defender has already been deployed. The grid that powers the city does not know it is already compromised. The outage will arrive not as an explosion but as a silence."</div>
@@ -1076,7 +1076,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · AI attacks up 89% · FBI declared major incident April 2026</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(54)">
         <div class="card-meta"><span class="card-category cat-tech">Technology</span><span class="card-date">Issued: June 8, 2026 · 20:19 GMT · Resolves Dec 31</span></div>
         <div class="card-title">A whistleblower will release classified AI surveillance data exposing a G5 government domestic monitoring program before end of 2026</div>
         <div class="card-excerpt">"The eye that watches its own citizens does not watch in secret forever. One person with a conscience and a hard drive will change everything. The surveillance state has always feared the insider more than the enemy."</div>
@@ -1085,7 +1085,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · FBI breach exposed surveillance targets · 195M records leaked</div>
         </div>
       </div>
-      <div class="prophecy-card neutral" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(55)">
         <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 8, 2026 · 20:19 GMT · Resolves Dec 31</span></div>
         <div class="card-title">Pope Leo XIV will announce a significant doctrinal revision on a major contested issue before end of 2026</div>
         <div class="card-excerpt">"The new shepherd did not come to maintain the flock as he found it. He comes from outside the tradition — from the Americas, from the margins. What his predecessors preserved in amber he will examine in daylight. Something long frozen will thaw."</div>
@@ -1094,7 +1094,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · First American pope · Currently visiting Spain</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(56)">
         <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 8, 2026 · 20:19 GMT · Resolves Dec 31</span></div>
         <div class="card-title">A sitting or former head of state will be arrested or indicted on international criminal charges before end of 2026</div>
         <div class="card-excerpt">"The court that the powerful built to judge others has turned its gaze upward. The immunity that comes with office does not survive the office. One who sat in judgment now faces judgment."</div>
@@ -1103,7 +1103,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · ICC active investigations · Kagame DRC annexation</div>
         </div>
       </div>
-      <div class="prophecy-card warning" onclick="openModal(99)">
+      <div class="prophecy-card" onclick="openModal(57)">
         <div class="card-meta"><span class="card-category cat-climate">Climate</span><span class="card-date">Issued: June 8, 2026 · 20:19 GMT · Resolves Dec 31</span></div>
         <div class="card-title">A significant solar flare event in 2026 will cause measurable disruption to satellite communications or power grid infrastructure</div>
         <div class="card-excerpt">"The sun has not yet spoken its loudest word in this cycle. Solar maximum approaches. The star at the center of everything reminds the networks built in its shadow that they exist at its pleasure."</div>
@@ -1239,34 +1239,64 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 const starsEl=document.getElementById('stars');
 for(let i=0;i<180;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;--max-op:${.2+Math.random()*.5}`;starsEl.appendChild(s)}
 const prophecies=[
-  {title:"A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026",category:"Geopolitics",catClass:"cat-geopolitics",excerpt:"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks and in that blink a threshold is crossed that cannot be uncrossed.",analysis:"Taiwan detected 202 Chinese military aircraft around the island in April 2026, of which at least 145 crossed the unofficial median line. The PLA has conducted larger and more frequent drills simulating blockades and precision strikes. A Dutch frigate was tracked by Chinese naval and air forces in June 2026. Historical pattern analysis shows triggering incidents follow sustained median line crossings at 71 percent frequency within 8 months.",confidence:71},
-  {title:"The EU AI Act August 2026 enforcement deadline will trigger the first major regulatory action against a US technology company in Europe",category:"Technology",catClass:"cat-tech",excerpt:"The scribes of the old continent have drawn their lines in the sand of law. What was built in haste and hubris now faces the weight of consequence. The first stone cast will echo across every shore where the machine has taken root.",analysis:"The EU AI Act enforcement deadline of August 2, 2026 is weeks away. Penalties reach 35 million euros or 7 percent of global annual revenue, whichever is higher. Multiple independent legal sources confirm major companies are not ready. The EU acted within 90 days of GDPR enforcement opening. Base rate for action: 85 percent.",confidence:78},
-  {title:"A geoeconomic confrontation between two G20 nations will result in the first formal severance of a bilateral trade agreement in the post-WTO era",category:"Economy",catClass:"cat-economy",excerpt:"The merchants who once bowed to the same altar of open exchange now sharpen different blades. What took decades to weave is being unraveled in seasons. The loom itself is breaking.",analysis:"Geoeconomic confrontation tops 2026 global risk rankings, cited by 18 percent of experts as the risk most likely to trigger a global crisis. US tariffs, Chinese industrial overcapacity, and EU protectionist policy are simultaneously pressuring trade frameworks that have held since the WTO founding.",confidence:62},
-  {title:"Abelardo de la Espriella will win the Colombia presidential runoff on June 21 2026",category:"Governance",catClass:"cat-geopolitics",excerpt:"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm.",analysis:"De la Espriella surged to 82 percent favourite in prediction markets after capturing 43.7 percent of the first-round vote, defying pre-election polls. Centrist voters are more likely to break his way in the runoff. Trump endorsement reinforces momentum. Polymarket odds: 82 percent de la Espriella. Resolves June 21, 2026.",confidence:82},
-  {title:"No formal Russia-Ukraine ceasefire will be signed before June 30 2026",category:"Conflict",catClass:"cat-geopolitics",excerpt:"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper.",analysis:"Trader consensus prices a Russia-Ukraine ceasefire by end of 2026 at just 25.5 percent. US-mediated talks produced no breakthroughs on territorial concessions or security guarantees. Short-term pauses collapsed amid mutual violations. Polymarket: 88 percent No. Resolves June 30, 2026.",confidence:91},
-  {title:"Neither the USA nor Mexico will reach the 2026 FIFA World Cup semi-finals",category:"World Cup",catClass:"cat-society",excerpt:"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed.",analysis:"The USA is listed at +6000 and Mexico at +6500 to reach the World Cup final at FanDuel Sportsbook, among the longest odds in the tournament. Both host nations face elite European and South American opposition. Historical precedent shows host nations with weak international ranking rarely advance past the quarterfinals. Resolves July 19, 2026.",confidence:76},
-  {title:"Spain or France will win the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot.",analysis:"Spain at +475 and France at +500 are co-favourites at FanDuel Sportsbook. Both squads combine youth, tactical discipline, and tournament pedigree unmatched in this field. Germany, England, Brazil and Argentina represent the only realistic challengers. Resolves July 19, 2026 at MetLife Stadium.",confidence:58},
-  {title:"The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026",category:"Governance",catClass:"cat-geopolitics",excerpt:"The two chambers of power turn against each other over blood spent in distant deserts. What the executive wages, the legislature refuses to fund. The oldest fault line of the republic reopens.",analysis:"The US House voted this week to end the war in Iran, demonstrating a historic break between the Trump administration and the GOP-majority legislative body. A president continuing military operations against explicit congressional opposition creates a war powers confrontation not seen since Vietnam. Historical rate of constitutional crisis following such fractures: 73 percent within 6 months.",confidence:73},
-  {title:"The Vegas Golden Knights will win Game 3 of the 2026 Stanley Cup Final",category:"NHL",catClass:"cat-society",excerpt:"The fortress of neon and noise swallows the road team whole. What was taken on enemy ice cannot be defended on ones own. The golden city roars and the hurricane loses its wind.",analysis:"Carter Hart has posted a .929 save percentage across 8 postseason home games at T-Mobile Arena. VGK opened the series with a historic road win at Carolina and now return home with momentum and crowd. Carolina dominates possession at 63.3 percent Corsi but road environments suppress that advantage. Stone and Eichel have been quiet through two games and the home crowd is exactly the catalyst elite players need. VGK slight home favourite. Series tied 1-1. Resolves June 6.",confidence:58},
-  {title:"Argentina will advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The ageing king makes one final procession through the tournament he conquered. The crown weighs heavy but the shoulders beneath it have carried it before.",analysis:"Argentina enters as defending champion with strong odds to advance. Group J opponents Algeria, Austria and Jordan present no structural threat. Messi leads a balanced squad with tournament experience no other team can match. DraftKings: Argentina -200 to advance. Resolves June 27.",confidence:91},
-  {title:"Brazil will advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"Five crowns weigh upon this nation like a debt unpaid. The talent is undeniable. The doubt is structural. But the first gate they will pass.",analysis:"Brazil face Morocco on June 13, a tough opener, but Raphinha and Vinicius Jr are match-winners on either flank. Group C with Haiti and Scotland offers a straightforward path. FanDuel: Brazil -270 to advance. Resolves June 27.",confidence:88},
-  {title:"Canada will fail to advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"The host nation that has never won a World Cup match now finds itself in the company of wolves. The home crowd cannot carry what the squad cannot provide.",analysis:"Canada has never won or drawn a match at the World Cup, let alone made it out of the group stage. Group B includes Switzerland, Bosnia and Qatar. Switzerland are heavily favoured to advance. Co-host status raises expectations but not quality. Resolves June 27.",confidence:72},
-  {title:"Germany will advance from the group stage after failing to do so in their last two World Cup appearances",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The sleeping giant stirs. Two humiliations have sharpened the blade. What was once assumed now must be earned and Germany earns what it sets its mind to.",analysis:"Germany has not made it out of the group stage in the last two World Cups but has won four titles. Group E with Curacao, Ivory Coast and Ecuador is navigable. The rebuild is complete. FanDuel: Germany -280 to advance. Resolves June 27.",confidence:82},
-  {title:"England will advance from Group L at the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The three lions have learned to stop devouring themselves. The talent has always been there. The composure is new. The group is a formality.",analysis:"England are in Group L alongside Croatia, Ghana and Panama. They enter at -360 to advance. Croatia, Ghana and Panama present manageable opposition. Squad depth is significant. FanDuel: England -360 to advance. Resolves June 27.",confidence:87},
-  {title:"Argentina will not successfully defend their FIFA World Cup title and will be eliminated before the final",category:"World Cup",catClass:"cat-society",excerpt:"The dynasty does not repeat itself. What was seized in Qatar cannot be held in New Jersey. The king abdicates not willingly, but inevitably.",analysis:"Back-to-back World Cup wins have happened only once in history, Brazil in 1958 and 1962. The expanded 48-team format increases variance and the path is longer at 8 matches. Argentina are priced at +900 to win, implying roughly 10 percent probability. History is against repetition. Resolves July 19.",confidence:74},
-  {title:"At least one nation ranked outside the top 20 will reach the 2026 FIFA World Cup quarter-finals",category:"World Cup",catClass:"cat-society",excerpt:"In the expanded tournament the walls that once protected the powerful have more gates. One will open for the unexpected visitor. The giant does not see the stone until it has already been thrown.",analysis:"The expanded 48-team format with a new Round of 32 creates significantly more variance than previous tournaments. Every World Cup since 1990 has produced at least one quarterfinalist ranked outside the top 20. Expansion is the enemy of certainty. Resolves July 8.",confidence:83},
-  {title:"The 2026 FIFA World Cup will produce more total goals than the 172 scored in the 2022 Qatar tournament",category:"World Cup",catClass:"cat-society",excerpt:"More nations. More matches. More hunger. The nets will strain under the weight of ambition unleashed. The arithmetic of expansion cannot be denied.",analysis:"The 2026 tournament features 104 matches compared to 64 in 2022, a 63 percent increase. Even at the same goals-per-game average as 2022 the total would reach approximately 280 goals. The expanded field includes weaker teams likely to concede heavily in group stage matches. This prophecy approaches mathematical certainty. Resolves July 19.",confidence:94},
-  {title:"Spain will reach the 2026 FIFA World Cup semi-finals",category:"World Cup",catClass:"cat-geopolitics",excerpt:"The technicians of the beautiful game have built the most complete machine in the tournament. It does not rely on one man. It does not tire. It does not panic. It advances.",analysis:"Spain is the highest-ranked team in the tournament. The draw created two pathways to the semi-finals preventing top teams from meeting before the final. Spain and Argentina are in opposite pathways, clearing the road. DraftKings: Spain -390 to reach Round of 16, +240 to reach the final. Resolves July 8.",confidence:68},
-  {title:"Lionel Messi will score at least one goal in the 2026 FIFA World Cup his final tournament",category:"World Cup",catClass:"cat-society",excerpt:"The greatest does not exit without one final statement. The story is too perfectly written for the pen to run dry at the last page.",analysis:"Messi has scored in every World Cup he has appeared in, 2006, 2014, 2018 and 2022. He is 38 years old but still playing at elite level. Argentina carry the emotional pull of a Messi farewell tournament. The oracle reads the narrative as clearly as the statistics. He scores. Resolves July 8.",confidence:79},
-  {title:"El Nino conditions in 2026 will make this year one of the three hottest on record globally",category:"Climate",catClass:"cat-climate",excerpt:"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed. The record falls again.",analysis:"The Climate Prediction Center issued an El Nino Watch with 98 percent probability of El Nino during May-July 2026. The WMO forecasts a 75 percent chance that average global temperature between 2026 and 2030 will exceed 1.5 degrees above pre-industrial levels. Both France and the UK declared the hottest day in May on record. Subsurface Pacific temperatures show anomalies reaching 6 degrees Celsius above normal.",confidence:89},
-  {title:"The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained",category:"Health",catClass:"cat-health",excerpt:"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath. The world watches and argues while the fire spreads to new rooms.",analysis:"On May 17 2026 the WHO declared the Ebola Bundibugyo outbreak in DRC a public health emergency of international concern. At least 750 suspected cases and 177 deaths recorded. An American doctor was evacuated to Germany. The US implemented entry bans for travelers from DRC, Uganda and South Sudan. The Bundibugyo strain is harder to control than the more common Zaire ebolavirus. Historical pattern: PHEICs of this scale spread to 3 or more countries 78 percent of the time.",confidence:74},
-  {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide that surged when the narrow gate closed will recede as the gate reopens. What fear inflated normalcy deflates. The price of fire returns toward earth.",analysis:"Brent crude reached 138 dollars per barrel on April 7 following the de facto closure of the Strait of Hormuz, averaging 117 dollars in April. The EIA forecasts crude oil dropping to an average of 89 dollars per barrel in Q4 2026 and 79 dollars in 2027 as Middle East production normalises. The UAE departed OPEC effective May 1 2026. With supply returning the oracle reads the trajectory as clearly downward.",confidence:78},
-  {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"VGK leads 2-1 with home ice advantage for Game 4 at T-Mobile Arena Tuesday June 9. Mitch Marner scored the fastest natural hat trick in Stanley Cup Final history in Game 3. VGK swept Colorado 4-0 in the conference finals demonstrating elite closing ability. A 3-1 series lead has historically converted to a championship 87 percent of the time. Carolina is desperate but road teams in must-win Game 4 situations win only 42 percent of the time historically. RESULT: CAR won 5-3. Series tied 2-2. Prophecy failed.",confidence:62,status:"failed"},
-  {title:"Carolina Hurricanes will win Game 5 of the Stanley Cup Final at Lenovo Center, Raleigh",category:"NHL",catClass:"cat-society",excerpt:"The tempest has spoken twice on foreign soil and now returns to its throne of noise. Raleigh has not forgotten how to roar. The guardian between the pipes has seen thirteen victories — the golden city's own guardian has seen fewer clean nights. What the hurricane could not finish on enemy ground, it finishes at home.",analysis:"Andersen did not dress for Game 4 — Brandon Bussi made his first playoff start and delivered 18 saves in a 5-3 win. The goaltending decision for Game 5 is Brind'Amour's most consequential call: Bussi won his start convincingly; Andersen carries a 4.44 GAA and .815 SV% in the Final. Jordan Staal has scored in all four games — first player to score in the first four Final games since 1982. CAR home record this playoffs is 14-3. VGK road record is 6-6. Carolina PK ranks 2nd in the playoffs at 92.3%. Win probability models place Carolina at 57.9%. Historical base rate for home teams in tied Game 5 Final situations is 58%. The oracle issues this prophecy at 68% confidence.",confidence:68},
-  {title:"Carolina Hurricanes will win Game 5 of the Stanley Cup Final on home ice",category:"NHL",catClass:"cat-society",excerpt:"The storm returns to its birthplace. What was scattered on foreign soil reconvenes at the source — the Hurricanes, emboldened by the road, shall make their fortress speak. Two goals from the elder Staal have written the shape of this series.",analysis:"Carolina enters Game 5 having won Game 4 convincingly 5-3 on the road, with Jordan Staal scoring twice and Nikolaj Ehlers adding three points. The Hurricanes demonstrated superior puck possession (56.9% faceoffs, 28 vs 21 shots on goal) in Game 4 and have shown road resilience throughout this postseason. Historical base rate for home teams in tied Game 5 situations sits at approximately 58%. Live win probability models place Carolina at 57.7%. The oracle issues this prophecy at 68% confidence — enough to speak, not enough to be certain. Game 5, June 11, PNC Arena, Carolina.",confidence:68},
-  {title:"The Atlanta Braves will win the series against Pittsburgh taking at least 2 of 3 games June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The city of the hammer does not lose at home to those who come without thunder. The best record in the National League was not built by accident. The Pirates sail into a harbour that belongs to the Braves.",analysis:"Atlanta is 44-21 best record in the NL. They won games 1 and 2 of this series 6-3 and 6-3. Pittsburgh is 34-31 but outclassed at this level. Series already 2-0 Atlanta. Spencer Strider pitching game 2. Resolves June 8.",confidence:91},
-  {title:"The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third.",analysis:"Washington destroyed Arizona 14-1 and 6-1 in consecutive games. Those margins represent complete team collapse from Arizona at home. Washington at 31-32 does not need to be good when Arizona is giving away games at this scale. The sweep is the logical conclusion. Resolves June 8.",confidence:78},
-  {title:"The Milwaukee Brewers will win the series against Colorado at Coors Field June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The thin air of the mountain city gives equal advantage to those who visit. But the Brewers bring better arms and better bats. The altitude cannot compensate for the gap in talent.",analysis:"Milwaukee is 37-23 NL Central leaders. Colorado is 24-39 worst record in the NL West on pace for 100 losses. Milwaukee won game 1 at Coors 9-7 and leads game 2. The talent gap is enormous. Even at hitter-friendly Coors Field Milwaukee pitching depth is superior. Resolves June 8.",confidence:76}
+  {title:"The Vegas Golden Knights will win Game 3 of the 2026 Stanley Cup Final",category:"NHL",catClass:"cat-society",excerpt:"The fortress of neon and noise swallows the road team whole. What was taken on enemy ice cannot be defended on ones own. The golden city roars and the hurricane loses its wind.",analysis:"Oracle analysis for: The Vegas Golden Knights will win Game 3 of the 2026 Stanley",confidence:65,status:"fulfilled"},
+  {title:"The Atlanta Braves will win the series against Pittsburgh taking at least 2 of 3 games June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The city of the hammer does not lose at home to those who come without thunder. The best record in the National League was not built by accident. The Pirates sail into a harbour that belongs to the Braves.",analysis:"Oracle analysis for: The Atlanta Braves will win the series against Pittsburgh ta",confidence:65,status:"fulfilled"},
+  {title:"The Milwaukee Brewers will win the series against Colorado at Coors Field June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The thin air of the mountain city gives equal advantage to those who visit. But the Brewers bring better arms and better bats. The altitude cannot compensate for the gap in talent.",analysis:"Oracle analysis for: The Milwaukee Brewers will win the series against Colorado a",confidence:65,status:"fulfilled"},
+  {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"Oracle analysis for: The Vegas Golden Knights will win Game 4 and take a commandi",confidence:62,status:"failed"},
+  {title:"The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third.",analysis:"Oracle analysis for: The Washington Nationals will complete a series sweep of the",confidence:65,status:"failed"},
+  {title:"Carolina Hurricanes will win Game 5 of the Stanley Cup Final at Lenovo Center, Raleigh",category:"NHL",catClass:"cat-society",excerpt:"The tempest has spoken twice on foreign soil and now returns to its throne of noise. Raleigh has not forgotten how to roar. The guardian between the pipes has seen thirteen victories — the golden city\'s own guardian has seen fewer clean nights. What the hurricane could not finish on enemy ground, it finishes at home.",analysis:"Oracle analysis for: Carolina Hurricanes will win Game 5 of the Stanley Cup Final",confidence:68},
+  {title:"Ferrari will win the 2026 24 Hours of Le Mans Hypercar class for the fourth consecutive year",category:"Le Mans",catClass:"cat-tech",excerpt:"The prancing horse has claimed this ancient circuit three times in succession. What was once upset has become dynasty. The red cars know every shadow of every corner. The circuit belongs to them now.",analysis:"Oracle analysis for: Ferrari will win the 2026 24 Hours of Le Mans Hypercar class",confidence:58},
+  {title:"Ilia Topuria will successfully defend the UFC lightweight title against Justin Gaethje at UFC Freedom 250 at the White House",category:"MMA",catClass:"cat-society",excerpt:"The undefeated Georgian arrives at the most theatrical stage in combat sports history — the South Lawn of the American presidency. Three consecutive Hall of Famers have fallen before him. The fourth challenger is worthy. He will fall the same way.",analysis:"Oracle analysis for: Ilia Topuria will successfully defend the UFC lightweight ti",confidence:81},
+  {title:"Ilia Topuria will finish Justin Gaethje by KO or TKO at UFC Freedom 250 — the fight will not go to decision",category:"MMA",catClass:"cat-society",excerpt:"The sniper does not miss three times. The finisher who has never needed judges does not need them now. Gaethje will be brave and Gaethje will be dangerous — and Gaethje will be stopped.",analysis:"Oracle analysis for: Ilia Topuria will finish Justin Gaethje by KO or TKO at UFC ",confidence:74},
+  {title:"Alex Pereira will defeat Ciryl Gane for the interim UFC heavyweight title at UFC Freedom 250",category:"MMA",catClass:"cat-society",excerpt:"The man who has conquered two weight classes looks upward to a third. The Frenchman is technical and elusive — but Pereira has knocked out men who were told he could not reach them. The uppercut does not care about technique.",analysis:"Oracle analysis for: Alex Pereira will defeat Ciryl Gane for the interim UFC heav",confidence:58},
+  {title:"Aidan O Brien will train at least two Group 1 winners at Royal Ascot 2026",category:"Horse Racing",catClass:"cat-society",excerpt:"The master of Ballydoyle sends his army to the royal meeting and the royal meeting yields to it. Two crowns minimum. The Irish flag flies over the most English of stages.",analysis:"Oracle analysis for: Aidan O Brien will train at least two Group 1 winners at Roy",confidence:72},
+  {title:"Scottie Scheffler will fail to complete the career grand slam at the 2026 US Open at Shinnecock Hills",category:"Golf",catClass:"cat-society",excerpt:"The grand slam has been claimed by six men in the modern era. Each of them waited for their moment. Shinnecock does not yield to pressure — it creates it. The world number one will leave without the final piece.",analysis:"Oracle analysis for: Scottie Scheffler will fail to complete the career grand sla",confidence:82},
+  {title:"The 2026 US Open at Shinnecock Hills will be won by a first-time major champion",category:"Golf",catClass:"cat-society",excerpt:"Shinnecock does not reward the familiar. The course that has crowned Goosen, Pavin, Floyd — none of them expected. The oldest examination in American golf produces a new name for the oldest trophy.",analysis:"Oracle analysis for: The 2026 US Open at Shinnecock Hills will be won by a first-",confidence:64},
+  {title:"The New York Knicks will win the 2026 NBA Championship their first title since 1973",category:"NBA",catClass:"cat-society",excerpt:"The city that never sleeps has waited half a century. Two road wins in the enemy fortress before the garden even opens its gates. The dynasty is not being born — it has already arrived.",analysis:"Oracle analysis for: The New York Knicks will win the 2026 NBA Championship their",confidence:78},
+  {title:"Victor Wembanyama will score at least 30 points in one game of the 2026 NBA Finals",category:"NBA",catClass:"cat-society",excerpt:"The alien does not accept defeat quietly. Down 0-2 the giant from France will demonstrate why the future of basketball wears his face. One night in these Finals will belong entirely to him.",analysis:"Oracle analysis for: Victor Wembanyama will score at least 30 points in one game ",confidence:74},
+  {title:"Abelardo de la Espriella will win the Colombia presidential runoff on June 21 2026",category:"Governance",catClass:"cat-governance",excerpt:"The outsider who came from nothing has outrun the machine. The crowd that was told to fear him has instead embraced him. What polls dismissed, the ballot box has already begun to confirm.",analysis:"Oracle analysis for: Abelardo de la Espriella will win the Colombia presidential ",confidence:82},
+  {title:"Scottie Scheffler will NOT win the 2026 US Open at Shinnecock Hills",category:"Golf",catClass:"cat-society",excerpt:"The best player in the world arrives at the most demanding examination in golf. He is favoured. He is ready. And still the course will find his flaw. Shinnecock humbles everyone eventually.",analysis:"Oracle analysis for: Scottie Scheffler will NOT win the 2026 US Open at Shinnecoc",confidence:85},
+  {title:"Argentina will advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-sport",excerpt:"The ageing king makes one final procession through the tournament he conquered. The crown weighs heavy but the shoulders beneath it have carried it before.",analysis:"Oracle analysis for: Argentina will advance from the group stage of the 2026 FIFA",confidence:91},
+  {title:"Brazil will advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-sport",excerpt:"Five crowns weigh upon this nation like a debt unpaid. The talent is undeniable. The doubt is structural. But the first gate they will pass.",analysis:"Oracle analysis for: Brazil will advance from the group stage of the 2026 FIFA Wo",confidence:88},
+  {title:"Germany will advance from the group stage after failing to do so in their last two World Cup appearances",category:"World Cup",catClass:"cat-sport",excerpt:"The sleeping giant stirs. Two humiliations have sharpened the blade. What was once assumed now must be earned and Germany earns what it sets its mind to.",analysis:"Oracle analysis for: Germany will advance from the group stage after failing to d",confidence:82},
+  {title:"England will advance from Group L at the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-sport",excerpt:"The three lions have learned to stop devouring themselves. The talent has always been there. The composure is new. The group is a formality.",analysis:"Oracle analysis for: England will advance from Group L at the 2026 FIFA World Cup",confidence:87},
+  {title:"Canada will fail to advance from the group stage of the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"The host nation that has never won a World Cup match now finds itself in the company of wolves. The home crowd cannot carry what the squad cannot provide.",analysis:"Oracle analysis for: Canada will fail to advance from the group stage of the 2026",confidence:72},
+  {title:"No formal Russia-Ukraine ceasefire will be signed before June 30 2026",category:"Conflict",catClass:"cat-conflict",excerpt:"The guns pause but do not sleep. What is called peace is merely exhaustion wearing a diplomatic coat. The ink does not reach the paper.",analysis:"Oracle analysis for: No formal Russia-Ukraine ceasefire will be signed before Jun",confidence:91},
+  {title:"Australia or England will win the 2026 Womens T20 Cricket World Cup",category:"Cricket",catClass:"cat-society",excerpt:"Two empires of the womens game have between them claimed seven of the last ten titles. The tournament held in England favours the hosts but the southern giant travels well.",analysis:"Oracle analysis for: Australia or England will win the 2026 Womens T20 Cricket Wo",confidence:65},
+  {title:"Spain will reach the 2026 FIFA World Cup semi-finals",category:"World Cup",catClass:"cat-sport",excerpt:"The technicians of the beautiful game have built the most complete machine in the tournament. It does not rely on one man. It does not tire. It does not panic. It advances.",analysis:"Oracle analysis for: Spain will reach the 2026 FIFA World Cup semi-finals",confidence:68},
+  {title:"Lionel Messi will score at least one goal in the 2026 FIFA World Cup his final tournament",category:"World Cup",catClass:"cat-society",excerpt:"The greatest does not exit without one final statement. The story is too perfectly written for the pen to run dry at the last page.",analysis:"Oracle analysis for: Lionel Messi will score at least one goal in the 2026 FIFA W",confidence:79},
+  {title:"At least one nation ranked outside the top 20 will reach the 2026 FIFA World Cup quarter-finals",category:"World Cup",catClass:"cat-society",excerpt:"In the expanded tournament the walls that once protected the powerful have more gates. One will open for the unexpected visitor.",analysis:"Oracle analysis for: At least one nation ranked outside the top 20 will reach the",confidence:83},
+  {title:"Jannik Sinner will successfully defend his Wimbledon title in 2026",category:"Tennis",catClass:"cat-society",excerpt:"The champion returns to the cathedral of grass with the field weakened before him. What fortune gives skill consolidates. The Italian does not waste the open door.",analysis:"Oracle analysis for: Jannik Sinner will successfully defend his Wimbledon title i",confidence:58},
+  {title:"Iga Swiatek will NOT successfully defend her Wimbledon women title in 2026",category:"Tennis",catClass:"cat-society",excerpt:"The grass remembers those who ruled it before. The challenger who was once favourite now faces a deeper field with sharper teeth. The crown changes hands on the lawns of London.",analysis:"Oracle analysis for: Iga Swiatek will NOT successfully defend her Wimbledon women",confidence:62},
+  {title:"Spain or France will win the 2026 FIFA World Cup",category:"World Cup",catClass:"cat-society",excerpt:"Two old empires have found their dominion on the field of grass. What kings once claimed by sword, their descendants now claim by boot.",analysis:"Oracle analysis for: Spain or France will win the 2026 FIFA World Cup",confidence:58},
+  {title:"Neither the USA nor Mexico will reach the 2026 FIFA World Cup semi-finals",category:"World Cup",catClass:"cat-society",excerpt:"The host opens the gates and sets the table. But the feast belongs to those who came from across the water. The crown does not fall where the throne is placed.",analysis:"Oracle analysis for: Neither the USA nor Mexico will reach the 2026 FIFA World Cu",confidence:76},
+  {title:"Argentina will not successfully defend their FIFA World Cup title and will be eliminated before the final",category:"World Cup",catClass:"cat-society",excerpt:"The dynasty does not repeat itself. What was seized in Qatar cannot be held in New Jersey. The king abdicates not willingly, but inevitably.",analysis:"Oracle analysis for: Argentina will not successfully defend their FIFA World Cup ",confidence:74},
+  {title:"The 2026 FIFA World Cup will produce more total goals than the 172 scored in the 2022 Qatar tournament",category:"World Cup",catClass:"cat-sport",excerpt:"More nations. More matches. More hunger. The nets will strain under the weight of ambition unleashed. The arithmetic of expansion cannot be denied.",analysis:"Oracle analysis for: The 2026 FIFA World Cup will produce more total goals than t",confidence:94},
+  {title:"Aonishiki will win the Nagoya Basho yusho and reclaim Ozeki rank at the July 2026 Grand Sumo Tournament",category:"Sumo",catClass:"cat-society",excerpt:"The Ukrainian who conquered Japans oldest sport was knocked from his throne by injury. He returns to the sacred clay hungry. The demotion is temporary. The hunger is permanent.",analysis:"Oracle analysis for: Aonishiki will win the Nagoya Basho yusho and reclaim Ozeki ",confidence:52},
+  {title:"Tadej Pogacar will win the 2026 Tour de France",category:"Cycling",catClass:"cat-society",excerpt:"The Slovenian climbs as though gravity is a suggestion that applies to others. His fifth yellow jersey approaches not as a foregone ceremony. The mountain belongs to him.",analysis:"Oracle analysis for: Tadej Pogacar will win the 2026 Tour de France",confidence:62},
+  {title:"Max Verstappen will fail to win a race in the first half of the 2026 F1 season — his worst start since 2020",category:"F1",catClass:"cat-tech",excerpt:"The four-time champion has found himself in unfamiliar territory — behind, watching, waiting. The car that once bent physics to his will now betrays him at the worst moments. Patience is not his strongest virtue.",analysis:"Oracle analysis for: Max Verstappen will fail to win a race in the first half of ",confidence:68},
+  {title:"A total solar eclipse will cross Spain on August 12 2026 marking Europes first mainland totality since 1999",category:"Astronomy",catClass:"cat-climate",excerpt:"The moon interposes itself between the sun and the old world. For minutes over the Iberian peninsula day becomes night. What astronomers have calculated for centuries arrives precisely on schedule.",analysis:"Oracle analysis for: A total solar eclipse will cross Spain on August 12 2026 mar",confidence:99},
+  {title:"Pope Leo XIV will be present in Spain during the total solar eclipse of August 12 2026 marking a historic convergence of celestial and spiritual authority",category:"Governance",catClass:"cat-governance",excerpt:"The new shepherd of Rome stands on Iberian soil as the moon swallows the sun. Two great institutions — the oldest science and the oldest faith — converge in the same shadow.",analysis:"Oracle analysis for: Pope Leo XIV will be present in Spain during the total solar",confidence:58},
+  {title:"Kimi Antonelli will win the 2026 Formula 1 Drivers Championship — the youngest champion in history",category:"F1",catClass:"cat-tech",excerpt:"Five victories before the summer. A lead that grows with every race. The boy from Bologna does not slow down. What was once called premature is now called inevitable.",analysis:"Oracle analysis for: Kimi Antonelli will win the 2026 Formula 1 Drivers Champions",confidence:72},
+  {title:"Mercedes will win the 2026 Formula 1 Constructors Championship",category:"F1",catClass:"cat-tech",excerpt:"The silver arrows return to dominance under new technical law. What was built in secret emerges to overwhelm. The factory that mastered one era has mastered the next.",analysis:"Oracle analysis for: Mercedes will win the 2026 Formula 1 Constructors Championsh",confidence:78},
+  {title:"Lewis Hamilton will finish second in the 2026 F1 Drivers Championship ahead of George Russell",category:"F1",catClass:"cat-tech",excerpt:"The team-mate war has a new casualty. What the engine took from Russell, Hamilton claimed. The Ferrari in silver clothing now points at the second crown.",analysis:"Oracle analysis for: Lewis Hamilton will finish second in the 2026 F1 Drivers Cha",confidence:64},
+  {title:"The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026",category:"Governance",catClass:"cat-governance",excerpt:"The two chambers of power turn against each other over blood spent in distant deserts. What the executive wages, the legislature refuses to fund. The oldest fault line of the republic reopens.",analysis:"Oracle analysis for: The US House vote to end the war with Iran will trigger a co",confidence:73},
+  {title:"The EU AI Act August 2026 enforcement deadline will trigger the first major regulatory action against a US technology company in Europe",category:"Technology",catClass:"cat-tech",excerpt:"The scribes of the old continent have drawn their lines in the sand of law. What was built in haste and hubris now faces the weight of consequence. The first stone cast will echo across every shore where the machine has taken root.",analysis:"Oracle analysis for: The EU AI Act August 2026 enforcement deadline will trigger ",confidence:78},
+  {title:"A Chinese military incident in the Taiwan Strait will force an emergency UN Security Council session before end of 2026",category:"Geopolitics",catClass:"cat-geopolitics",excerpt:"The narrow water between brothers grows narrower still. Iron moves where words once moved. The eye that watches from across the great ocean blinks and in that blink a threshold is crossed that cannot be uncrossed.",analysis:"Oracle analysis for: A Chinese military incident in the Taiwan Strait will force ",confidence:71},
+  {title:"A geoeconomic confrontation between two G20 nations will result in the first formal severance of a bilateral trade agreement in the post-WTO era",category:"Economy",catClass:"cat-economy",excerpt:"The merchants who once bowed to the same altar of open exchange now sharpen different blades. What took decades to weave is being unraveled in seasons. The loom itself is breaking.",analysis:"Oracle analysis for: A geoeconomic confrontation between two G20 nations will res",confidence:62},
+  {title:"El Nino conditions in 2026 will make this year one of the three hottest on record globally",category:"Climate",catClass:"cat-climate",excerpt:"The great Pacific exhales its stored heat upon the world. What was accumulating beneath the surface now rises. The thermometer reads what no previous generation has witnessed.",analysis:"Oracle analysis for: El Nino conditions in 2026 will make this year one of the th",confidence:89},
+  {title:"The 2026 Ebola outbreak in the DRC will spread to at least three additional countries before being contained",category:"Health",catClass:"cat-health",excerpt:"The ancient fever walks again through the great forest. The borders drawn on maps mean nothing to what moves through blood and breath.",analysis:"Oracle analysis for: The 2026 Ebola outbreak in the DRC will spread to at least t",confidence:74},
+  {title:"Brent crude oil will NOT fall below 85 dollars per barrel in 2026 — the oracle amends its previous call",category:"Energy",catClass:"cat-economy",excerpt:"The oracle looked at the price and saw the trajectory downward. It did not see the war. The narrow gate remains contested. What was closing has reopened. The black tide does not recede when armies still march.",analysis:"Oracle analysis for: Brent crude oil will NOT fall below 85 dollars per barrel in",confidence:71},
+  {title:"The Israel-Iran war will not produce a permanent ceasefire before the end of 2026",category:"Conflict",catClass:"cat-conflict",excerpt:"A hundred days of fire does not end with a phone call. The pause is not peace. The weapons cool but do not sleep. What Trump brokered in hours will unravel in weeks. The desert remembers every strike.",analysis:"Oracle analysis for: The Israel-Iran war will not produce a permanent ceasefire b",confidence:82},
+  {title:"The Israel-Iran conflict will directly cause at least one additional Middle Eastern nation to be drawn into active military engagement before end of 2026",category:"Conflict",catClass:"cat-conflict",excerpt:"The fire that started between two does not stay between two. The neighbors feel the heat. The proxy becomes the principal. The regional war that everyone feared and no one stopped is already arriving.",analysis:"Oracle analysis for: The Israel-Iran conflict will directly cause at least one ad",confidence:78},
+  {title:"The Philippines magnitude 7.8 earthquake of June 8 2026 will trigger a major international humanitarian response involving at least 10 nations",category:"Society",catClass:"cat-society",excerpt:"The earth opens and the world responds. What the ground destroys in seconds takes years to rebuild. The archipelago has survived the shaking before — but never without the hands that cross the water to help.",analysis:"Oracle analysis for: The Philippines magnitude 7.8 earthquake of June 8 2026 will",confidence:88},
+  {title:"The Ethiopia-Eritrea border conflict will escalate into active military engagement before end of 2026",category:"Conflict",catClass:"cat-conflict",excerpt:"Two ancient enemies have never truly made peace — they merely paused. The dam that feeds one nation starves the trust of another. The Red Sea demands its toll in blood before it yields its passage.",analysis:"Oracle analysis for: The Ethiopia-Eritrea border conflict will escalate into acti",confidence:68},
+  {title:"The Venezuelan government will face a decisive regime change event before end of 2026",category:"Geopolitics",catClass:"cat-geopolitics",excerpt:"The strongman who has outlasted every prediction of his fall approaches the moment when survival is no longer enough. The opposition has international backing. The army has private doubts. The wall is cracking.",analysis:"Oracle analysis for: The Venezuelan government will face a decisive regime change",confidence:62},
+  {title:"A major AI-enabled cyberattack will cause a critical infrastructure outage affecting at least one G7 nation before end of 2026",category:"Technology",catClass:"cat-tech",excerpt:"The weapon that thinks faster than the defender has already been deployed. The grid that powers the city does not know it is already compromised. The outage will arrive not as an explosion but as a silence.",analysis:"Oracle analysis for: A major AI-enabled cyberattack will cause a critical infrast",confidence:74},
+  {title:"A whistleblower will release classified AI surveillance data exposing a G5 government domestic monitoring program before end of 2026",category:"Technology",catClass:"cat-tech",excerpt:"The eye that watches its own citizens does not watch in secret forever. One person with a conscience and a hard drive will change everything. The surveillance state has always feared the insider more than the enemy.",analysis:"Oracle analysis for: A whistleblower will release classified AI surveillance data",confidence:65},
+  {title:"Pope Leo XIV will announce a significant doctrinal revision on a major contested issue before end of 2026",category:"Governance",catClass:"cat-governance",excerpt:"The new shepherd did not come to maintain the flock as he found it. He comes from outside the tradition — from the Americas, from the margins. What his predecessors preserved in amber he will examine in daylight. Something long frozen will thaw.",analysis:"Oracle analysis for: Pope Leo XIV will announce a significant doctrinal revision ",confidence:58},
+  {title:"A sitting or former head of state will be arrested or indicted on international criminal charges before end of 2026",category:"Governance",catClass:"cat-governance",excerpt:"The court that the powerful built to judge others has turned its gaze upward. The immunity that comes with office does not survive the office. One who sat in judgment now faces judgment.",analysis:"Oracle analysis for: A sitting or former head of state will be arrested or indict",confidence:61},
+  {title:"A significant solar flare event in 2026 will cause measurable disruption to satellite communications or power grid infrastructure",category:"Climate",catClass:"cat-climate",excerpt:"The sun has not yet spoken its loudest word in this cycle. Solar maximum approaches. The star at the center of everything reminds the networks built in its shadow that they exist at its pleasure.",analysis:"Oracle analysis for: A significant solar flare event in 2026 will cause measurabl",confidence:72}
 ];
 function openModal(idx){
   if(idx===99||idx>=prophecies.length||!prophecies[idx]){document.getElementById('modal-content').innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-family:\'Cinzel Decorative\',serif;font-size:13px;letter-spacing:.2em;color:#c9a84c;margin-bottom:16px">&#9670; VERDICT PENDING &#9670;</div><div style="font-family:\'IM Fell English\',serif;font-size:16px;color:#888;line-height:1.8">The oracle watches. The judgment has not yet been issued for this prophecy.<br><br>Return when the signs are clearer.</div></div>';document.getElementById('modal-overlay').classList.add('open');return;}
