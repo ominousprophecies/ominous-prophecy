@@ -307,75 +307,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </defs>
 
       <style>
-        #hgaze{animation:hgz 28s ease-in-out infinite;}
-        #hulid{animation:hub 12s ease-in-out infinite;}
-        #hllid{animation:hlb 12s ease-in-out infinite;}
-        #hpupil{transform-origin:340px 210px;animation:hpd 18s ease-in-out infinite;}
-        @keyframes hub{
-          /* Contemptuous rest — heavy lid */
-          0%,20%   {transform:translateY(0);}
-          /* Scanning drift — lid lifts slightly, alert */
-          21%      {transform:translateY(-8px);}
-          /* SNAP onto target — lid drops into SQUINT */
-          24%,44%  {transform:translateY(62px);}
-          /* Squint releases slowly */
-          50%,56%  {transform:translateY(0);}
-          /* Center rest */
-          58%,68%  {transform:translateY(0);}
-          /* Right scan — lid lifts */
-          72%      {transform:translateY(-8px);}
-          /* SNAP right — SQUINT again */
-          76%,88%  {transform:translateY(62px);}
-          /* Release */
-          93%,100% {transform:translateY(0);}
-        }
-        @keyframes hlb{
-          /* Rest */
-          0%,20%   {transform:translateY(0);}
-          /* Alert lift */
-          21%      {transform:translateY(4px);}
-          /* SQUINT — lower lid rises to meet upper */
-          24%,44%  {transform:translateY(-22px);}
-          /* Release */
-          50%,68%  {transform:translateY(0);}
-          /* Right squint */
-          72%      {transform:translateY(4px);}
-          76%,88%  {transform:translateY(-22px);}
-          /* Release */
-          93%,100% {transform:translateY(0);}
-        }
-        @keyframes hgz{
-          /* Dead still — contemptuous rest */
-          0%,15%   {transform:translate(0,0);}
-          /* Slow drift left — scanning */
-          20%      {transform:translate(-20px,1px);}
-          /* SNAP — locks on hard */
-          23%,50%  {transform:translate(-42px,2px);}
-          /* Slow return center */
-          57%,68%  {transform:translate(0,0);}
-          /* Drift right — scanning */
-          73%      {transform:translate(20px,1px);}
-          /* SNAP right — locks on */
-          76%,90%  {transform:translate(42px,2px);}
-          /* Return */
-          96%,100% {transform:translate(0,0);}
-        }
-        @keyframes hpd{
-          /* Resting — normal light, normal pupil */
-          0%,12%   {transform:scale(1);}
-          /* Gaze moves left/lateral — neutral light, slight drift */
-          20%,30%  {transform:scale(1.04);}
-          /* Squint — lids closer, slightly less light, very mild dilation */
-          36%,46%  {transform:scale(1.08);}
-          /* Return — normal */
-          55%,65%  {transform:scale(1);}
-          /* Right lateral — neutral */
-          72%,82%  {transform:scale(1.04);}
-          /* Right squint */
-          86%,92%  {transform:scale(1.08);}
-          /* Slow return */
-          100%     {transform:scale(1);}
-        }
+        /* All animation driven by JS — no CSS loops */
+        #hulid{transition:transform 0.6s ease-in-out;}
+        #hllid{transition:transform 0.6s ease-in-out;}
+        #hgaze{transition:transform 1.2s ease-in-out;}
+        #hpupil{transform-origin:340px 210px;transition:transform 2.5s ease-in-out;}
       </style>
 
       <g clip-path="url(#hec)">
@@ -1341,6 +1277,262 @@ floatEye.title = 'Return to the top';
 document.querySelectorAll('.cat-tag').forEach(tag=>{
   tag.addEventListener('click',function(){document.querySelectorAll('.cat-tag').forEach(t=>t.classList.remove('active'));this.classList.add('active')});
 });
+</script>
+<script>
+(function(){
+  // ── ORACLE EYE CONTROLLER ──────────────────────────────────────
+  // Runs after DOM ready. 10 minute unpredictable sequence.
+  // Entrance: suspicious squint for 30s, then relaxes.
+
+  var ulid, llid, gaze, pupil;
+  var timer = null;
+  var startTime = Date.now();
+  var ENTRANCE_MS = 32000; // 30s suspicious entrance + 2s relax
+
+  function init(){
+    ulid  = document.getElementById('hulid');
+    llid  = document.getElementById('hllid');
+    gaze  = document.getElementById('hgaze');
+    pupil = document.getElementById('hpupil');
+    if(!ulid) return; // eye not on page
+
+    // Start in suspicious squint immediately
+    setLids(68, -24, 0);
+    setGaze(0, 0);
+    setPupil(1.0);
+
+    // Hold squint, then slowly relax at 30s
+    setTimeout(function(){
+      // Slow transition for the relax
+      ulid.style.transition  = 'transform 5s ease-in-out';
+      llid.style.transition  = 'transform 5s ease-in-out';
+      gaze.style.transition  = 'transform 3s ease-in-out';
+      setLids(0, 0, 0);
+      setTimeout(function(){
+        // Restore normal transition speeds
+        ulid.style.transition  = 'transform 0.6s ease-in-out';
+        llid.style.transition  = 'transform 0.6s ease-in-out';
+        gaze.style.transition  = 'transform 1.2s ease-in-out';
+        // Start the unpredictable loop
+        scheduleNext();
+      }, 5000);
+    }, ENTRANCE_MS);
+  }
+
+  // ── STATE SETTERS ────────────────────────────────────────────────
+  function setLids(upper, lower, gazeY){
+    ulid.style.transform = 'translateY('+upper+'px)';
+    llid.style.transform = 'translateY('+lower+'px)';
+  }
+  function setGaze(x, y){
+    gaze.style.transform = 'translate('+x+'px,'+y+'px)';
+  }
+  function setPupil(scale){
+    pupil.style.transform = 'scale('+scale+')';
+  }
+
+  // ── RANDOM HELPERS ───────────────────────────────────────────────
+  function rnd(min, max){ return min + Math.random()*(max-min); }
+  function rndInt(min, max){ return Math.floor(rnd(min, max+1)); }
+  function pick(arr){ return arr[rndInt(0, arr.length-1)]; }
+
+  // ── BEHAVIORS ────────────────────────────────────────────────────
+  // Each behavior returns ms until next schedule call
+
+  function doRest(){
+    // Dead still — contemptuous open stare
+    setLids(0, 0);
+    setGaze(0, 0);
+    setPupil(1.0);
+    return rnd(3000, 8000);
+  }
+
+  function doFastBlink(){
+    // Quick survival blink
+    ulid.style.transition = 'transform 0.15s ease-in';
+    llid.style.transition = 'transform 0.15s ease-in';
+    setLids(182, -51);
+    setTimeout(function(){
+      ulid.style.transition = 'transform 0.25s ease-out';
+      llid.style.transition = 'transform 0.25s ease-out';
+      setLids(0, 0);
+      setTimeout(function(){
+        ulid.style.transition = 'transform 0.6s ease-in-out';
+        llid.style.transition = 'transform 0.6s ease-in-out';
+      }, 300);
+    }, 160);
+    return rnd(200, 600);
+  }
+
+  function doSlowBlink(){
+    // Cynical deliberate slow blink
+    ulid.style.transition = 'transform 0.5s ease-in';
+    llid.style.transition = 'transform 0.5s ease-in';
+    setLids(182, -51);
+    setTimeout(function(){
+      ulid.style.transition = 'transform 0.9s ease-out';
+      llid.style.transition = 'transform 0.9s ease-out';
+      setLids(0, 0);
+      setTimeout(function(){
+        ulid.style.transition = 'transform 0.6s ease-in-out';
+        llid.style.transition = 'transform 0.6s ease-in-out';
+      }, 1000);
+    }, 550);
+    return rnd(800, 2000);
+  }
+
+  function doContemptDroop(){
+    // Lid drops partway — bored contempt
+    var droop = rnd(45, 65);
+    setLids(droop, -14);
+    setPupil(rnd(0.88, 0.94));
+    var hold = rnd(2000, 5000);
+    setTimeout(function(){
+      setLids(0, 0);
+      setPupil(1.0);
+    }, hold);
+    return hold + rnd(500, 1500);
+  }
+
+  function doScanLeft(){
+    // Drift left, maybe lock on with squint
+    var x = rnd(-28, -42);
+    gaze.style.transition = 'transform '+rnd(0.8,1.8)+'s ease-in-out';
+    setGaze(x, 0);
+    setPupil(rnd(0.94, 1.04));
+    var holdTime = rnd(1500, 4000);
+    // Maybe squint while locked on
+    if(Math.random() > 0.4){
+      setTimeout(function(){
+        var sq = rnd(45, 68);
+        setLids(sq, -rnd(14,22));
+        setPupil(rnd(0.90, 0.96));
+        setTimeout(function(){
+          setLids(0,0);
+          setPupil(1.0);
+        }, rnd(1500, 3500));
+      }, rnd(400, 900));
+    }
+    setTimeout(function(){
+      gaze.style.transition = 'transform '+rnd(1.0,2.2)+'s ease-in-out';
+      setGaze(0, 0);
+      setPupil(1.0);
+    }, holdTime);
+    return holdTime + rnd(800, 2000);
+  }
+
+  function doScanRight(){
+    var x = rnd(28, 42);
+    gaze.style.transition = 'transform '+rnd(0.8,1.8)+'s ease-in-out';
+    setGaze(x, 0);
+    setPupil(rnd(0.94, 1.04));
+    var holdTime = rnd(1500, 4000);
+    if(Math.random() > 0.4){
+      setTimeout(function(){
+        var sq = rnd(45, 68);
+        setLids(sq, -rnd(14,22));
+        setPupil(rnd(0.90, 0.96));
+        setTimeout(function(){
+          setLids(0,0);
+          setPupil(1.0);
+        }, rnd(1500, 3500));
+      }, rnd(400, 900));
+    }
+    setTimeout(function(){
+      gaze.style.transition = 'transform '+rnd(1.0,2.2)+'s ease-in-out';
+      setGaze(0, 0);
+      setPupil(1.0);
+    }, holdTime);
+    return holdTime + rnd(800, 2000);
+  }
+
+  function doSuspiciousSquint(){
+    // Full suspicious narrow — sees something
+    gaze.style.transition = 'transform 0.4s ease-in';
+    var x = pick([-38, -32, 32, 38, -20, 20]);
+    setGaze(x, 0);
+    setTimeout(function(){
+      setLids(62, -22);
+      setPupil(rnd(0.85, 0.92));
+    }, 400);
+    var hold = rnd(3000, 7000);
+    setTimeout(function(){
+      gaze.style.transition = 'transform 1.5s ease-in-out';
+      setLids(0, 0);
+      setGaze(0, 0);
+      setPupil(1.0);
+    }, hold);
+    return hold + rnd(1000, 2000);
+  }
+
+  function doDoubleBlink(){
+    // Two quick blinks in a row
+    doFastBlink();
+    setTimeout(doFastBlink, rnd(300, 600));
+    return rnd(700, 1500);
+  }
+
+  function doPupilPulse(){
+    // Slow pupil dilation and return — light change
+    var dir = Math.random() > 0.5 ? rnd(1.08, 1.16) : rnd(0.86, 0.93);
+    setPupil(dir);
+    setTimeout(function(){ setPupil(1.0); }, rnd(3000, 6000));
+    return rnd(4000, 7000);
+  }
+
+  function doLongStare(){
+    // Extended unblinking contemptuous stare
+    setLids(0, 0);
+    setGaze(0, 0);
+    return rnd(6000, 14000);
+  }
+
+  // ── WEIGHTED BEHAVIOR POOL ────────────────────────────────────────
+  // More weight = more likely
+  var behaviors = [
+    {fn: doRest,             weight: 12},
+    {fn: doFastBlink,        weight: 8},
+    {fn: doSlowBlink,        weight: 5},
+    {fn: doContemptDroop,    weight: 8},
+    {fn: doScanLeft,         weight: 10},
+    {fn: doScanRight,        weight: 10},
+    {fn: doSuspiciousSquint, weight: 6},
+    {fn: doDoubleBlink,      weight: 3},
+    {fn: doPupilPulse,       weight: 4},
+    {fn: doLongStare,        weight: 5},
+  ];
+
+  var totalWeight = behaviors.reduce(function(s,b){ return s+b.weight; }, 0);
+
+  function pickBehavior(){
+    var r = Math.random() * totalWeight;
+    var cum = 0;
+    for(var i=0; i<behaviors.length; i++){
+      cum += behaviors[i].weight;
+      if(r <= cum) return behaviors[i].fn;
+    }
+    return behaviors[0].fn;
+  }
+
+  // Never repeat same behavior twice in a row
+  var lastBehavior = null;
+
+  function scheduleNext(){
+    var fn;
+    do { fn = pickBehavior(); } while(fn === lastBehavior);
+    lastBehavior = fn;
+    var delay = fn();
+    timer = setTimeout(scheduleNext, delay);
+  }
+
+  // ── INIT ON DOM READY ─────────────────────────────────────────────
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
 </script>
 </body>
 </html>
