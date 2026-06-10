@@ -1289,12 +1289,90 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
   var startTime = Date.now();
   var ENTRANCE_MS = 32000; // 30s suspicious entrance + 2s relax
 
+  // Mouse tracking state
+  var mouseX = 0, mouseY = 0;
+  var eyeCX = 0, eyeCY = 0;  // eye center in viewport
+  var gazeX = 0, gazeY = 0;  // current gaze position
+  var targetX = 0, targetY = 0; // mouse-driven target
+  var trackingActive = false; // paused during behaviors
+  var rafId = null;
+
+  function updateEyeCenter(){
+    if(!gaze) return;
+    var rect = gaze.closest('svg') ? gaze.closest('svg').getBoundingClientRect() : null;
+    if(rect){
+      eyeCX = rect.left + rect.width * 0.5;
+      eyeCY = rect.top + rect.height * 0.5;
+    }
+  }
+
+  var mouseWatchTimer = null;
+  var isWatchingMouse = false;
+  var lastMouseX = 0, lastMouseY = 0;
+  var WATCH_CHANCE = 0.35; // 35% chance eye notices mouse movement
+
+  function onMouseMove(e){
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    // Only react if mouse moved significantly
+    var moved = Math.abs(mouseX-lastMouseX) + Math.abs(mouseY-lastMouseY);
+    if(moved < 18) return;
+    lastMouseX = mouseX; lastMouseY = mouseY;
+    // Only notice mouse if not mid-behavior and tracking enabled
+    if(!trackingActive) return;
+    // Random chance the oracle notices this movement
+    if(!isWatchingMouse && Math.random() < WATCH_CHANCE){
+      isWatchingMouse = true;
+      // Watch for 2-5 seconds then look away
+      clearTimeout(mouseWatchTimer);
+      mouseWatchTimer = setTimeout(function(){
+        isWatchingMouse = false;
+        // Drift back to center slowly
+        gaze.style.transition = 'transform 1.8s ease-in-out';
+        gazeX = 0; gazeY = 0;
+        gaze.style.transform = 'translate(0px,0px)';
+        setTimeout(function(){
+          gaze.style.transition = '';
+        }, 1900);
+      }, rnd(2000, 5000));
+    }
+  }
+
+  function trackLoop(){
+    if(trackingActive && isWatchingMouse && gaze){
+      var dx = mouseX - eyeCX;
+      var dy = mouseY - eyeCY;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      var maxTravel = 38;
+      var scale = dist > 0 ? Math.min(1, maxTravel / dist) * 0.18 : 0;
+      targetX = dx * scale;
+      targetY = dy * scale * 0.5;
+      if(targetY < -8) targetY = -8;
+      if(targetY > 12) targetY = 12;
+      // Lerp — smooth organic follow
+      gazeX += (targetX - gazeX) * 0.05;
+      gazeY += (targetY - gazeY) * 0.05;
+      gaze.style.transform = 'translate('+gazeX.toFixed(2)+'px,'+gazeY.toFixed(2)+'px)';
+    }
+    rafId = requestAnimationFrame(trackLoop);
+  }
+
   function init(){
     ulid  = document.getElementById('hulid');
     llid  = document.getElementById('hllid');
     gaze  = document.getElementById('hgaze');
     pupil = document.getElementById('hpupil');
     if(!ulid) return; // eye not on page
+
+    // Start mouse tracking
+    document.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('resize', updateEyeCenter);
+    window.addEventListener('scroll', updateEyeCenter);
+    updateEyeCenter();
+    // Delay eye center update to after layout settles
+    setTimeout(updateEyeCenter, 500);
+    setTimeout(updateEyeCenter, 1500);
+    rafId = requestAnimationFrame(trackLoop);
 
     // Start in suspicious squint immediately
     setLids(68, -24, 0);
@@ -1313,7 +1391,9 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
         ulid.style.transition  = 'transform 0.6s ease-in-out';
         llid.style.transition  = 'transform 0.6s ease-in-out';
         gaze.style.transition  = 'transform 1.2s ease-in-out';
-        // Start the unpredictable loop
+        // Start the unpredictable loop and mouse tracking
+        trackingActive = true;
+        updateEyeCenter();
         scheduleNext();
       }, 5000);
     }, ENTRANCE_MS);
@@ -1325,7 +1405,14 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     llid.style.transform = 'translateY('+lower+'px)';
   }
   function setGaze(x, y){
+    // Behavior overrides mouse tracking temporarily
+    trackingActive = false;
+    gazeX = x; gazeY = y;
     gaze.style.transform = 'translate('+x+'px,'+y+'px)';
+  }
+  function resumeTracking(){
+    trackingActive = true;
+    updateEyeCenter();
   }
   function setPupil(scale){
     pupil.style.transform = 'scale('+scale+')';
@@ -1340,10 +1427,10 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
   // Each behavior returns ms until next schedule call
 
   function doRest(){
-    // Dead still — contemptuous open stare
+    // Dead still — follows mouse
     setLids(0, 0);
-    setGaze(0, 0);
     setPupil(1.0);
+    setTimeout(resumeTracking, 600);
     return rnd(3000, 8000);
   }
 
@@ -1481,9 +1568,9 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
   }
 
   function doLongStare(){
-    // Extended unblinking contemptuous stare
+    // Extended unblinking contemptuous stare — follows mouse
     setLids(0, 0);
-    setGaze(0, 0);
+    setTimeout(resumeTracking, 600);
     return rnd(6000, 14000);
   }
 
