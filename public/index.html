@@ -327,6 +327,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
     <li><a href="#scoreboard-section">Scoreboard</a></li>
     <li><a href="#methodology-section">Methodology</a></li>
   </ul>
+  <div class="nav-member" id="nav-member-area">
+    <button class="auth-btn" id="nav-auth-btn" onclick="openAuthModal('login')">Sign In</button>
+  </div>
   <button class="nav-submit" onclick="document.querySelector('.oracle-input-section').scrollIntoView({behavior:'smooth',block:'center'})">Submit a Prophecy</button>
 </nav>
 <div class="hero">
@@ -1707,6 +1710,190 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     init();
   }
 
+})();
+</script>
+
+<!-- ── AUTH MODAL ─────────────────────────────────────────── -->
+<div class="auth-modal-overlay" id="auth-modal-overlay" onclick="closeAuthModal(event)">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuthModal(null,true)">&#10005;</button>
+    <h2 id="auth-modal-title">THE LEDGER AWAITS</h2>
+    <p class="auth-modal-sub" id="auth-modal-sub">Seal your identity. Your ballot history shall be recorded.</p>
+    <div class="auth-divider"></div>
+    <div class="auth-field">
+      <label>Email Address</label>
+      <input type="email" id="auth-email" placeholder="your@email.com" autocomplete="email"/>
+    </div>
+    <div class="auth-field" id="auth-password-field">
+      <label>Password</label>
+      <input type="password" id="auth-password" placeholder="&#9670; &#9670; &#9670; &#9670; &#9670; &#9670; &#9670; &#9670;" autocomplete="current-password"/>
+    </div>
+    <div class="auth-error" id="auth-error"></div>
+    <button class="auth-submit" id="auth-submit-btn" onclick="submitAuth()">&#9670; ENTER THE ORACLE &#9670;</button>
+    <div class="auth-switch" id="auth-switch-text">
+      No account? <a onclick="switchAuthMode('register')">Register your presence</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── SUPABASE AUTH CLIENT ──────────────────────────────────────
+const SUPA_URL  = document.querySelector('meta[name="supa-url"]')  ? document.querySelector('meta[name="supa-url"]').content  : '';
+const SUPA_ANON = document.querySelector('meta[name="supa-anon"]') ? document.querySelector('meta[name="supa-anon"]').content : '';
+
+// Pull from env vars injected server-side or from existing supabase client
+var _supaAuth = null;
+function getSupaAuth(){
+  if(_supaAuth) return _supaAuth;
+  // Use window supabase if already loaded
+  if(window.supabaseClient) return window.supabaseClient;
+  // Create from meta tags or hardcoded (will be replaced by env)
+  if(window.SUPABASE_URL && window.SUPABASE_ANON_KEY){
+    _supaAuth = window.supabase ? window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY) : null;
+  }
+  return _supaAuth;
+}
+
+// ── STATE ─────────────────────────────────────────────────────
+var authMode = 'login'; // 'login' | 'register'
+var currentUser = null;
+
+// ── MODAL OPEN/CLOSE ──────────────────────────────────────────
+function openAuthModal(mode){
+  authMode = mode || 'login';
+  updateAuthModalUI();
+  document.getElementById('auth-modal-overlay').classList.add('open');
+  setTimeout(function(){ document.getElementById('auth-email').focus(); }, 100);
+}
+function closeAuthModal(e, force){
+  if(force || (e && e.target === document.getElementById('auth-modal-overlay'))){
+    document.getElementById('auth-modal-overlay').classList.remove('open');
+    document.getElementById('auth-error').textContent = '';
+  }
+}
+function switchAuthMode(mode){
+  authMode = mode;
+  updateAuthModalUI();
+}
+function updateAuthModalUI(){
+  var isLogin = authMode === 'login';
+  document.getElementById('auth-modal-title').textContent   = isLogin ? 'THE LEDGER AWAITS'     : 'JOIN THE CONGREGATION';
+  document.getElementById('auth-modal-sub').textContent     = isLogin ? 'Seal your identity. Your ballot history shall be recorded.' : 'Register your presence. Your prophecies shall be tracked.';
+  document.getElementById('auth-submit-btn').textContent    = isLogin ? '◈ ENTER THE ORACLE ◈'  : '◈ SEAL MY PRESENCE ◈';
+  document.getElementById('auth-switch-text').innerHTML     = isLogin
+    ? 'No account? <a onclick="switchAuthMode('register')">Register your presence</a>'
+    : 'Already registered? <a onclick="switchAuthMode('login')">Enter the Oracle</a>';
+  document.getElementById('auth-error').textContent = '';
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────
+async function submitAuth(){
+  var email    = document.getElementById('auth-email').value.trim();
+  var password = document.getElementById('auth-password').value;
+  var errEl    = document.getElementById('auth-error');
+  var btn      = document.getElementById('auth-submit-btn');
+
+  if(!email || !email.includes('@')){ errEl.textContent = 'A valid address is required.'; return; }
+  if(!password || password.length < 6){ errEl.textContent = 'Password must be at least 6 characters.'; return; }
+
+  btn.textContent = '...';
+  btn.disabled = true;
+  errEl.textContent = '';
+
+  try {
+    var res;
+    if(authMode === 'login'){
+      res = await fetch(getSupabaseUrl()+'/auth/v1/token?grant_type=password', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':getSupabaseAnon()},
+        body: JSON.stringify({email, password})
+      });
+    } else {
+      res = await fetch(getSupabaseUrl()+'/auth/v1/signup', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':getSupabaseAnon()},
+        body: JSON.stringify({email, password})
+      });
+    }
+    var data = await res.json();
+    if(data.error || data.msg){
+      errEl.textContent = data.error_description || data.msg || 'Something went wrong.';
+    } else if(authMode === 'register' && !data.access_token){
+      // Registration — confirm email
+      errEl.style.color = '#c9a84c';
+      errEl.textContent = 'Check your email to confirm your presence.';
+    } else if(data.access_token){
+      // Logged in
+      currentUser = data.user;
+      localStorage.setItem('op_access_token', data.access_token);
+      localStorage.setItem('op_user_email', data.user.email);
+      localStorage.setItem('op_user_id', data.user.id);
+      closeAuthModal(null, true);
+      updateNavForUser(data.user.email);
+    }
+  } catch(err){
+    errEl.textContent = 'Connection failed. Try again.';
+  }
+  btn.disabled = false;
+  updateAuthModalUI();
+}
+
+// ── NAV UPDATE ────────────────────────────────────────────────
+function updateNavForUser(email){
+  var area = document.getElementById('nav-member-area');
+  if(!area) return;
+  var short = email.split('@')[0];
+  area.innerHTML = '<div class="member-display"><span>&#9670;</span><span>'+short+'</span><button class="auth-btn" onclick="signOut()" style="font-size:8px;padding:4px 10px">Sign Out</button></div>';
+}
+
+function signOut(){
+  localStorage.removeItem('op_access_token');
+  localStorage.removeItem('op_user_email');
+  localStorage.removeItem('op_user_id');
+  currentUser = null;
+  var area = document.getElementById('nav-member-area');
+  if(area) area.innerHTML = '<button class="auth-btn" id="nav-auth-btn" onclick="openAuthModal('login')">Sign In</button>';
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
+function getSupabaseUrl(){
+  // Try to get from existing script tags or window vars
+  if(window._SUPA_URL) return window._SUPA_URL;
+  // Parse from existing supabase fetch calls in page
+  var scripts = document.querySelectorAll('script');
+  for(var i=0;i<scripts.length;i++){
+    var m = scripts[i].textContent.match(/https:\/\/[a-z0-9]+\.supabase\.co/);
+    if(m) return (window._SUPA_URL = m[0]);
+  }
+  return '';
+}
+function getSupabaseAnon(){
+  if(window._SUPA_ANON) return window._SUPA_ANON;
+  var scripts = document.querySelectorAll('script');
+  for(var i=0;i<scripts.length;i++){
+    var m = scripts[i].textContent.match(/eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}/);
+    if(m) return (window._SUPA_ANON = m[0]);
+  }
+  return '';
+}
+
+// ── RESTORE SESSION ON LOAD ───────────────────────────────────
+(function(){
+  var email = localStorage.getItem('op_user_email');
+  var token = localStorage.getItem('op_access_token');
+  if(email && token){
+    // Verify token is still valid
+    fetch(getSupabaseUrl()+'/auth/v1/user',{
+      headers:{'Authorization':'Bearer '+token,'apikey':getSupabaseAnon()}
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(d.id){
+        currentUser = d;
+        updateNavForUser(email);
+      } else {
+        signOut();
+      }
+    }).catch(function(){ signOut(); });
+  }
 })();
 </script>
 </body>
