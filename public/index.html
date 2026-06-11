@@ -1540,29 +1540,93 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     setTimeout(updateEyeCenter, 1500);
     rafId = requestAnimationFrame(trackLoop);
 
-    // Start in suspicious squint immediately
-    setLids(68, -24, 0);
-    setGaze(0, 0);
-    setPupil(1.0);
+    // ── VISITOR RECOGNITION ─────────────────────────────────────────
+    // Check if this soul has been here before
+    var lastVisit = localStorage.getItem('op_soul_seen');
+    var isReturning = !!lastVisit;
+    // Mark this visit
+    localStorage.setItem('op_soul_seen', Date.now());
 
-    // Hold squint, then slowly relax at 30s
-    setTimeout(function(){
-      // Slow transition for the relax
-      ulid.style.transition  = 'transform 5s ease-in-out';
-      llid.style.transition  = 'transform 5s ease-in-out';
-      gaze.style.transition  = 'transform 3s ease-in-out';
+    if(isReturning){
+      // ── RETURNING VISITOR: bright, open, pleased to see them ──────
+      // Eye snaps wide open, pupil dilates warmly, drifts gently
       setLids(0, 0, 0);
+      setGaze(0, 0);
+      setPupil(1.18); // wide open, welcoming
+
+      // Brief warm scan left-right as if recognizing
       setTimeout(function(){
-        // Restore normal transition speeds
-        ulid.style.transition  = 'transform 0.6s ease-in-out';
-        llid.style.transition  = 'transform 0.6s ease-in-out';
-        gaze.style.transition  = 'transform 1.2s ease-in-out';
-        // Start the unpredictable loop and mouse tracking
+        ulid.style.transition = 'transform 1.2s ease-in-out';
+        llid.style.transition = 'transform 1.2s ease-in-out';
+        // Slight glance left — recognition
+        gaze.style.transition = 'transform 0.8s ease-in-out';
+        gaze.style.transform  = 'translate(-18px, 0px)';
+        if(fgaze){ fgaze.style.transition='transform 0.8s ease-in-out'; fgaze.style.transform='translate(-18px,0px)'; }
+      }, 400);
+      setTimeout(function(){
+        // Glance right — pleased
+        gaze.style.transition = 'transform 1.0s ease-in-out';
+        gaze.style.transform  = 'translate(18px, 0px)';
+        if(fgaze){ fgaze.style.transition='transform 1.0s ease-in-out'; fgaze.style.transform='translate(18px,0px)'; }
+      }, 1400);
+      setTimeout(function(){
+        // Return to center, settle into normal rhythm
+        gaze.style.transition = 'transform 1.2s ease-in-out';
+        gaze.style.transform  = 'translate(0px, 0px)';
+        if(fgaze){ fgaze.style.transition='transform 1.2s ease-in-out'; fgaze.style.transform='translate(0px,0px)'; }
+        setPupil(1.08); // slightly warmer than neutral
+        ulid.style.transition = 'transform 0.6s ease-in-out';
+        llid.style.transition = 'transform 0.6s ease-in-out';
+        gaze.style.transition = 'none';
+        if(fgaze) fgaze.style.transition = 'none';
         trackingActive = true;
         updateEyeCenter();
         scheduleNext();
-      }, 5000);
-    }, ENTRANCE_MS);
+      }, 2800);
+
+    } else {
+      // ── NEW VISITOR: suspicious squint, evaluating, then opens ────
+      setLids(68, -24, 0); // deep squint — who are you?
+      setGaze(0, 0);
+      setPupil(1.0);
+
+      // Slow scan while squinting — evaluating the stranger
+      setTimeout(function(){
+        gaze.style.transition = 'transform 3s ease-in-out';
+        gaze.style.transform  = 'translate(-28px, 8px)'; // look left, slightly down
+        if(fgaze){ fgaze.style.transition='transform 3s ease-in-out'; fgaze.style.transform='translate(-28px,8px)'; }
+      }, 2000);
+      setTimeout(function(){
+        gaze.style.transition = 'transform 4s ease-in-out';
+        gaze.style.transform  = 'translate(28px, -6px)'; // sweep right
+        if(fgaze){ fgaze.style.transition='transform 4s ease-in-out'; fgaze.style.transform='translate(28px,-6px)'; }
+      }, 6000);
+      setTimeout(function(){
+        // Pupil contracts slightly — still suspicious
+        setPupil(0.88);
+        gaze.style.transition = 'transform 2s ease-in-out';
+        gaze.style.transform  = 'translate(0px, 0px)'; // return to center
+        if(fgaze){ fgaze.style.transition='transform 2s ease-in-out'; fgaze.style.transform='translate(0px,0px)'; }
+      }, 11000);
+
+      // Hold suspicion, then slowly open at 30s — judgment passed
+      setTimeout(function(){
+        ulid.style.transition  = 'transform 5s ease-in-out';
+        llid.style.transition  = 'transform 5s ease-in-out';
+        gaze.style.transition  = 'transform 3s ease-in-out';
+        setLids(0, 0, 0); // opens slowly — you may pass
+        setPupil(1.05);
+        setTimeout(function(){
+          // Restore normal speeds, begin unpredictable loop
+          ulid.style.transition  = 'transform 0.6s ease-in-out';
+          llid.style.transition  = 'transform 0.6s ease-in-out';
+          gaze.style.transition  = 'transform 1.2s ease-in-out';
+          trackingActive = true;
+          updateEyeCenter();
+          scheduleNext();
+        }, 5000);
+      }, ENTRANCE_MS);
+    }
   }
 
   // ── STATE SETTERS ────────────────────────────────────────────────
