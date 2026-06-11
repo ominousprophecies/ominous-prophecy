@@ -1632,6 +1632,17 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     llid.style.transform = 'translateY('+lower+'px)';
     if(fulid) fulid.style.transform = 'translateY('+upper+'px)';
     if(fllid) fllid.style.transform = 'translateY('+lower+'px)';
+    // Pupil responds to lid coverage — squint=dilate, wide=contract
+    var lidCoverage = (upper + Math.abs(lower)) / 2; // 0=open, ~100=closed
+    if(lidCoverage > 20) {
+      // Significant lid closure — dilate
+      var pupilScale = 1.0 + (lidCoverage / 220);
+      pupilScale = Math.min(1.42, pupilScale);
+      setPupil(pupilScale);
+    } else if(upper === 0 && lower === 0) {
+      // Fully wide open — contract slightly
+      setPupil(0.88);
+    }
   }
   function setGaze(x, y){
     trackingActive = false;
