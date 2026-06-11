@@ -246,12 +246,13 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <radialGradient id="fscl" cx="38%" cy="35%" r="65%"><stop offset="0%" stop-color="#f8f2ea"/><stop offset="45%" stop-color="#ede4d8"/><stop offset="100%" stop-color="#d8cec0"/>
       </radialGradient>
       <radialGradient id="firis" cx="50%" cy="50%" r="50%">
-        <stop offset="0%"  stop-color="#0e0804"/><stop offset="12%" stop-color="#4a2c0c"/>
-        <stop offset="25%" stop-color="#9a6428"/><stop offset="40%" stop-color="#b07830"/>
-        <stop offset="55%" stop-color="#a87028"/><stop offset="68%" stop-color="#906020"/>
-        <stop offset="74%" stop-color="#787868"/><stop offset="80%" stop-color="#686858"/>
-        <stop offset="86%" stop-color="#585850"/><stop offset="92%" stop-color="#484844"/>
-        <stop offset="97%" stop-color="#282826"/><stop offset="100%" stop-color="#282826"/>
+        <stop offset="0%"  stop-color="#0e0804"/><stop offset="12%" stop-color="#3e2008"/>
+        <stop offset="25%" stop-color="#7a4c18"/><stop offset="38%" stop-color="#956630"/>
+        <stop offset="50%" stop-color="#8a5e28"/><stop offset="62%" stop-color="#785020"/>
+        <stop offset="68%" stop-color="#5a4828"/><stop offset="74%" stop-color="#787868"/>
+        <stop offset="80%" stop-color="#686858"/><stop offset="86%" stop-color="#585850"/>
+        <stop offset="92%" stop-color="#484844"/><stop offset="97%" stop-color="#282826"/>
+        <stop offset="100%" stop-color="#282826"/>
       </radialGradient>
       <radialGradient id="fpu" cx="40%" cy="36%" r="55%">
         <stop offset="0%" stop-color="#100212"/><stop offset="65%" stop-color="#050105"/><stop offset="100%" stop-color="#020002"/>
@@ -345,11 +346,12 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </radialGradient>
         <radialGradient id="hiris" cx="50%" cy="50%" r="50%">
           <stop offset="0%"  stop-color="#0e0804"/>
-          <stop offset="12%" stop-color="#4a2c0c"/>
-          <stop offset="25%" stop-color="#9a6428"/>
-          <stop offset="40%" stop-color="#b07830"/>
-          <stop offset="55%" stop-color="#a87028"/>
-          <stop offset="68%" stop-color="#906020"/>
+          <stop offset="12%" stop-color="#3e2008"/>
+          <stop offset="25%" stop-color="#7a4c18"/>
+          <stop offset="38%" stop-color="#956630"/>
+          <stop offset="50%" stop-color="#8a5e28"/>
+          <stop offset="62%" stop-color="#785020"/>
+          <stop offset="68%" stop-color="#5a4828"/>
           <stop offset="74%" stop-color="#787868"/>
           <stop offset="80%" stop-color="#686858"/>
           <stop offset="86%" stop-color="#585850"/>
@@ -1440,6 +1442,8 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
   var timer = null;
   var startTime = Date.now();
   var ENTRANCE_MS = 32000; // 30s suspicious entrance + 2s relax
+  var REST_U = 16; // resting upper lid — slightly drooped
+  var REST_L = -6; // resting lower lid — slightly raised
 
   // Mouse tracking state
   var mouseX = 0, mouseY = 0;
@@ -1607,7 +1611,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
         ulid.style.transition  = 'transform 5s ease-in-out';
         llid.style.transition  = 'transform 5s ease-in-out';
         gaze.style.transition  = 'transform 3s ease-in-out';
-        setLids(0, 0, 0); // opens slowly — you may pass
+        setLids(REST_U, REST_L, 0); // opens to resting droop — you may pass
         setPupil(1.05);
         setTimeout(function(){
           // Restore normal speeds, begin unpredictable loop
@@ -1660,8 +1664,8 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
   // Each behavior returns ms until next schedule call
 
   function doRest(){
-    // Dead still — follows mouse
-    setLids(0, 0);
+    // Dead still — natural droop
+    setLids(REST_U, REST_L);
     setPupil(1.0);
     setTimeout(resumeTracking, 600);
     return rnd(3000, 8000);
@@ -1675,7 +1679,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     setTimeout(function(){
       ulid.style.transition = 'transform 0.25s ease-out';
       llid.style.transition = 'transform 0.25s ease-out';
-      setLids(0, 0);
+      setLids(REST_U, REST_L);
       setTimeout(function(){
         ulid.style.transition = 'transform 0.6s ease-in-out';
         llid.style.transition = 'transform 0.6s ease-in-out';
@@ -1692,7 +1696,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     setTimeout(function(){
       ulid.style.transition = 'transform 0.9s ease-out';
       llid.style.transition = 'transform 0.9s ease-out';
-      setLids(0, 0);
+      setLids(REST_U, REST_L);
       setTimeout(function(){
         ulid.style.transition = 'transform 0.6s ease-in-out';
         llid.style.transition = 'transform 0.6s ease-in-out';
@@ -1708,7 +1712,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     setPupil(rnd(0.88, 0.94));
     var hold = rnd(2000, 5000);
     setTimeout(function(){
-      setLids(0, 0);
+      setLids(REST_U, REST_L);
       setPupil(1.0);
     }, hold);
     return hold + rnd(500, 1500);
@@ -1728,7 +1732,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
         setLids(sq, -rnd(14,22));
         setPupil(rnd(0.90, 0.96));
         setTimeout(function(){
-          setLids(0,0);
+          setLids(REST_U, REST_L);
           setPupil(1.0);
         }, rnd(1500, 3500));
       }, rnd(400, 900));
@@ -1753,7 +1757,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
         setLids(sq, -rnd(14,22));
         setPupil(rnd(0.90, 0.96));
         setTimeout(function(){
-          setLids(0,0);
+          setLids(REST_U, REST_L);
           setPupil(1.0);
         }, rnd(1500, 3500));
       }, rnd(400, 900));
@@ -1778,7 +1782,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     var hold = rnd(3000, 7000);
     setTimeout(function(){
       gaze.style.transition = 'transform 1.5s ease-in-out';
-      setLids(0, 0);
+      setLids(REST_U, REST_L);
       setGaze(0, 0);
       setPupil(1.0);
     }, hold);
@@ -1802,7 +1806,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
 
   function doLongStare(){
     // Extended unblinking contemptuous stare — follows mouse
-    setLids(0, 0);
+    setLids(REST_U, REST_L);
     setTimeout(resumeTracking, 600);
     return rnd(6000, 14000);
   }
