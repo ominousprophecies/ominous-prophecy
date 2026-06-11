@@ -937,6 +937,15 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">0 judgments · 5 wins from 6 races · 66-point lead · Youngest Monaco winner ever</div>
         </div>
       </div>
+      <div class="prophecy-card" onclick="openModal(59)">
+        <div class="card-meta"><span class="card-category cat-f1">F1</span><span class="card-date">Issued: June 6, 2026 · Resolves December 15</span></div>
+        <div class="card-title">Kimi Antonelli will win his first Formula 1 Drivers Championship in 2026 — the youngest champion in history</div>
+        <div class="card-excerpt">"The boy from Bologna arrived before the world was ready. Five victories before the summer break. What the paddock whispered in January the scoreboard now confirms in capital letters."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>72%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:72%"></div></div></div>
+          <div class="card-votes">0 judgments · 5 wins · 66-point lead · Youngest Monaco winner ever · Updated June 8</div>
+        </div>
+      </div>
       <div class="prophecy-card" onclick="openModal(39)">
         <div class="card-meta"><span class="card-category cat-tech">F1</span><span class="card-date">Issued: June 5, 2026 · Resolves December 15</span></div>
         <div class="card-title">Mercedes will win the 2026 Formula 1 Constructors Championship</div>
@@ -957,7 +966,16 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
       <!-- DECEMBER 31 — LONG VISION -->
-      <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Long Vision — Resolves December 31</div>
+            <div class="prophecy-card" onclick="openModal(58)">
+        <div class="card-meta"><span class="card-category cat-energy">Energy</span><span class="card-date">Issued: June 6, 2026 · Resolves Dec 31 · AMENDED June 8</span></div>
+        <div class="card-title">Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises</div>
+        <div class="card-excerpt">"The black tide recedes as the guns fall silent and the tankers move freely once more. What scarcity built, abundance dismantles. The oracle watched the price and saw its inevitable descent."</div>
+        <div class="card-footer">
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>78%</span></div><div class="probability-bar"><div class="probability-fill fill-high" style="width:78%"></div></div></div>
+          <div class="card-votes">0 judgments · AMENDED — oracle reversed this call June 8 · See updated prophecy</div>
+        </div>
+      </div>
+<div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Long Vision — Resolves December 31</div>
       <div class="prophecy-card" onclick="openModal(41)">
         <div class="card-meta"><span class="card-category cat-governance">Governance</span><span class="card-date">Issued: June 5, 2026 · Resolves Dec 31</span></div>
         <div class="card-title">The US House vote to end the war with Iran will trigger a constitutional crisis before end of 2026</div>
@@ -1297,8 +1315,10 @@ const prophecies=[
   {title:"Pope Leo XIV will announce a significant doctrinal revision on a major contested issue before end of 2026",category:"Governance",catClass:"cat-governance",excerpt:"The new shepherd did not come to maintain the flock as he found it. He comes from outside the tradition — from the Americas, from the margins. What his predecessors preserved in amber he will examine in daylight. Something long frozen will thaw.",analysis:"Oracle analysis for: Pope Leo XIV will announce a significant doctrinal revision ",confidence:58},
   {title:"A sitting or former head of state will be arrested or indicted on international criminal charges before end of 2026",category:"Governance",catClass:"cat-governance",excerpt:"The court that the powerful built to judge others has turned its gaze upward. The immunity that comes with office does not survive the office. One who sat in judgment now faces judgment.",analysis:"Oracle analysis for: A sitting or former head of state will be arrested or indict",confidence:61},
   {title:"A significant solar flare event in 2026 will cause measurable disruption to satellite communications or power grid infrastructure",category:"Climate",catClass:"cat-climate",excerpt:"The sun has not yet spoken its loudest word in this cycle. Solar maximum approaches. The star at the center of everything reminds the networks built in its shadow that they exist at its pleasure.",analysis:"Oracle analysis for: A significant solar flare event in 2026 will cause measurabl",confidence:72}
-];
-function openModal(idx){
+],
+  {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide recedes as the guns fall silent and the tankers move freely once more. What scarcity built, abundance dismantles.",analysis:"Original oracle call issued June 6 before Israel-Iran escalation. Oracle amended this prophecy on June 8 reversing the call. Brent at $94.14 as of amendment date.",confidence:78},
+  {title:"Kimi Antonelli will win his first Formula 1 Drivers Championship in 2026 — the youngest champion in history",category:"F1",catClass:"cat-f1",excerpt:"The boy from Bologna arrived before the world was ready. Five victories before the summer break. What the paddock whispered in January the scoreboard now confirms in capital letters.",analysis:"Original entry issued June 6. Updated entry added June 8 with fuller title and analysis. Antonelli leads by 66 points after 6 races with 5 wins. Youngest Monaco winner ever.",confidence:72}
+];unction openModal(idx){
   if(idx===99||idx>=prophecies.length||!prophecies[idx]){document.getElementById('modal-content').innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-family:\'Cinzel Decorative\',serif;font-size:13px;letter-spacing:.2em;color:#c9a84c;margin-bottom:16px">&#9670; VERDICT PENDING &#9670;</div><div style="font-family:\'IM Fell English\',serif;font-size:16px;color:#888;line-height:1.8">The oracle watches. The judgment has not yet been issued for this prophecy.<br><br>Return when the signs are clearer.</div></div>';document.getElementById('modal-overlay').classList.add('open');return;}
   const p=prophecies[idx];
   const fill=p.confidence>=70?'fill-high':p.confidence>=50?'fill-med':'fill-low';
