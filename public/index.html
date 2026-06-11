@@ -314,7 +314,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <!-- Eye outline inside clip -->
       <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"
         fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
-      <path d="M118 210 Q127 203 136 209 Q127 217 118 210Z" fill="#080608"/>
+      
     </g>
   </svg>
 </div>
@@ -387,8 +387,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <g clip-path="url(#hec)">
         <rect x="-20" y="-60" width="720" height="540" fill="url(#hscl)"/>
-        <path d="M155 196 Q200 204 238 208" fill="none" stroke="#c88888" stroke-width="0.4" opacity="0.2"/>
-        <path d="M525 202 Q490 208 455 212" fill="none" stroke="#c88888" stroke-width="0.4" opacity="0.18"/>
+        
 
         <g id="hgaze">
           <circle cx="340" cy="210" r="77" fill="url(#hiris)"/>
@@ -456,7 +455,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <!-- Eye outline inside clip — lids cover it cleanly -->
         <path d="M118 210 Q180 148 340 129 Q500 148 562 210 Q500 272 340 291 Q180 272 118 210Z"
           fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
-        <path d="M118 210 Q127 203 136 209 Q127 217 118 210Z" fill="#080608"/>
+        
       </g>
 
 
@@ -1318,7 +1317,8 @@ const prophecies=[
 ],
   {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide recedes as the guns fall silent and the tankers move freely once more. What scarcity built, abundance dismantles.",analysis:"Original oracle call issued June 6 before Israel-Iran escalation. Oracle amended this prophecy on June 8 reversing the call. Brent at $94.14 as of amendment date.",confidence:78},
   {title:"Kimi Antonelli will win his first Formula 1 Drivers Championship in 2026 — the youngest champion in history",category:"F1",catClass:"cat-f1",excerpt:"The boy from Bologna arrived before the world was ready. Five victories before the summer break. What the paddock whispered in January the scoreboard now confirms in capital letters.",analysis:"Original entry issued June 6. Updated entry added June 8 with fuller title and analysis. Antonelli leads by 66 points after 6 races with 5 wins. Youngest Monaco winner ever.",confidence:72}
-];unction openModal(idx){
+];
+function openModal(idx){
   if(idx===99||idx>=prophecies.length||!prophecies[idx]){document.getElementById('modal-content').innerHTML='<div style="text-align:center;padding:40px 0"><div style="font-family:\'Cinzel Decorative\',serif;font-size:13px;letter-spacing:.2em;color:#c9a84c;margin-bottom:16px">&#9670; VERDICT PENDING &#9670;</div><div style="font-family:\'IM Fell English\',serif;font-size:16px;color:#888;line-height:1.8">The oracle watches. The judgment has not yet been issued for this prophecy.<br><br>Return when the signs are clearer.</div></div>';document.getElementById('modal-overlay').classList.add('open');return;}
   const p=prophecies[idx];
   const fill=p.confidence>=70?'fill-high':p.confidence>=50?'fill-med':'fill-low';
