@@ -246,11 +246,12 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <radialGradient id="fscl" cx="38%" cy="35%" r="65%"><stop offset="0%" stop-color="#f8f2ea"/><stop offset="45%" stop-color="#ede4d8"/><stop offset="100%" stop-color="#d8cec0"/>
       </radialGradient>
       <radialGradient id="firis" cx="50%" cy="50%" r="50%">
-        <stop offset="0%"  stop-color="#0e0804"/><stop offset="14%" stop-color="#4a2c0c"/>
-        <stop offset="30%" stop-color="#9a6428"/><stop offset="44%" stop-color="#b07830"/>
-        <stop offset="56%" stop-color="#986820"/><stop offset="65%" stop-color="#607848"/>
-        <stop offset="74%" stop-color="#4e6038"/><stop offset="83%" stop-color="#303028"/>
-        <stop offset="92%" stop-color="#1a1a16"/><stop offset="100%" stop-color="#0a0a08"/>
+        <stop offset="0%"  stop-color="#0e0804"/><stop offset="12%" stop-color="#4a2c0c"/>
+        <stop offset="25%" stop-color="#9a6428"/><stop offset="40%" stop-color="#b07830"/>
+        <stop offset="55%" stop-color="#a87028"/><stop offset="68%" stop-color="#906020"/>
+        <stop offset="74%" stop-color="#607848"/><stop offset="80%" stop-color="#4e6038"/>
+        <stop offset="86%" stop-color="#585850"/><stop offset="92%" stop-color="#484844"/>
+        <stop offset="97%" stop-color="#282826"/><stop offset="100%" stop-color="#282826"/>
       </radialGradient>
       <radialGradient id="fpu" cx="40%" cy="36%" r="55%">
         <stop offset="0%" stop-color="#100212"/><stop offset="65%" stop-color="#050105"/><stop offset="100%" stop-color="#020002"/>
@@ -265,7 +266,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <stop offset="0%" stop-color="#050305"/><stop offset="75%" stop-color="#090608"/><stop offset="100%" stop-color="#110a10"/>
       </linearGradient>
       <clipPath id="fec">
-        <path d="M100 210 Q190 138 340 118 Q490 138 580 210 Q490 282 340 302 Q190 282 100 210Z"/>
+        <path d="M140 210 Q205 148 340 130 Q475 148 540 210 Q475 272 340 290 Q205 272 140 210Z"/>
       </clipPath>
     </defs>
 
@@ -276,10 +277,10 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- Iris + pupil gaze group -->
       <g id="fgaze">
-        <circle cx="340" cy="210" r="88" fill="url(#firis)"/>
-        <circle cx="340" cy="210" r="88" fill="url(#flt)"/>
-        <circle cx="340" cy="210" r="88" fill="url(#fsh)"/>
-        <circle cx="340" cy="210" r="88" fill="none" stroke="#050302" stroke-width="8"/>
+        <circle cx="340" cy="210" r="77" fill="url(#firis)"/>
+        <circle cx="340" cy="210" r="77" fill="url(#flt)"/>
+        <circle cx="340" cy="210" r="77" fill="url(#fsh)"/>
+        <circle cx="340" cy="210" r="77" fill="none" stroke="#2a2a28" stroke-width="8"/>
         <g stroke="#0a0c08" stroke-linecap="round" fill="none" opacity="0.4">
           <line x1="340" y1="140" x2="340" y2="175" stroke-width="0.5"/>
           <line x1="381" y1="147" x2="364" y2="178" stroke-width="0.5"/>
@@ -304,16 +305,16 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 
       <!-- Upper lid -->
       <g id="fulid">
-        <path d="M-20,-60 L700,-60 L700,210 Q560,148 490,136 Q420,120 340,118 Q260,120 190,136 Q110,148 -20,210 Z" fill="url(#fulgr)"/>
+        <path d="M-20,-60 L700,-60 L700,210 Q530,150 475,140 Q410,132 340,130 Q270,132 205,140 Q130,150 -20,210 Z" fill="url(#fulgr)"/>
       </g>
 
       <!-- Lower lid -->
       <g id="fllid">
-        <path d="M-20,480 L700,480 L700,210 Q490,282 340,302 Q190,282 -20,210 Z" fill="#080608"/>
+        <path d="M-20,480 L700,480 L700,210 Q475,272 340,290 Q205,272 -20,210 Z" fill="#080608"/>
       </g>
 
       <!-- Eye outline inside clip -->
-      <path d="M100 210 Q190 138 340 118 Q490 138 580 210 Q490 282 340 302 Q190 282 100 210Z"
+      <path d="M140 210 Q205 148 340 130 Q475 148 540 210 Q475 272 340 290 Q205 272 140 210Z"
         fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
       
     </g>
@@ -344,15 +345,17 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </radialGradient>
         <radialGradient id="hiris" cx="50%" cy="50%" r="50%">
           <stop offset="0%"  stop-color="#0e0804"/>
-          <stop offset="14%" stop-color="#4a2c0c"/>
-          <stop offset="30%" stop-color="#9a6428"/>
-          <stop offset="44%" stop-color="#b07830"/>
-          <stop offset="56%" stop-color="#986820"/>
-          <stop offset="65%" stop-color="#607848"/>
-          <stop offset="74%" stop-color="#4e6038"/>
-          <stop offset="83%" stop-color="#303028"/>
-          <stop offset="92%" stop-color="#1a1a16"/>
-          <stop offset="100%" stop-color="#0a0a08"/>
+          <stop offset="12%" stop-color="#4a2c0c"/>
+          <stop offset="25%" stop-color="#9a6428"/>
+          <stop offset="40%" stop-color="#b07830"/>
+          <stop offset="55%" stop-color="#a87028"/>
+          <stop offset="68%" stop-color="#906020"/>
+          <stop offset="74%" stop-color="#607848"/>
+          <stop offset="80%" stop-color="#4e6038"/>
+          <stop offset="86%" stop-color="#585850"/>
+          <stop offset="92%" stop-color="#484844"/>
+          <stop offset="97%" stop-color="#282826"/>
+          <stop offset="100%" stop-color="#282826"/>
         </radialGradient>
         <radialGradient id="hlight" cx="35%" cy="30%" r="65%">
           <stop offset="0%"  stop-color="rgba(220,210,160,0.35)"/>
@@ -374,9 +377,9 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <stop offset="100%" stop-color="#110a10"/>
         </linearGradient>
         <clipPath id="hec">
-          <path d="M100 210 Q190 138 340 118 Q490 138 580 210 Q490 282 340 302 Q190 282 100 210Z"/>
+          <path d="M140 210 Q205 148 340 130 Q475 148 540 210 Q475 272 340 290 Q205 272 140 210Z"/>
         </clipPath>
-        <clipPath id="hic"><circle cx="340" cy="210" r="88"/></clipPath>
+        <clipPath id="hic"><circle cx="340" cy="210" r="77"/></clipPath>
       </defs>
 
       <style>
@@ -393,11 +396,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         
 
         <g id="hgaze">
-          <circle cx="340" cy="210" r="88" fill="url(#hiris)"/>
-          <circle cx="340" cy="210" r="88" fill="url(#hlight)"/>
-          <circle cx="340" cy="210" r="88" fill="url(#hshadow)"/>
-          <circle cx="340" cy="210" r="88" fill="none" stroke="#050302" stroke-width="8"/>
-          <circle cx="340" cy="210" r="82" fill="none" stroke="#0e0804" stroke-width="4" opacity="0.92"/>
+          <circle cx="340" cy="210" r="77" fill="url(#hiris)"/>
+          <circle cx="340" cy="210" r="77" fill="url(#hlight)"/>
+          <circle cx="340" cy="210" r="77" fill="url(#hshadow)"/>
+          <circle cx="340" cy="210" r="77" fill="none" stroke="#2a2a28" stroke-width="8"/>
+          <circle cx="340" cy="210" r="72" fill="none" stroke="#3a3a36" stroke-width="4" opacity="0.92"/>
           <g clip-path="url(#hic)" stroke-linecap="round" fill="none" opacity="0.5">
             <line x1="340" y1="140" x2="340" y2="175" stroke="#0a0800" stroke-width="0.6"/>
             <line x1="361" y1="141" x2="352" y2="175" stroke="#0a0800" stroke-width="0.6"/>
@@ -436,14 +439,14 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </g>
 
         <g id="hulid">
-          <path d="M-20,-60 L700,-60 L700,210 Q560,148 490,136 Q420,120 340,118 Q260,120 190,136 Q110,148 -20,210 Z" fill="url(#hulgr)"/>
+          <path d="M-20,-60 L700,-60 L700,210 Q530,150 475,140 Q410,132 340,130 Q270,132 205,140 Q130,150 -20,210 Z" fill="url(#hulgr)"/>
 
         </g>
         <g id="hllid">
-          <path d="M-20,480 L700,480 L700,210 Q490,282 340,302 Q190,282 -20,210 Z" fill="#080608"/>
+          <path d="M-20,480 L700,480 L700,210 Q475,272 340,290 Q205,272 -20,210 Z" fill="#080608"/>
         </g>
         <!-- Eye outline inside clip — lids cover it cleanly -->
-        <path d="M100 210 Q190 138 340 118 Q490 138 580 210 Q490 282 340 302 Q190 282 100 210Z"
+        <path d="M140 210 Q205 148 340 130 Q475 148 540 210 Q475 272 340 290 Q205 272 140 210Z"
           fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55"/>
         
       </g>
