@@ -30,6 +30,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // Temporary diagnostic — remove after confirmed working
+  const _url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const _key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.slice(0, 12);
+  if (req.query.diag) {
+    return res.status(200).json({ url: _url, key_prefix: _key });
+  }
+
   const prophecyId = req.query.id;
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   if (!prophecyId || !uuidRegex.test(prophecyId)) {
