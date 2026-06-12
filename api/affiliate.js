@@ -1,6 +1,7 @@
 import https from 'https';
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const raw = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const SUPABASE_URL = raw.startsWith('http') ? raw : `https://${raw}`;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 // Pure Node.js HTTPS fetch — no Supabase client, no fetch API
