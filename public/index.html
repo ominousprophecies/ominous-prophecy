@@ -1547,7 +1547,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
       // Eye snaps wide open, pupil dilates warmly, drifts gently
       setLids(0, 0, 0);
       setGaze(0, 0);
-      setPupil(1.18); // wide open, welcoming
+      setPupil(0.94); // wide open, welcoming
 
       // Brief warm scan left-right as if recognizing
       setTimeout(function(){
@@ -1569,7 +1569,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
         gaze.style.transition = 'transform 1.2s ease-in-out';
         gaze.style.transform  = 'translate(0px, 0px)';
         if(fgaze){ fgaze.style.transition='transform 1.2s ease-in-out'; fgaze.style.transform='translate(0px,0px)'; }
-        setPupil(1.08); // slightly warmer than neutral
+        setPupil(0.86); // slightly warmer than neutral
         ulid.style.transition = 'transform 0.6s ease-in-out';
         llid.style.transition = 'transform 0.6s ease-in-out';
         gaze.style.transition = 'none';
@@ -1610,7 +1610,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
         llid.style.transition  = 'transform 5s ease-in-out';
         gaze.style.transition  = 'transform 3s ease-in-out';
         setLids(REST_U, REST_L, 0); // opens to resting droop — you may pass
-        setPupil(1.05);
+        setPupil(0.84);
         setTimeout(function(){
           // Restore normal speeds, begin unpredictable loop
           ulid.style.transition  = 'transform 0.6s ease-in-out';
@@ -1635,7 +1635,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
     if(lidCoverage > 20) {
       // Significant lid closure — dilate
       var pupilScale = 1.0 + (lidCoverage / 220);
-      pupilScale = Math.min(1.42, pupilScale);
+      pupilScale = Math.min(1.14, pupilScale);
       setPupil(pupilScale);
     } else if(upper === 0 && lower === 0) {
       // Fully wide open — contract slightly
@@ -1807,7 +1807,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
 
   function doPupilPulse(){
     // Slow pupil dilation and return — light change
-    var dir = Math.random() > 0.5 ? rnd(1.08, 1.16) : rnd(0.86, 0.93);
+    var dir = Math.random() > 0.5 ? rnd(0.86, 0.93) : rnd(0.86, 0.93);
     setPupil(dir);
     setTimeout(function(){ setPupil(1.0); }, rnd(3000, 6000));
     return rnd(4000, 7000);
