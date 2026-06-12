@@ -1,9 +1,8 @@
 import https from 'https';
 
-'https://wpcfeshynosbwmnnbipk.supabase.co';
+const SUPABASE_URL = 'https://wpcfeshynosbwmnnbipk.supabase.co';
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Pure Node.js HTTPS fetch — no Supabase client, no fetch API
 function query(table, filters) {
   return new Promise((resolve, reject) => {
     const params = new URLSearchParams({ select: '*' });
@@ -54,7 +53,7 @@ function insert(table, row) {
       res.on('data', () => {});
       res.on('end', resolve);
     });
-    req.on('error', () => {}); // fire and forget
+    req.on('error', () => {});
     req.write(body);
     req.end();
   });
@@ -66,16 +65,16 @@ function getGeo(req) {
   return { country, region };
 }
 
-function buildUrl(partner, prophecyId) {
-  const ref = prophecyId.slice(0, 8);
+function buildUrl(partner, ref) {
+  const r = ref.slice(0, 8);
   const map = {
-    draftkings: `${partner.base_url}${partner.partner_id}&source=ominous&ref=${ref}`,
-    fanduel:    `${partner.base_url}${partner.partner_id}&utm_source=ominous&utm_content=${ref}`,
-    betmgm:     `${partner.base_url}${partner.partner_id}_ominous_${ref}`,
+    draftkings: `${partner.base_url}${partner.partner_id}&source=ominous&ref=${r}`,
+    fanduel:    `${partner.base_url}${partner.partner_id}&utm_source=ominous&utm_content=${r}`,
+    betmgm:     `${partner.base_url}${partner.partner_id}_ominous_${r}`,
     bet365:     `${partner.base_url}${partner.partner_id}&source=ominous`,
     betway:     `${partner.base_url}${partner.partner_id}_ominous`,
     betano:     `${partner.base_url}${partner.partner_id}&ref=ominous`,
-    polymarket: `${partner.base_url}${partner.partner_id}&utm_source=ominous&utm_campaign=${ref}`,
+    polymarket: `${partner.base_url}${partner.partner_id}&utm_source=ominous&utm_campaign=${r}`,
   };
   return map[partner.name?.toLowerCase()] ?? `${partner.base_url}${partner.partner_id}`;
 }
@@ -85,16 +84,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const prophecyId = req.query.id;
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-  if (!prophecyId || !uuidRegex.test(prophecyId)) {
-    return res.status(400).json({ error: 'Invalid prophecy ID' });
-  }
-
+  // Accept UUID id or title string — no hard rejection
+  const ref = req.query.id || req.query.title || 'unknown';
   const geo = getGeo(req);
 
   try {
-    // Step 1: get geo rules for this country
+    // Step 1: geo rules for this country
     const rules = await query('affiliate_geo_rules', { country_code: geo.country, active: 'true' });
 
     let partnerId = null;
@@ -114,16 +109,16 @@ export default async function handler(req, res) {
       return res.status(200).json({ debug: true, geo, msg: 'No partner found' });
     }
 
-    // Step 3: get partner details
+    // Step 3: partner details
     const partners = await query('affiliate_partners', { id: partnerId });
     if (!Array.isArray(partners) || !partners.length) {
       return res.status(200).json({ debug: true, geo, partnerId, msg: 'Partner lookup failed' });
     }
     const partner = partners[0];
 
-    // Step 4: log click (fire and forget)
+    // Step 4: log click fire and forget
     insert('affiliate_clicks', {
-      prophecy_id:  prophecyId,
+      prophecy_id:  null,
       partner_id:   partner.id,
       session_id:   req.cookies?.op_session ?? null,
       country_code: geo.country,
@@ -131,7 +126,7 @@ export default async function handler(req, res) {
     }).catch(() => {});
 
     return res.status(200).json({
-      url:       buildUrl(partner, prophecyId),
+      url:       buildUrl(partner, ref),
       partner:   partner.display_name,
       cta_label: `Consult the Consensus on ${partner.display_name}`,
       country:   geo.country,
