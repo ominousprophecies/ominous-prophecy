@@ -153,6 +153,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
 .market-link-dk:hover{background:rgba(249,194,60,.1)}
 .card-footer-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
 .divergence-flag{font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.05em;margin-left:4px}
+.consult-btn{display:block;width:100%;margin-top:16px;background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:13px;cursor:pointer;transition:all .3s;text-decoration:none;text-align:center}
+.consult-btn:hover{background:rgba(201,168,76,.1);border-color:var(--gold)}
 /* Floating scroll eye */
 .float-eye{position:fixed;right:16px;top:50%;transform:translateY(-50%);width:160px;height:100px;z-index:200;opacity:0;transition:opacity .5s;pointer-events:none;cursor:pointer}
 .float-eye.visible{opacity:.7}
@@ -1317,6 +1319,20 @@ function openModal(idx){
   const fill=p.confidence>=70?'fill-high':p.confidence>=50?'fill-med':'fill-low';
   document.getElementById('modal-content').innerHTML=`<div class="card-meta modal-category-display"><span class="card-category ${p.catClass}">${p.category}</span></div><h2>${p.title}</h2><div class="modal-excerpt">"${p.excerpt}"</div><div class="modal-analysis-title">&#9670; Oracle Analysis</div><div class="modal-analysis">${p.analysis}</div><div class="probability-bar-wrap" style="margin-bottom:24px"><div class="prob-label"><span>Oracle Confidence</span><span>${p.confidence}%</span></div><div class="probability-bar" style="height:4px"><div class="probability-fill ${fill}" style="width:${p.confidence}%"></div></div></div><div class="modal-vote-section"><button class="vote-btn vote-fulfill" onclick="selectVote('fulfill','+idx+')">◈ The Oracle Speaks Truth</button><button class="vote-btn vote-doubt" onclick="selectVote('doubt','+idx+')">✦ I Cast Doubt</button><div id="vote-email-section" style="display:none;margin-top:16px"><div style="font-family:Space Mono,monospace;font-size:9px;color:#666;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px">Seal your ballot with an address</div><div style="display:flex;gap:8px"><input id="vote-email-input" type="email" placeholder="your@email.com" style="flex:1;background:#0d0d0d;border:1px solid #2a2218;color:#e0dcee;font-family:Space Mono,monospace;font-size:11px;padding:10px 12px;outline:none" /><button onclick="submitVote()" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:#c9a84c;font-family:Cinzel,serif;font-size:10px;letter-spacing:.15em;padding:10px 14px;cursor:pointer;white-space:nowrap">Cast Vote</button></div><div style="font-family:Space Mono,monospace;font-size:8px;color:#333;margin-top:6px;letter-spacing:.05em">A ballot confirmation will be sent to your address</div></div><div style="margin-top:12px"><div style="height:3px;background:#111;border-radius:2px;overflow:hidden"><div class="modal-vote-bar" style="height:100%;width:50%;background:linear-gradient(90deg,#c9a84c,#e8c96d);transition:width .6s"></div></div><div style="font-family:Space Mono,monospace;font-size:9px;color:#444;margin-top:5px;letter-spacing:.05em">Cast your voice below</div></div></div>`;
   document.getElementById('modal-overlay').classList.add('open');
+}
+function consultConsensus(idx){
+  var btn = document.getElementById('modal-consult-btn-'+idx);
+  if(btn){ btn.innerHTML = '&#9670; The Oracle Seeks...'; btn.style.opacity = '0.6'; }
+  var title = prophecies[idx] ? encodeURIComponent(prophecies[idx].title) : '';
+  fetch('/api/affiliate?title='+title)
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d.url){ window.open(d.url, '_blank'); }
+      if(btn){ btn.innerHTML = d.cta_label || '&#9670; Consult the Consensus &#9670;'; btn.style.opacity = '1'; }
+    })
+    .catch(function(){
+      if(btn){ btn.innerHTML = '&#9670; Consult the Consensus &#9670;'; btn.style.opacity = '1'; }
+    });
 }
 function closeModal(){
   if(_pendingVoteType && !localStorage.getItem('op_vote_'+_pendingVoteIdx)){
