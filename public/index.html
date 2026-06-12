@@ -1309,8 +1309,8 @@ const prophecies=[
   {title:"Pope Leo XIV will announce a significant doctrinal revision on a major contested issue before end of 2026",category:"Governance",catClass:"cat-governance",excerpt:"The new shepherd did not come to maintain the flock as he found it. He comes from outside the tradition — from the Americas, from the margins. What his predecessors preserved in amber he will examine in daylight. Something long frozen will thaw.",analysis:"Oracle analysis for: Pope Leo XIV will announce a significant doctrinal revision ",confidence:58},
   {title:"A sitting or former head of state will be arrested or indicted on international criminal charges before end of 2026",category:"Governance",catClass:"cat-governance",excerpt:"The court that the powerful built to judge others has turned its gaze upward. The immunity that comes with office does not survive the office. One who sat in judgment now faces judgment.",analysis:"Oracle analysis for: A sitting or former head of state will be arrested or indict",confidence:61},
   {title:"A significant solar flare event in 2026 will cause measurable disruption to satellite communications or power grid infrastructure",category:"Climate",catClass:"cat-climate",excerpt:"The sun has not yet spoken its loudest word in this cycle. Solar maximum approaches. The star at the center of everything reminds the networks built in its shadow that they exist at its pleasure.",analysis:"Oracle analysis for: A significant solar flare event in 2026 will cause measurabl",confidence:72}
-],
-  {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide recedes as the guns fall silent and the tankers move freely once more. What scarcity built, abundance dismantles.",analysis:"Original oracle call issued June 6 before Israel-Iran escalation. Oracle amended this prophecy on June 8 reversing the call. Brent at $94.14 as of amendment date.",confidence:78},
+,
+  {title:"Brent crude oil will fall below 85 dollars per barrel before the end of 2026 as Middle East supply normalises",category:"Energy",catClass:"cat-energy",excerpt:"The black tide recedes as the guns fall silent and the tankers move freely once more. What scarcity built, abundance dismantles.",analysis:"Original oracle call issued June 6 before Israel-Iran escalation. Oracle amended this prophecy on June 8 reversing the call. Brent at 94.14 USD as of amendment date.",confidence:78},
   {title:"Kimi Antonelli will win his first Formula 1 Drivers Championship in 2026 — the youngest champion in history",category:"F1",catClass:"cat-f1",excerpt:"The boy from Bologna arrived before the world was ready. Five victories before the summer break. What the paddock whispered in January the scoreboard now confirms in capital letters.",analysis:"Original entry issued June 6. Updated entry added June 8 with fuller title and analysis. Antonelli leads by 66 points after 6 races with 5 wins. Youngest Monaco winner ever.",confidence:72}
 ];
 function openModal(idx){
@@ -1465,14 +1465,14 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
   var mouseWatchTimer = null;
   var isWatchingMouse = false;
   var lastMouseX = 0, lastMouseY = 0;
-  var WATCH_CHANCE = 0.35; // 35% chance eye notices mouse movement
+  var WATCH_CHANCE = 0.65; // 65% chance eye notices mouse movement
 
   function onMouseMove(e){
     mouseX = e.clientX;
     mouseY = e.clientY;
     // Only react if mouse moved significantly
     var moved = Math.abs(mouseX-lastMouseX) + Math.abs(mouseY-lastMouseY);
-    if(moved < 18) return;
+    if(moved < 10) return;
     lastMouseX = mouseX; lastMouseY = mouseY;
     // Only notice mouse if not mid-behavior and tracking enabled
     if(!trackingActive) return;
@@ -1490,7 +1490,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
         setTimeout(function(){
           gaze.style.transition = 'none';
         }, 1900);
-      }, rnd(2000, 5000));
+      }, rnd(3000, 7000));
     }
   }
 
