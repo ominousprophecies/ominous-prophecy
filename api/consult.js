@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '../lib/supabase.js';
+import { supabase as supabaseAdmin } from '../lib/supabase.js';
 
 function getGeo(req) {
   const country = (req.headers['x-vercel-ip-country'] ?? 'XX').toUpperCase();
