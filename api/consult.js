@@ -1,4 +1,9 @@
-import { supabase as supabaseAdmin } from '../lib/supabase.js';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 function getGeo(req) {
   const country = (req.headers['x-vercel-ip-country'] ?? 'XX').toUpperCase();
@@ -6,9 +11,9 @@ function getGeo(req) {
   return { country, region };
 }
 
-function buildTrackingUrl(partner, prophecyId) {
+function buildUrl(partner, prophecyId) {
   const ref = prophecyId.slice(0, 8);
-  const templates = {
+  const map = {
     draftkings: `${partner.base_url}${partner.partner_id}&source=ominous&ref=${ref}`,
     fanduel:    `${partner.base_url}${partner.partner_id}&utm_source=ominous&utm_content=${ref}`,
     betmgm:     `${partner.base_url}${partner.partner_id}_ominous_${ref}`,
@@ -17,7 +22,7 @@ function buildTrackingUrl(partner, prophecyId) {
     betano:     `${partner.base_url}${partner.partner_id}&ref=ominous`,
     polymarket: `${partner.base_url}${partner.partner_id}&utm_source=ominous&utm_campaign=${ref}`,
   };
-  return templates[partner.name] ?? `${partner.base_url}${partner.partner_id}`;
+  return map[partner.name] ?? `${partner.base_url}${partner.partner_id}`;
 }
 
 export default async function handler(req, res) {
@@ -33,64 +38,67 @@ export default async function handler(req, res) {
 
   const geo = getGeo(req);
 
-  // ── Try geo rules first ──────────────────────────────────────────────────────
-  const { data: rules, error: rulesError } = await supabaseAdmin
+  // Step 1: find best geo rule for this country
+  const { data: rules, error: e1 } = await supabase
     .from('affiliate_geo_rules')
-    .select(`
-      priority, region_code,
-      affiliate_partners ( id, name, display_name, base_url, partner_id, active )
-    `)
+    .select('partner_id, region_code, priority')
     .eq('country_code', geo.country)
     .eq('active', true)
     .order('priority', { ascending: false });
 
-  let partner = null;
+  let partnerId = null;
+
   if (rules?.length) {
     const matched =
       rules.find(r => r.region_code && r.region_code === geo.region) ?? rules[0];
-    if (matched?.affiliate_partners?.active) {
-      partner = matched.affiliate_partners;
-    }
+    partnerId = matched?.partner_id ?? null;
   }
 
-  // ── Always fall back to Polymarket (XX rule covers this) ────────────────────
-  if (!partner) {
-    const { data: pm, error: pmError } = await supabaseAdmin
+  // Step 2: if no geo match, get polymarket id
+  if (!partnerId) {
+    const { data: pm, error: e2 } = await supabase
       .from('affiliate_partners')
-      .select('id, name, display_name, base_url, partner_id')
+      .select('id')
       .eq('name', 'polymarket')
       .eq('active', true)
       .single();
 
     if (!pm) {
-      // Return debug info so we can see exactly what failed
       return res.status(200).json({
-        debug: true,
-        geo,
-        rules_found: rules?.length ?? 0,
-        rules_error: rulesError?.message ?? null,
-        pm_error: pmError?.message ?? null,
-        message: 'No partner resolved — see debug info above'
+        debug: true, geo,
+        e1: e1?.message, e2: e2?.message,
+        msg: 'No partner resolved'
       });
     }
-
-    partner = pm;
+    partnerId = pm.id;
   }
 
-  const url = buildTrackingUrl(partner, prophecyId);
-  const sessionId = req.cookies?.op_session ?? null;
+  // Step 3: fetch partner details
+  const { data: partner, error: e3 } = await supabase
+    .from('affiliate_partners')
+    .select('id, name, display_name, base_url, partner_id')
+    .eq('id', partnerId)
+    .single();
+
+  if (!partner) {
+    return res.status(200).json({
+      debug: true, geo, partnerId,
+      e3: e3?.message,
+      msg: 'Partner lookup failed'
+    });
+  }
 
   // Log click fire-and-forget
-  supabaseAdmin.from('affiliate_clicks').insert({
+  supabase.from('affiliate_clicks').insert({
     prophecy_id:  prophecyId,
     partner_id:   partner.id,
-    session_id:   sessionId,
+    session_id:   req.cookies?.op_session ?? null,
     country_code: geo.country,
     region_code:  geo.region || null,
   }).then(() => {});
 
   return res.status(200).json({
-    url,
+    url:       buildUrl(partner, prophecyId),
     partner:   partner.display_name,
     cta_label: `Consult the Consensus on ${partner.display_name}`,
     country:   geo.country,
