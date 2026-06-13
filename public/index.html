@@ -1279,7 +1279,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div class="verdict-text">"Four prophecies fulfilled. Two have failed. The oracle does not hide its misses — it records them honestly. 4 from 6. The record is what it is. The eye remains open."</div>
       <div class="verdict-confidence">Updated June 11, 2026 &middot; Accuracy: 67%</div>
     </div>
-    <div class="accuracy-panel">
+    <div class="accuracy-panel" id="fulfilled-section">
       <div class="accuracy-title">Judgment Record</div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4caf50;letter-spacing:.15em;margin:12px 0 8px;opacity:.7">FULFILLED</div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">VGK wins Stanley Cup Game 3 — 5-4 2OT</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
@@ -1386,6 +1386,103 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         <span class="cat-tag">Sports</span>
       </div>
     </div>
+    <div id="scoreboard-section" style="background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);padding:24px;margin-bottom:28px">
+      <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:20px">Oracle Scoreboard</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+        <div style="text-align:center;background:rgba(76,175,80,.06);border:1px solid rgba(76,175,80,.15);padding:16px">
+          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#4caf50;line-height:1">4</div>
+          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#4caf50;text-transform:uppercase;margin-top:6px;opacity:.8">Fulfilled</div>
+        </div>
+        <div style="text-align:center;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);padding:16px">
+          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#e05050;line-height:1">2</div>
+          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#e05050;text-transform:uppercase;margin-top:6px;opacity:.8">Failed</div>
+        </div>
+        <div style="text-align:center;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);padding:16px">
+          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold);line-height:1">71</div>
+          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-top:6px;opacity:.8">Pending</div>
+        </div>
+        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:16px">
+          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--pale-gold);line-height:1">67%</div>
+          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--silver);text-transform:uppercase;margin-top:6px;opacity:.8">Accuracy</div>
+        </div>
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin:16px 0 10px;opacity:.6">By Category</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#80ffb0;letter-spacing:.08em;width:80px">Sports</div>
+          <div style="flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px"><div style="width:100%;height:100%;background:#4caf50;border-radius:2px"></div></div>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4caf50">4/4</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.08em;width:80px">Geopolitics</div>
+          <div style="flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px"><div style="width:0%;height:100%;background:#e05050;border-radius:2px"></div></div>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#888">0/0</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.08em;width:80px">Pending</div>
+          <div style="flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px"><div style="width:93%;height:100%;background:rgba(201,168,76,.5);border-radius:2px"></div></div>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold)">71</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="methodology-section" style="background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);padding:24px;margin-bottom:28px">
+      <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:16px">Methodology</div>
+      <div style="font-family:'IM Fell English',serif;font-size:14px;color:var(--silver);line-height:1.9;margin-bottom:16px">The Oracle draws on six weighted dimensions to arrive at each prophecy score.</div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:#80a0ff;text-transform:uppercase">Historical Pattern</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9px;color:#80a0ff">28%</span>
+          </div>
+          <div style="height:2px;background:rgba(255,255,255,.06);border-radius:1px"><div style="width:28%;height:100%;background:#80a0ff;border-radius:1px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:#ff8080;text-transform:uppercase">Geopolitical Signal</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9px;color:#ff8080">24%</span>
+          </div>
+          <div style="height:2px;background:rgba(255,255,255,.06);border-radius:1px"><div style="width:24%;height:100%;background:#ff8080;border-radius:1px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:#80ffb0;text-transform:uppercase">Market Consensus</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9px;color:#80ffb0">20%</span>
+          </div>
+          <div style="height:2px;background:rgba(255,255,255,.06);border-radius:1px"><div style="width:20%;height:100%;background:#80ffb0;border-radius:1px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase">X / Social Velocity</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold)">12%</span>
+          </div>
+          <div style="height:2px;background:rgba(255,255,255,.06);border-radius:1px"><div style="width:12%;height:100%;background:var(--gold);border-radius:1px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:#d080ff;text-transform:uppercase">Structural Risk</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9px;color:#d080ff">10%</span>
+          </div>
+          <div style="height:2px;background:rgba(255,255,255,.06);border-radius:1px"><div style="width:10%;height:100%;background:#d080ff;border-radius:1px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:#ffb347;text-transform:uppercase">Black Swan Factor</span>
+            <span style="font-family:'Space Mono',monospace;font-size:9px;color:#ffb347">6%</span>
+          </div>
+          <div style="height:2px;background:rgba(255,255,255,.06);border-radius:1px"><div style="width:6%;height:100%;background:#ffb347;border-radius:1px"></div></div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(201,168,76,.1);padding-top:14px">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;opacity:.6">Confidence Thresholds</div>
+        <div style="font-family:'IM Fell English',serif;font-size:13px;color:var(--silver);line-height:1.8">
+          <span style="color:#ff8080">&#9670; 70%+</span> High confidence — strong signal alignment<br>
+          <span style="color:var(--gold)">&#9670; 50–69%</span> Moderate — signal present, uncertainty remains<br>
+          <span style="color:var(--silver)">&#9670; Below 65%</span> Oracle stays silent
+        </div>
+      </div>
+    </div>
+
     <div style="background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.3);padding:24px;margin-bottom:28px;text-align:center">
       <div style="font-family:'Cinzel Decorative',serif;font-size:11px;letter-spacing:.2em;color:#7289da;text-transform:uppercase;margin-bottom:12px">&#9670; Oracle's Circle &#9670;</div>
       <div style="font-family:'IM Fell English',serif;font-size:15px;color:var(--silver);line-height:1.6;margin-bottom:20px">"Debate the prophecies. Share the signals. Watch the verdicts fall."</div>
