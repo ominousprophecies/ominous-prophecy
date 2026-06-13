@@ -300,7 +300,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </g>
         <circle cx="340" cy="210" r="44" fill="none" stroke="#1a1610" stroke-width="1.2" opacity="0.5" stroke-dasharray="4,2,3,2"/>
         <circle cx="340" cy="210" r="30" fill="url(#fpu)"/>
-        <circle cx="340" cy="210" r="30" fill="none" stroke="#050105" stroke-width="2"/>
+        <circle cx="340" cy="210" r="24" fill="none" stroke="#050105" stroke-width="2"/>
         <ellipse cx="332" cy="196" rx="46" ry="32" fill="rgba(255,248,235,0.08)" transform="rotate(-10 332 196)"/>
         <rect x="318" y="197" width="11" height="8" rx="1.5" fill="rgba(255,255,255,0.85)" transform="rotate(-8 323 201)"/>
         <rect x="350" y="202" width="7" height="5" rx="1" fill="rgba(255,255,255,0.68)"/>
@@ -434,7 +434,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <circle cx="340" cy="210" r="44" fill="none" stroke="#1a1610" stroke-width="1.5" opacity="0.6" stroke-dasharray="4,2,3,2,5,1,4,3"/>
 
           <g id="hpupil">
-            <circle cx="340" cy="210" r="30" fill="url(#hpu)"/>
+            <circle cx="340" cy="210" r="24" fill="url(#hpu)"/>
             <circle cx="340" cy="210" r="30" fill="none" stroke="#050105" stroke-width="2"/>
           </g>
           <ellipse cx="332" cy="196" rx="46" ry="32" fill="url(#hcorn)" transform="rotate(-10 332 196)"/>
@@ -1681,7 +1681,7 @@ document.querySelectorAll('.cat-tag').forEach(tag=>{
       var dy = mouseY - eyeCY;
       var dist = Math.sqrt(dx*dx + dy*dy);
       var maxTravel = 38;
-      var scale = dist > 0 ? Math.min(1, maxTravel / dist) * 0.18 : 0;
+      var scale = dist > 0 ? Math.min(1, maxTravel / dist) * 0.28 : 0;
       targetX = dx * scale;
       targetY = dy * scale * 0.5;
       if(targetY < -8) targetY = -8;
