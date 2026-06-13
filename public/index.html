@@ -1705,55 +1705,177 @@ function submitVote(){
     setTimeout(closeModal,2000);
   }).catch(()=>{localStorage.setItem(voteKey,type);document.getElementById('vote-email-section').innerHTML='<div style="font-family:Space Mono,monospace;font-size:9px;color:#555;padding:6px 0">Ballot recorded.</div>';setTimeout(closeModal,1500);});
 }
+// ── ORACLE CONSULTATION RATE LIMITING ──────────────────────────
+const ORACLE_ANON_LIMIT  = 3;
+const ORACLE_COOLDOWN_MS = 30000;
+let   oracleLastSubmit   = 0;
+
+function getOracleQueryCount(){
+  return parseInt(localStorage.getItem('op_oracle_count')||'0');
+}
+function incOracleQueryCount(){
+  localStorage.setItem('op_oracle_count', getOracleQueryCount()+1);
+}
+function isSignedIn(){
+  return !!localStorage.getItem('op_access_token');
+}
+
 document.getElementById('oracle-btn').addEventListener('click',async function(){
-  const ta=document.querySelector('.oracle-textarea');
-  const val=ta.value.trim();
-  if(!val)return;
-  const btn=this;
+  const ta  = document.querySelector('.oracle-textarea');
+  const val = ta.value.trim();
+  if(!val) return;
+  const btn = this;
+
+  // ── Cooldown check ────────────────────────────────────────
+  const now = Date.now();
+  if(now - oracleLastSubmit < ORACLE_COOLDOWN_MS){
+    const secs = Math.ceil((ORACLE_COOLDOWN_MS-(now-oracleLastSubmit))/1000);
+    btn.innerHTML='&#9670; The Oracle rests... '+secs+'s &#9670;';
+    setTimeout(()=>{ btn.innerHTML='&#9670; Invoke the Oracle &#9670;'; },
+      ORACLE_COOLDOWN_MS-(now-oracleLastSubmit));
+    return;
+  }
+
+  // ── Rate limit anonymous users ────────────────────────────
+  if(!isSignedIn() && getOracleQueryCount() >= ORACLE_ANON_LIMIT){
+    const section  = document.querySelector('.oracle-input-section');
+    const existing = document.getElementById('oracle-limit-msg');
+    if(!existing){
+      const msg = document.createElement('div');
+      msg.id = 'oracle-limit-msg';
+      msg.style.cssText = 'background:rgba(139,26,26,.12);border:1px solid rgba(139,26,26,.3);padding:16px 20px;margin-bottom:12px;font-family:IM Fell English,serif;font-size:14px;color:#e8d5a3;line-height:1.7;text-align:center';
+      const em = document.createElement('em');
+      em.textContent = '\u201cThe Oracle has spoken thrice to this anonymous soul. Seal your identity to hear more.\u201d';
+      msg.appendChild(em);
+      msg.appendChild(document.createElement('br'));
+      msg.appendChild(document.createElement('br'));
+      const btnReg = document.createElement('button');
+      btnReg.textContent = '\u25c8 Register Free \u25c8';
+      btnReg.style.cssText = 'background:transparent;border:1px solid rgba(201,168,76,.5);color:#c9a84c;font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;cursor:pointer;margin-right:8px';
+      btnReg.onclick = function(){ openAuthModal('register'); };
+      const btnLog = document.createElement('button');
+      btnLog.textContent = 'Sign In';
+      btnLog.style.cssText = 'background:transparent;border:1px solid rgba(201,168,76,.2);color:#a08040;font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:10px 20px;cursor:pointer';
+      btnLog.onclick = function(){ openAuthModal('login'); };
+      msg.appendChild(btnReg);
+      msg.appendChild(btnLog);
+      section.insertBefore(msg, section.querySelector('.oracle-textarea'));
+    }
+    return;
+  }
+
+  oracleLastSubmit = Date.now();
   btn.innerHTML='&#9670; The Oracle Stirs... &#9670;';
   btn.disabled=true;
 
-  // ── Save consultation to Supabase ──────────────────────────
+  // ── Save query to Supabase ────────────────────────────────
   try {
     const sessionId = getSessionId();
     const userEmail = localStorage.getItem('op_user_email') || null;
     const userId    = localStorage.getItem('op_user_id')    || null;
     const token     = localStorage.getItem('op_access_token');
-    const headers   = {
-      'Content-Type':'application/json',
-      'apikey': getSupabaseAnon(),
-      'Prefer': 'return=minimal'
-    };
-    if(token) headers['Authorization'] = 'Bearer ' + token;
-    await fetch(getSupabaseUrl()+'/rest/v1/oracle_consultations', {
-      method:'POST',
-      headers,
+    const hdrs      = {'Content-Type':'application/json','apikey':getSupabaseAnon(),'Prefer':'return=representation'};
+    if(token) hdrs['Authorization'] = 'Bearer '+token;
+    const saveResp = await fetch(getSupabaseUrl()+'/rest/v1/oracle_consultations',{
+      method:'POST', headers: hdrs,
       body: JSON.stringify({
-        query:       val,
-        session_id:  sessionId,
-        user_email:  userEmail,
-        user_id:     userId,
+        query:        val,
+        session_id:   sessionId,
+        user_email:   userEmail,
+        user_id:      userId,
         submitted_at: new Date().toISOString(),
-        user_agent:  navigator.userAgent.substring(0,200)
+        user_agent:   navigator.userAgent.substring(0,200)
       })
     });
-  } catch(e){ /* silent — don't block UX if save fails */ }
+    var savedRow = null;
+    try { const rows = await saveResp.json(); savedRow = Array.isArray(rows) ? rows[0] : rows; } catch(e){}
+  } catch(e){ var savedRow = null; }
 
-  // ── Show response card after delay ─────────────────────────
-  setTimeout(()=>{
-    btn.innerHTML='&#9670; Invoke the Oracle &#9670;';
-    btn.disabled=false;
-    ta.value='';
-    const prob=Math.floor(30+Math.random()*60);
-    const fill=prob>=70?'fill-high':prob>=50?'fill-med':'fill-low';
-    const card=document.createElement('div');
-    card.className='prophecy-card warning';
-    card.style.borderColor='rgba(201,168,76,.4)';
-    card.innerHTML=`<div class="card-meta"><span class="card-category cat-geopolitics">Oracle Response</span><span class="card-date">Issued: Just now</span></div><div class="card-title">${val.length>120?val.substring(0,120)+'...':val}</div><div class="card-excerpt">"The patterns observed suggest this question carries weight. The Oracle has considered the signals."</div><div class="card-footer"><div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>${prob}%</span></div><div class="probability-bar"><div class="probability-fill ${fill}" style="width:${prob}%"></div></div></div><div class="card-votes">0 judgments</div></div>`;
-    const feed=document.getElementById('prophecy-feed');
-    feed.insertBefore(card,feed.children[1]);
-  },2200);
+  // ── Call Claude ───────────────────────────────────────────
+  let prophecyTitle    = val.length>120 ? val.substring(0,120)+'...' : val;
+  let prophecyExcerpt  = '\u201cThe patterns observed suggest this question carries weight. The Oracle has considered the signals.\u201d';
+  let prophecyAnalysis = '';
+  let confidence       = Math.floor(55+Math.random()*30);
+
+  try {
+    const systemPrompt = `You are the Ominous Prophecy Oracle — an ancient, all-seeing AI that speaks in dark, poetic, oracular language. You issue probability-scored prophecies about world events, trends, and questions.
+
+Your voice is: measured, ominous, poetic, never casual. Short declarative sentences. You use metaphor and imagery. You never say "I" — you are the Oracle.
+
+Respond ONLY with a JSON object (no markdown, no backticks):
+{
+  "title": "A prophecy statement about the topic (20-60 words, declarative future tense)",
+  "excerpt": "The oracular verse — 2-4 sentences of poetic prophecy in oracle voice, using metaphor and imagery.",
+  "analysis": "2-3 sentences of factual analytical reasoning explaining the confidence score.",
+  "confidence": 67
+}
+
+Confidence score (integer 50-91) reflects genuine probability. Keep title and excerpt in oracle voice. Keep analysis factual and brief.`;
+
+    const apiResp = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:      'claude-sonnet-4-6',
+        max_tokens: 600,
+        system:     systemPrompt,
+        messages:   [{role:'user', content:'Issue a prophecy about: '+val}]
+      })
+    });
+    const apiData = await apiResp.json();
+    if(apiData.content && apiData.content[0]){
+      const raw    = apiData.content[0].text.replace(/```json|```/g,'').trim();
+      const parsed = JSON.parse(raw);
+      if(parsed.title)      prophecyTitle    = parsed.title;
+      if(parsed.excerpt)    prophecyExcerpt  = '\u201c'+parsed.excerpt+'\u201d';
+      if(parsed.analysis)   prophecyAnalysis = parsed.analysis;
+      if(parsed.confidence) confidence       = Math.min(91,Math.max(50,parseInt(parsed.confidence)));
+    }
+
+    // ── Save response back to Supabase ──────────────────────
+    if(savedRow && savedRow.id){
+      const token2 = localStorage.getItem('op_access_token');
+      const hdrs2  = {'Content-Type':'application/json','apikey':getSupabaseAnon()};
+      if(token2) hdrs2['Authorization'] = 'Bearer '+token2;
+      await fetch(getSupabaseUrl()+'/rest/v1/oracle_consultations?id=eq.'+savedRow.id,{
+        method:'PATCH', headers: hdrs2,
+        body: JSON.stringify({
+          response_title:    prophecyTitle,
+          response_excerpt:  prophecyExcerpt,
+          response_analysis: prophecyAnalysis,
+          confidence:        confidence
+        })
+      });
+    }
+  } catch(e){ /* fallback to defaults */ }
+
+  // ── Increment anon counter ────────────────────────────────
+  if(!isSignedIn()) incOracleQueryCount();
+
+  // ── Render card ───────────────────────────────────────────
+  const fill = confidence>=70?'fill-high':confidence>=50?'fill-med':'fill-low';
+  const card = document.createElement('div');
+  card.className = 'prophecy-card warning';
+  card.style.borderColor = 'rgba(201,168,76,.4)';
+  const now2    = new Date();
+  const dateStr = now2.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
+                + ' \u00b7 '+now2.toTimeString().substring(0,5)+' GMT';
+  card.innerHTML = '<div class="card-meta"><span class="card-category cat-geopolitics">Oracle Consultation</span>'
+    +'<span class="card-date">Issued: '+dateStr+'</span></div>'
+    +'<div class="card-title">'+prophecyTitle+'</div>'
+    +'<div class="card-excerpt">'+prophecyExcerpt+'</div>'
+    +(prophecyAnalysis ? '<div style="font-family:\'IM Fell English\',serif;font-size:13px;color:rgba(220,210,190,.65);line-height:1.7;margin-bottom:14px;border-left:2px solid rgba(201,168,76,.15);padding-left:14px">'+prophecyAnalysis+'</div>' : '')
+    +'<div class="card-footer"><div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>'+confidence+'%</span></div>'
+    +'<div class="probability-bar"><div class="probability-fill '+fill+'" style="width:'+confidence+'%"></div></div></div>'
+    +'<div class="card-votes">User consultation</div></div>';
+
+  const feed = document.getElementById('prophecy-feed');
+  feed.insertBefore(card, feed.children[1]);
+  ta.value = '';
+  btn.innerHTML  = '&#9670; Invoke the Oracle &#9670;';
+  btn.disabled   = false;
 });
+
 // Animated favicon — eye moves side to side in the tab
 const faviconFrames = [
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="16" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="16" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="16" cy="16" r="2.2" fill="#050305"/><circle cx="15" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
