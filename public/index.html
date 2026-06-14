@@ -519,11 +519,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   <div class="oracle-stats">
     <div class="stat-item"><span class="stat-num">77</span><span class="stat-label">Prophecies Issued</span></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><span class="stat-num">67%</span><span class="stat-label">Oracle Accuracy</span></div>
+    <div class="stat-item"><span class="stat-num">57%</span><span class="stat-label">Oracle Accuracy</span></div>
     <div class="stat-divider"></div>
     <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">Fulfilled</span></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><span class="stat-num">71</span><span class="stat-label">Pending Judgment</span></div>
+    <div class="stat-item"><span class="stat-num">70</span><span class="stat-label">Pending Judgment</span></div>
   </div>
 </div>
 <div class="ticker-wrap">
@@ -637,13 +637,13 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       </div>
 
       <div style="margin:28px 0 16px;font-family:Cinzel,serif;font-size:13px;letter-spacing:.3em;color:#c9a84c;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:12px">&#9670; Resolves June 14 — Le Mans &amp; UFC Freedom 250</div>
-      <div class="prophecy-card" onclick="openModal(6)">
-        <div class="card-meta"><span class="card-category cat-tech">Le Mans</span><span class="card-date">Issued: June 7, 2026 · 05:14 GMT · Resolves June 14</span></div>
+      <div class="prophecy-card oracle-failed" onclick="openModal(6)">
+        <div class="card-meta"><span class="card-category cat-tech">Le Mans ✗ FAILED</span><span class="card-date">Issued: June 7, 2026 · 05:14 GMT · FAILED June 14, 23:02 GMT</span></div>
         <div class="card-title">Ferrari will win the 2026 24 Hours of Le Mans Hypercar class for the fourth consecutive year</div>
         <div class="card-excerpt">"The prancing horse has claimed this ancient circuit three times in succession. What was once upset has become dynasty. The red cars know every shadow of every corner. The circuit belongs to them now."</div>
         <div class="card-footer">
-          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
-          <div class="card-votes">0 judgments · BMW leads 2026 WEC standings · Race starts June 13</div>
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58% ✗</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
+          <div class="card-votes">FAILED · Toyota #7 won by 11s over BMW · Ferrari #51 finished 5th</div>
         </div>
       </div>
       <div class="prophecy-card" onclick="openModal(7)">
@@ -1330,8 +1330,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </svg>
       </div>
       <div class="verdict-title">&#9670; The Record Speaks &#9670;</div>
-      <div class="verdict-text">"Four prophecies fulfilled. Two have failed. The oracle does not hide its misses — it records them honestly. 4 from 6. The record is what it is. The eye remains open."</div>
-      <div class="verdict-confidence">Updated June 11, 2026 &middot; Accuracy: 67%</div>
+      <div class="verdict-text">"Four prophecies fulfilled. Three have failed. The oracle does not hide its misses — it records them honestly. 4 from 7. The record is what it is. The eye remains open."</div>
+      <div class="verdict-confidence">Updated June 14, 2026 &middot; Accuracy: 57%</div>
     </div>
     <div class="accuracy-panel" id="fulfilled-section">
       <div class="accuracy-title">Judgment Record</div>
@@ -1360,7 +1360,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Morocco advance from Group C</div><span class="acc-badge badge-pending">Jun 27</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">France win Group I</div><span class="acc-badge badge-pending">Jun 27</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Scotland fail to advance Group C</div><span class="acc-badge badge-pending">Jun 27</span></div>
-      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Ferrari wins Le Mans 4th consecutive year</div><span class="acc-badge badge-pending">Jun 14</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-failed"></div><div class="acc-text">Ferrari wins Le Mans 4th consecutive year — Toyota #7 won</div><span class="acc-badge badge-failed">FAILED</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Topuria defends UFC title vs Gaethje</div><span class="acc-badge badge-pending">Jun 14</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Topuria finishes Gaethje by KO or TKO</div><span class="acc-badge badge-pending">Jun 14</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Pereira defeats Gane for interim heavyweight title</div><span class="acc-badge badge-pending">Jun 14</span></div>
@@ -1562,7 +1562,7 @@ const prophecies=[
   {title:"The Vegas Golden Knights will win Game 4 and take a commanding 3-1 series lead over the Carolina Hurricanes",category:"NHL",catClass:"cat-society",excerpt:"The momentum of double overtime does not dissipate overnight. The team that finds a way to win the impossible game carries that belief into the next one. The hurricane has one final chance before the desert swallows the storm entirely.",analysis:"Oracle analysis for: The Vegas Golden Knights will win Game 4 and take a commandi",confidence:62,status:"failed"},
   {title:"The Washington Nationals will complete a series sweep of the Arizona Diamondbacks June 6 to 8 2026",category:"MLB",catClass:"cat-society",excerpt:"The desert blooms in spring but wilts before summer arrives. What seemed formidable at home becomes ordinary away. The visitor who has already taken two does not surrender the third.",analysis:"Oracle analysis for: The Washington Nationals will complete a series sweep of the",confidence:65,status:"failed"},
   {title:"Carolina Hurricanes will win Game 5 of the Stanley Cup Final at Lenovo Center, Raleigh",category:"NHL",catClass:"cat-society",excerpt:"The tempest has spoken twice on foreign soil and now returns to its throne of noise. Raleigh has not forgotten how to roar. The guardian between the pipes has seen thirteen victories — the golden city\'s own guardian has seen fewer clean nights. What the hurricane could not finish on enemy ground, it finishes at home.",analysis:"Oracle analysis for: Carolina Hurricanes will win Game 5 of the Stanley Cup Final",confidence:68},
-  {title:"Ferrari will win the 2026 24 Hours of Le Mans Hypercar class for the fourth consecutive year",category:"Le Mans",catClass:"cat-tech",excerpt:"The prancing horse has claimed this ancient circuit three times in succession. What was once upset has become dynasty. The red cars know every shadow of every corner. The circuit belongs to them now.",analysis:"Oracle analysis for: Ferrari will win the 2026 24 Hours of Le Mans Hypercar class",confidence:58},
+  {title:"Ferrari will win the 2026 24 Hours of Le Mans Hypercar class for the fourth consecutive year",category:"Le Mans",catClass:"cat-tech",excerpt:"The prancing horse has claimed this ancient circuit three times in succession. What was once upset has become dynasty. The red cars know every shadow of every corner. The circuit belongs to them now.",analysis:"Toyota Racing #7 (de Vries/Kobayashi/Conway, TR010 Hybrid) won the 94th 24 Hours of Le Mans by an 11-second margin over BMW M Team WRT #20. Ferrari's lead entry, the #51 499P (Pier Guidi/Calado/Giovinazzi), finished 5th — the manufacturer's first Le Mans defeat since returning to the Hypercar class. Ferrari's bid for a fourth consecutive win did not occur.",confidence:58,status:"failed"},
   {title:"Ilia Topuria will successfully defend the UFC lightweight title against Justin Gaethje at UFC Freedom 250 at the White House",category:"MMA",catClass:"cat-society",excerpt:"The undefeated Georgian arrives at the most theatrical stage in combat sports history — the South Lawn of the American presidency. Three consecutive Hall of Famers have fallen before him. The fourth challenger is worthy. He will fall the same way.",analysis:"Oracle analysis for: Ilia Topuria will successfully defend the UFC lightweight ti",confidence:81},
   {title:"Ilia Topuria will finish Justin Gaethje by KO or TKO at UFC Freedom 250 — the fight will not go to decision",category:"MMA",catClass:"cat-society",excerpt:"The sniper does not miss three times. The finisher who has never needed judges does not need them now. Gaethje will be brave and Gaethje will be dangerous — and Gaethje will be stopped.",analysis:"Oracle analysis for: Ilia Topuria will finish Justin Gaethje by KO or TKO at UFC ",confidence:74},
   {title:"Alex Pereira will defeat Ciryl Gane for the interim UFC heavyweight title at UFC Freedom 250",category:"MMA",catClass:"cat-society",excerpt:"The man who has conquered two weight classes looks upward to a third. The Frenchman is technical and elusive — but Pereira has knocked out men who were told he could not reach them. The uppercut does not care about technique.",analysis:"Oracle analysis for: Alex Pereira will defeat Ciryl Gane for the interim UFC heav",confidence:58},
