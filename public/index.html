@@ -1442,30 +1442,88 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
     </div>
     <div id="scoreboard-section" style="background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);padding:24px;margin-bottom:28px">
       <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:20px">Oracle Scoreboard</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
-        <div style="text-align:center;background:rgba(76,175,80,.06);border:1px solid rgba(76,175,80,.15);padding:16px">
-          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#4caf50;line-height:1">4</div>
-          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#4caf50;text-transform:uppercase;margin-top:6px;opacity:.8">Fulfilled</div>
-        </div>
-        <div style="text-align:center;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);padding:16px">
-          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#e05050;line-height:1">2</div>
-          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#e05050;text-transform:uppercase;margin-top:6px;opacity:.8">Failed</div>
-        </div>
-        <div style="text-align:center;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);padding:16px">
-          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold);line-height:1">71</div>
-          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-top:6px;opacity:.8">Pending</div>
-        </div>
-        <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:16px">
-          <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--pale-gold);line-height:1">67%</div>
-          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--silver);text-transform:uppercase;margin-top:6px;opacity:.8">Accuracy</div>
-        </div>
+
+      <div style="display:flex;gap:8px;margin-bottom:18px;border-bottom:1px solid rgba(201,168,76,.1);padding-bottom:14px">
+        <button class="sb-tab sb-tab-active" data-period="week" onclick="showScoreboardPeriod('week')" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:8px 14px;cursor:pointer;transition:all .2s">This Week</button>
+        <button class="sb-tab" data-period="month" onclick="showScoreboardPeriod('month')" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:transparent;color:var(--silver);border:1px solid rgba(201,168,76,.1);padding:8px 14px;cursor:pointer;transition:all .2s">This Month</button>
+        <button class="sb-tab" data-period="all" onclick="showScoreboardPeriod('all')" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:transparent;color:var(--silver);border:1px solid rgba(201,168,76,.1);padding:8px 14px;cursor:pointer;transition:all .2s">All Time</button>
       </div>
-      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin:16px 0 10px;opacity:.6">By Category</div>
+
+      <!-- THIS WEEK (last 7 days) -->
+      <div id="sb-period-week" class="sb-period">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px">
+          <div style="text-align:center;background:rgba(76,175,80,.06);border:1px solid rgba(76,175,80,.15);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#4caf50;line-height:1">4</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#4caf50;text-transform:uppercase;margin-top:6px;opacity:.8">Fulfilled</div>
+          </div>
+          <div style="text-align:center;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#e05050;line-height:1">2</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#e05050;text-transform:uppercase;margin-top:6px;opacity:.8">Failed</div>
+          </div>
+          <div style="text-align:center;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold);line-height:1">66</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-top:6px;opacity:.8">Pending</div>
+          </div>
+          <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--pale-gold);line-height:1">66.7%</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--silver);text-transform:uppercase;margin-top:6px;opacity:.8">Accuracy</div>
+          </div>
+        </div>
+        <div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--silver);opacity:.6;text-align:center;font-style:italic">6 prophecies judged in the last 7 days</div>
+      </div>
+
+      <!-- THIS MONTH (last 30 days) -->
+      <div id="sb-period-month" class="sb-period" style="display:none">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px">
+          <div style="text-align:center;background:rgba(76,175,80,.06);border:1px solid rgba(76,175,80,.15);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#4caf50;line-height:1">7</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#4caf50;text-transform:uppercase;margin-top:6px;opacity:.8">Fulfilled</div>
+          </div>
+          <div style="text-align:center;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#e05050;line-height:1">4</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#e05050;text-transform:uppercase;margin-top:6px;opacity:.8">Failed</div>
+          </div>
+          <div style="text-align:center;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold);line-height:1">66</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-top:6px;opacity:.8">Pending</div>
+          </div>
+          <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--pale-gold);line-height:1">63.6%</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--silver);text-transform:uppercase;margin-top:6px;opacity:.8">Accuracy</div>
+          </div>
+        </div>
+        <div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--silver);opacity:.6;text-align:center;font-style:italic">Same as All Time — the oracle is not yet a month old</div>
+      </div>
+
+      <!-- ALL TIME -->
+      <div id="sb-period-all" class="sb-period" style="display:none">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px">
+          <div style="text-align:center;background:rgba(76,175,80,.06);border:1px solid rgba(76,175,80,.15);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#4caf50;line-height:1">7</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#4caf50;text-transform:uppercase;margin-top:6px;opacity:.8">Fulfilled</div>
+          </div>
+          <div style="text-align:center;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.15);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:#e05050;line-height:1">4</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:#e05050;text-transform:uppercase;margin-top:6px;opacity:.8">Failed</div>
+          </div>
+          <div style="text-align:center;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.1);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold);line-height:1">66</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-top:6px;opacity:.8">Pending</div>
+          </div>
+          <div style="text-align:center;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:16px">
+            <div style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--pale-gold);line-height:1">63.6%</div>
+            <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--silver);text-transform:uppercase;margin-top:6px;opacity:.8">Accuracy</div>
+          </div>
+        </div>
+        <div style="font-family:'IM Fell English',serif;font-size:11px;color:var(--silver);opacity:.6;text-align:center;font-style:italic">Since launch, June 6, 2026</div>
+      </div>
+
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin:16px 0 10px;opacity:.6">By Category (All Time)</div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <div style="display:flex;align-items:center;gap:10px">
           <div style="font-family:'Space Mono',monospace;font-size:9px;color:#80ffb0;letter-spacing:.08em;width:80px">Sports</div>
-          <div style="flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px"><div style="width:100%;height:100%;background:#4caf50;border-radius:2px"></div></div>
-          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4caf50">4/4</div>
+          <div style="flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px"><div style="width:64%;height:100%;background:#4caf50;border-radius:2px"></div></div>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4caf50">7/11</div>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <div style="font-family:'Space Mono',monospace;font-size:9px;color:#ff8080;letter-spacing:.08em;width:80px">Geopolitics</div>
@@ -1474,11 +1532,25 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.08em;width:80px">Pending</div>
-          <div style="flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px"><div style="width:93%;height:100%;background:rgba(201,168,76,.5);border-radius:2px"></div></div>
-          <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold)">71</div>
+          <div style="flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:2px"><div style="width:86%;height:100%;background:rgba(201,168,76,.5);border-radius:2px"></div></div>
+          <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--gold)">66</div>
         </div>
       </div>
     </div>
+
+    <script>
+    function showScoreboardPeriod(period) {
+      document.querySelectorAll('.sb-period').forEach(function(el) {
+        el.style.display = (el.id === 'sb-period-' + period) ? 'block' : 'none';
+      });
+      document.querySelectorAll('.sb-tab').forEach(function(btn) {
+        var active = btn.getAttribute('data-period') === period;
+        btn.style.background = active ? 'rgba(201,168,76,.12)' : 'transparent';
+        btn.style.color = active ? 'var(--gold)' : 'var(--silver)';
+        btn.style.borderColor = active ? 'rgba(201,168,76,.3)' : 'rgba(201,168,76,.1)';
+      });
+    }
+    </script>
 
     <div id="methodology-section" style="background:rgba(13,10,16,.8);border:1px solid rgba(201,168,76,.1);padding:24px;margin-bottom:28px">
       <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:16px">Methodology</div>
