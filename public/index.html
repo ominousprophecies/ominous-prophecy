@@ -519,11 +519,11 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
   <div class="oracle-stats">
     <div class="stat-item"><span class="stat-num">77</span><span class="stat-label">Prophecies Issued</span></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><span class="stat-num">70%</span><span class="stat-label">Oracle Accuracy</span></div>
+    <div class="stat-item"><span class="stat-num">63.6%</span><span class="stat-label">Oracle Accuracy</span></div>
     <div class="stat-divider"></div>
     <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Fulfilled</span></div>
     <div class="stat-divider"></div>
-    <div class="stat-item"><span class="stat-num">67</span><span class="stat-label">Pending Judgment</span></div>
+    <div class="stat-item"><span class="stat-num">66</span><span class="stat-label">Pending Judgment</span></div>
   </div>
 </div>
 <div class="ticker-wrap">
@@ -664,13 +664,13 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">FULFILLED · KO by punches, Round 2 (2:41) · Did not reach decision</div>
         </div>
       </div>
-      <div class="prophecy-card" onclick="openModal(9)">
-        <div class="card-meta"><span class="card-category cat-society">MMA</span><span class="card-date">Issued: June 8, 2026 · 20:32 GMT · Resolves June 14</span></div>
+      <div class="prophecy-card oracle-failed" onclick="openModal(9)">
+        <div class="card-meta"><span class="card-category cat-society">MMA ✗ FAILED</span><span class="card-date">Issued: June 8, 2026 · 20:32 GMT · FAILED June 15, 05:27 GMT</span></div>
         <div class="card-title">Alex Pereira will defeat Ciryl Gane for the interim UFC heavyweight title at UFC Freedom 250</div>
         <div class="card-excerpt">"The man who has conquered two weight classes looks upward to a third. The Frenchman is technical and elusive — but Pereira has knocked out men who were told he could not reach them. The uppercut does not care about technique."</div>
         <div class="card-footer">
-          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
-          <div class="card-votes">0 judgments · 11 of 13 wins by KO · Odds essentially even</div>
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>58% ✗</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:58%"></div></div></div>
+          <div class="card-votes">FAILED · Gane def. Pereira by TKO, Round 2 (1:27) · 2x interim champ</div>
         </div>
       </div>
 
@@ -1330,8 +1330,8 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
         </svg>
       </div>
       <div class="verdict-title">&#9670; The Record Speaks &#9670;</div>
-      <div class="verdict-text">"Seven prophecies fulfilled. Three have failed. The oracle does not hide its misses — it records them honestly. 7 from 10. The record is what it is. The eye remains open."</div>
-      <div class="verdict-confidence">Updated June 15, 2026 &middot; Accuracy: 70%</div>
+      <div class="verdict-text">"Seven prophecies fulfilled. Four have failed. The oracle does not hide its misses — it records them honestly. 7 from 11. The record is what it is. The eye remains open."</div>
+      <div class="verdict-confidence">Updated June 15, 2026 &middot; Accuracy: 63.6%</div>
     </div>
     <div class="accuracy-panel" id="fulfilled-section">
       <div class="accuracy-title">Judgment Record</div>
@@ -1363,7 +1363,7 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
       <div class="accuracy-item"><div class="acc-dot dot-failed"></div><div class="acc-text">Ferrari wins Le Mans 4th consecutive year — Toyota #7 won</div><span class="acc-badge badge-failed">FAILED</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">Topuria defends UFC title vs Gaethje — KO Round 2</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-fulfilled"></div><div class="acc-text">Topuria finishes Gaethje by KO or TKO</div><span class="acc-badge badge-fulfilled">FULFILLED</span></div>
-      <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Pereira defeats Gane for interim heavyweight title</div><span class="acc-badge badge-pending">Jun 14</span></div>
+      <div class="accuracy-item"><div class="acc-dot dot-failed"></div><div class="acc-text">Pereira defeats Gane for interim heavyweight title — Gane won by TKO</div><span class="acc-badge badge-failed">FAILED</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#c9a84c;letter-spacing:.15em;margin:12px 0 8px;opacity:.7">JUNE 16-21</div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">O'Brien wins 2+ Group 1s at Royal Ascot</div><span class="acc-badge badge-pending">Jun 21</span></div>
       <div class="accuracy-item"><div class="acc-dot dot-pending"></div><div class="acc-text">Scheffler fails career grand slam at US Open</div><span class="acc-badge badge-pending">Jun 21</span></div>
@@ -1565,7 +1565,7 @@ const prophecies=[
   {title:"Ferrari will win the 2026 24 Hours of Le Mans Hypercar class for the fourth consecutive year",category:"Le Mans",catClass:"cat-tech",excerpt:"The prancing horse has claimed this ancient circuit three times in succession. What was once upset has become dynasty. The red cars know every shadow of every corner. The circuit belongs to them now.",analysis:"Toyota Racing #7 (de Vries/Kobayashi/Conway, TR010 Hybrid) won the 94th 24 Hours of Le Mans by an 11-second margin over BMW M Team WRT #20. Ferrari's lead entry, the #51 499P (Pier Guidi/Calado/Giovinazzi), finished 5th — the manufacturer's first Le Mans defeat since returning to the Hypercar class. Ferrari's bid for a fourth consecutive win did not occur.",confidence:58,status:"failed"},
   {title:"Ilia Topuria will successfully defend the UFC lightweight title against Justin Gaethje at UFC Freedom 250 at the White House",category:"MMA",catClass:"cat-society",excerpt:"The undefeated Georgian arrives at the most theatrical stage in combat sports history — the South Lawn of the American presidency. Three consecutive Hall of Famers have fallen before him. The fourth challenger is worthy. He will fall the same way.",analysis:"Ilia Topuria defeated Justin Gaethje by KO (punches) in Round 2 (2:41) at UFC Freedom 250, successfully defending and unifying the lightweight title and extending his record to 18-0.",confidence:81,status:"fulfilled"},
   {title:"Ilia Topuria will finish Justin Gaethje by KO or TKO at UFC Freedom 250 — the fight will not go to decision",category:"MMA",catClass:"cat-society",excerpt:"The sniper does not miss three times. The finisher who has never needed judges does not need them now. Gaethje will be brave and Gaethje will be dangerous — and Gaethje will be stopped.",analysis:"Topuria finished Gaethje by KO (punches) in Round 2 (2:41) — the fight did not reach the championship rounds, let alone a decision.",confidence:74,status:"fulfilled"},
-  {title:"Alex Pereira will defeat Ciryl Gane for the interim UFC heavyweight title at UFC Freedom 250",category:"MMA",catClass:"cat-society",excerpt:"The man who has conquered two weight classes looks upward to a third. The Frenchman is technical and elusive — but Pereira has knocked out men who were told he could not reach them. The uppercut does not care about technique.",analysis:"Oracle analysis for: Alex Pereira will defeat Ciryl Gane for the interim UFC heav",confidence:58},
+  {title:"Alex Pereira will defeat Ciryl Gane for the interim UFC heavyweight title at UFC Freedom 250",category:"MMA",catClass:"cat-society",excerpt:"The man who has conquered two weight classes looks upward to a third. The Frenchman is technical and elusive — but Pereira has knocked out men who were told he could not reach them. The uppercut does not care about technique.",analysis:"Ciryl Gane defeated Alex Pereira by TKO in Round 2 (1:27) at UFC Freedom 250, becoming a two-time interim UFC heavyweight champion. Gane dropped Pereira with a jab early in the round and finished him against the cage, ending Pereira's bid to become UFC's first three-division champion.",confidence:58,status:"failed"},
   {title:"Aidan O Brien will train at least two Group 1 winners at Royal Ascot 2026",category:"Horse Racing",catClass:"cat-society",excerpt:"The master of Ballydoyle sends his army to the royal meeting and the royal meeting yields to it. Two crowns minimum. The Irish flag flies over the most English of stages.",analysis:"Oracle analysis for: Aidan O Brien will train at least two Group 1 winners at Roy",confidence:72},
   {title:"Scottie Scheffler will fail to complete the career grand slam at the 2026 US Open at Shinnecock Hills",category:"Golf",catClass:"cat-society",excerpt:"The grand slam has been claimed by six men in the modern era. Each of them waited for their moment. Shinnecock does not yield to pressure — it creates it. The world number one will leave without the final piece.",analysis:"Oracle analysis for: Scottie Scheffler will fail to complete the career grand sla",confidence:82},
   {title:"The 2026 US Open at Shinnecock Hills will be won by a first-time major champion",category:"Golf",catClass:"cat-society",excerpt:"Shinnecock does not reward the familiar. The course that has crowned Goosen, Pavin, Floyd — none of them expected. The oldest examination in American golf produces a new name for the oldest trophy.",analysis:"Oracle analysis for: The 2026 US Open at Shinnecock Hills will be won by a first-",confidence:64},
