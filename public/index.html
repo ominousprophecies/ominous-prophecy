@@ -1522,12 +1522,443 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Animated favicon — eye moves side to side in the tab
+const faviconFrames = [
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="16" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="16" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="16" cy="16" r="2.2" fill="#050305"/><circle cx="15" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="18" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="18" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="18" cy="16" r="2.2" fill="#050305"/><circle cx="17" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="20" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="20" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="20" cy="16" r="2.2" fill="#050305"/><circle cx="19" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="18" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="18" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="18" cy="16" r="2.2" fill="#050305"/><circle cx="17" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="16" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="16" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="16" cy="16" r="2.2" fill="#050305"/><circle cx="15" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="14" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="14" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="14" cy="16" r="2.2" fill="#050305"/><circle cx="13" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="12" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="12" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="12" cy="16" r="2.2" fill="#050305"/><circle cx="11" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#080608" rx="3"/><ellipse cx="16" cy="16" rx="15" ry="15" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/><path d="M3 16 Q9 9 16 8 Q23 9 29 16 Q23 23 16 24 Q9 23 3 16Z" fill="#e8e0d0"/><circle cx="14" cy="16" r="5.5" fill="#8b1a1a"/><circle cx="14" cy="16" r="5.5" fill="none" stroke="#c9a84c" stroke-width="0.7"/><circle cx="14" cy="16" r="2.2" fill="#050305"/><circle cx="13" cy="15" r="0.9" fill="rgba(255,255,255,0.5)"/><line x1="16" y1="1" x2="16" y2="4" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="16" y1="28" x2="16" y2="31" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="1" y1="16" x2="4" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/><line x1="28" y1="16" x2="31" y2="16" stroke="#c9a84c" stroke-width="0.7" opacity="0.5"/></svg>`,
+];
+let faviconFrame = 0;
+const faviconLink = document.querySelector("link[rel='icon']") || document.createElement('link');
+faviconLink.rel = 'icon';
+faviconLink.type = 'image/svg+xml';
+document.head.appendChild(faviconLink);
+setInterval(() => {
+  const svg = faviconFrames[faviconFrame % faviconFrames.length];
+  faviconLink.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+  faviconFrame++;
+}, 400);
 const floatEye = document.getElementById('float-eye');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) floatEye.classList.add('visible');
-  else floatEye.classList.remove('visible');
+  if (window.scrollY > 300) {
+    floatEye.classList.add('visible');
+  } else {
+    floatEye.classList.remove('visible');
+  }
 });
-floatEye.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+floatEye.addEventListener('click', () => {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  floatEye.style.pointerEvents = 'all';
+});
+floatEye.title = 'Return to the top';
+document.querySelectorAll('.cat-tag').forEach(tag=>{
+  tag.addEventListener('click',function(){document.querySelectorAll('.cat-tag').forEach(t=>t.classList.remove('active'));this.classList.add('active')});
+});
+</script>
+<script>
+(function(){
+  // ── ORACLE EYE CONTROLLER ──────────────────────────────────────
+  // Runs after DOM ready. 10 minute unpredictable sequence.
+  // Entrance: suspicious squint for 30s, then relaxes.
+
+  var ulid, llid, gaze, pupil;
+  var timer = null;
+  var startTime = Date.now();
+  var ENTRANCE_MS = 32000; // 30s suspicious entrance + 2s relax
+  var REST_U = 16; // resting upper lid — slightly drooped
+  var REST_L = -6; // resting lower lid — slightly raised
+
+  // Mouse tracking state
+  var mouseX = 0, mouseY = 0;
+  var eyeCX = 0, eyeCY = 0;  // eye center in viewport
+  var gazeX = 0, gazeY = 0;  // current gaze position
+  var targetX = 0, targetY = 0; // mouse-driven target
+  var trackingActive = false; // paused during behaviors
+  var rafId = null;
+
+  function updateEyeCenter(){
+    if(!gaze) return;
+    var rect = gaze.closest('svg') ? gaze.closest('svg').getBoundingClientRect() : null;
+    if(rect){
+      eyeCX = rect.left + rect.width * 0.5;
+      eyeCY = rect.top + rect.height * 0.5;
+    }
+  }
+
+  var mouseWatchTimer = null;
+  var isWatchingMouse = false;
+  var lastMouseX = 0, lastMouseY = 0;
+  var WATCH_CHANCE = 0.65; // 65% chance eye notices mouse movement
+
+  function onMouseMove(e){
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    var moved = Math.abs(mouseX-lastMouseX) + Math.abs(mouseY-lastMouseY);
+    if(moved < 10) return;
+    lastMouseX = mouseX; lastMouseY = mouseY;
+    if(!trackingActive) return;
+    if(!isWatchingMouse && Math.random() < WATCH_CHANCE){
+      isWatchingMouse = true;
+      clearTimeout(mouseWatchTimer);
+      mouseWatchTimer = setTimeout(function(){
+        isWatchingMouse = false;
+        gaze.style.transition = 'transform 1.8s ease-in-out';
+        gazeX = 0; gazeY = 0;
+        gaze.style.transform = 'translate(0px,0px)';
+        setTimeout(function(){
+          gaze.style.transition = 'none';
+        }, 1900);
+      }, rnd(3000, 7000));
+    }
+  }
+
+  function trackLoop(){
+    if(trackingActive && isWatchingMouse && gaze){
+      var dx = mouseX - eyeCX;
+      var dy = mouseY - eyeCY;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      var maxTravel = 38;
+      var scale = dist > 0 ? Math.min(1, maxTravel / dist) * 0.28 : 0;
+      targetX = dx * scale;
+      targetY = dy * scale * 0.5;
+      if(targetY < -8) targetY = -8;
+      if(targetY > 12) targetY = 12;
+      gazeX += (targetX - gazeX) * 0.05;
+      gazeY += (targetY - gazeY) * 0.05;
+      var t = 'translate('+gazeX.toFixed(2)+'px,'+gazeY.toFixed(2)+'px)';
+      gaze.style.transform = t;
+      if(fgaze) fgaze.style.transform = t;
+    }
+    rafId = requestAnimationFrame(trackLoop);
+  }
+
+  function init(){
+    ulid  = document.getElementById('hulid');
+    llid  = document.getElementById('hllid');
+    gaze  = document.getElementById('hgaze');
+    pupil = document.getElementById('hpupil');
+    if(!ulid) return;
+
+    fgaze = document.getElementById('fgaze');
+    fulid = document.getElementById('fulid');
+    fllid = document.getElementById('fllid');
+
+    document.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('resize', updateEyeCenter);
+    window.addEventListener('scroll', updateEyeCenter);
+    updateEyeCenter();
+    setTimeout(updateEyeCenter, 500);
+    setTimeout(updateEyeCenter, 1500);
+    rafId = requestAnimationFrame(trackLoop);
+
+    var lastVisit = localStorage.getItem('op_soul_seen');
+    var isReturning = !!lastVisit;
+    localStorage.setItem('op_soul_seen', Date.now());
+
+    if(isReturning){
+      setLids(0, 0, 0);
+      setGaze(0, 0);
+      setPupil(0.94);
+
+      setTimeout(function(){
+        ulid.style.transition = 'transform 1.2s ease-in-out';
+        llid.style.transition = 'transform 1.2s ease-in-out';
+        gaze.style.transition = 'transform 0.8s ease-in-out';
+        gaze.style.transform  = 'translate(-18px, 0px)';
+        if(fgaze){ fgaze.style.transition='transform 0.8s ease-in-out'; fgaze.style.transform='translate(-18px,0px)'; }
+      }, 400);
+      setTimeout(function(){
+        gaze.style.transition = 'transform 1.0s ease-in-out';
+        gaze.style.transform  = 'translate(18px, 0px)';
+        if(fgaze){ fgaze.style.transition='transform 1.0s ease-in-out'; fgaze.style.transform='translate(18px,0px)'; }
+      }, 1400);
+      setTimeout(function(){
+        gaze.style.transition = 'transform 1.2s ease-in-out';
+        gaze.style.transform  = 'translate(0px, 0px)';
+        if(fgaze){ fgaze.style.transition='transform 1.2s ease-in-out'; fgaze.style.transform='translate(0px,0px)'; }
+        setPupil(0.86);
+        ulid.style.transition = 'transform 0.6s ease-in-out';
+        llid.style.transition = 'transform 0.6s ease-in-out';
+        gaze.style.transition = 'none';
+        if(fgaze) fgaze.style.transition = 'none';
+        trackingActive = true;
+        updateEyeCenter();
+        scheduleNext();
+      }, 2800);
+
+    } else {
+      setLids(68, -24, 0);
+      setGaze(0, 0);
+      setPupil(1.0);
+
+      setTimeout(function(){
+        gaze.style.transition = 'transform 3s ease-in-out';
+        gaze.style.transform  = 'translate(-28px, 8px)';
+        if(fgaze){ fgaze.style.transition='transform 3s ease-in-out'; fgaze.style.transform='translate(-28px,8px)'; }
+      }, 2000);
+      setTimeout(function(){
+        gaze.style.transition = 'transform 4s ease-in-out';
+        gaze.style.transform  = 'translate(28px, -6px)';
+        if(fgaze){ fgaze.style.transition='transform 4s ease-in-out'; fgaze.style.transform='translate(28px,-6px)'; }
+      }, 6000);
+      setTimeout(function(){
+        setPupil(0.88);
+        gaze.style.transition = 'transform 2s ease-in-out';
+        gaze.style.transform  = 'translate(0px, 0px)';
+        if(fgaze){ fgaze.style.transition='transform 2s ease-in-out'; fgaze.style.transform='translate(0px,0px)'; }
+      }, 11000);
+
+      setTimeout(function(){
+        ulid.style.transition  = 'transform 5s ease-in-out';
+        llid.style.transition  = 'transform 5s ease-in-out';
+        gaze.style.transition  = 'transform 3s ease-in-out';
+        setLids(REST_U, REST_L, 0);
+        setPupil(0.84);
+        setTimeout(function(){
+          ulid.style.transition  = 'transform 0.6s ease-in-out';
+          llid.style.transition  = 'transform 0.6s ease-in-out';
+          gaze.style.transition  = 'transform 1.2s ease-in-out';
+          trackingActive = true;
+          updateEyeCenter();
+          scheduleNext();
+        }, 5000);
+      }, ENTRANCE_MS);
+    }
+  }
+
+  // ── STATE SETTERS ────────────────────────────────────────────────
+  function setLids(upper, lower){
+    ulid.style.transform = 'translateY('+upper+'px)';
+    llid.style.transform = 'translateY('+lower+'px)';
+    if(fulid) fulid.style.transform = 'translateY('+upper+'px)';
+    if(fllid) fllid.style.transform = 'translateY('+lower+'px)';
+    var lidCoverage = (upper + Math.abs(lower)) / 2;
+    if(lidCoverage > 20) {
+      var pupilScale = 1.0 + (lidCoverage / 220);
+      pupilScale = Math.min(1.14, pupilScale);
+      setPupil(pupilScale);
+    } else if(upper === 0 && lower === 0) {
+      setPupil(0.88);
+    }
+  }
+  function setGaze(x, y){
+    trackingActive = false;
+    isWatchingMouse = false;
+    clearTimeout(mouseWatchTimer);
+    gaze.style.transition = 'transform 1.1s ease-in-out';
+    gazeX = x; gazeY = y;
+    gaze.style.transform = 'translate('+x+'px,'+y+'px)';
+    if(fgaze){ fgaze.style.transition='transform 1.1s ease-in-out'; fgaze.style.transform='translate('+x+'px,'+y+'px)'; }
+    setTimeout(function(){
+      gaze.style.transition = 'none';
+      if(fgaze) fgaze.style.transition = 'none';
+    }, 1200);
+  }
+  function resumeTracking(){
+    gaze.style.transition = 'none';
+    trackingActive = true;
+    updateEyeCenter();
+  }
+  function setPupil(scale){
+    pupil.style.transform = 'scale('+scale+')';
+  }
+
+  // ── RANDOM HELPERS ───────────────────────────────────────────────
+  function rnd(min, max){ return min + Math.random()*(max-min); }
+  function rndInt(min, max){ return Math.floor(rnd(min, max+1)); }
+  function pick(arr){ return arr[rndInt(0, arr.length-1)]; }
+
+  // ── BEHAVIORS ────────────────────────────────────────────────────
+  function doRest(){
+    setLids(REST_U, REST_L);
+    setPupil(1.0);
+    setTimeout(resumeTracking, 600);
+    return rnd(3000, 8000);
+  }
+
+  function doFastBlink(){
+    ulid.style.transition = 'transform 0.15s ease-in';
+    llid.style.transition = 'transform 0.15s ease-in';
+    setLids(182, -51);
+    setTimeout(function(){
+      ulid.style.transition = 'transform 0.25s ease-out';
+      llid.style.transition = 'transform 0.25s ease-out';
+      setLids(REST_U, REST_L);
+      setTimeout(function(){
+        ulid.style.transition = 'transform 0.6s ease-in-out';
+        llid.style.transition = 'transform 0.6s ease-in-out';
+      }, 300);
+    }, 160);
+    return rnd(200, 600);
+  }
+
+  function doSlowBlink(){
+    ulid.style.transition = 'transform 0.5s ease-in';
+    llid.style.transition = 'transform 0.5s ease-in';
+    setLids(182, -51);
+    setTimeout(function(){
+      ulid.style.transition = 'transform 0.9s ease-out';
+      llid.style.transition = 'transform 0.9s ease-out';
+      setLids(REST_U, REST_L);
+      setTimeout(function(){
+        ulid.style.transition = 'transform 0.6s ease-in-out';
+        llid.style.transition = 'transform 0.6s ease-in-out';
+      }, 1000);
+    }, 550);
+    return rnd(800, 2000);
+  }
+
+  function doContemptDroop(){
+    var droop = rnd(45, 65);
+    setLids(droop, -14);
+    setPupil(rnd(0.88, 0.94));
+    var hold = rnd(2000, 5000);
+    setTimeout(function(){
+      setLids(REST_U, REST_L);
+      setPupil(1.0);
+    }, hold);
+    return hold + rnd(500, 1500);
+  }
+
+  function doScanLeft(){
+    var x = rnd(-28, -42);
+    gaze.style.transition = 'transform '+rnd(0.8,1.8)+'s ease-in-out';
+    setGaze(x, 0);
+    setPupil(rnd(0.94, 1.04));
+    var holdTime = rnd(1500, 4000);
+    if(Math.random() > 0.4){
+      setTimeout(function(){
+        var sq = rnd(45, 68);
+        setLids(sq, -rnd(14,22));
+        setPupil(rnd(0.90, 0.96));
+        setTimeout(function(){
+          setLids(REST_U, REST_L);
+          setPupil(1.0);
+        }, rnd(1500, 3500));
+      }, rnd(400, 900));
+    }
+    setTimeout(function(){
+      gaze.style.transition = 'transform '+rnd(1.0,2.2)+'s ease-in-out';
+      setGaze(0, 0);
+      setPupil(1.0);
+    }, holdTime);
+    return holdTime + rnd(800, 2000);
+  }
+
+  function doScanRight(){
+    var x = rnd(28, 42);
+    gaze.style.transition = 'transform '+rnd(0.8,1.8)+'s ease-in-out';
+    setGaze(x, 0);
+    setPupil(rnd(0.94, 1.04));
+    var holdTime = rnd(1500, 4000);
+    if(Math.random() > 0.4){
+      setTimeout(function(){
+        var sq = rnd(45, 68);
+        setLids(sq, -rnd(14,22));
+        setPupil(rnd(0.90, 0.96));
+        setTimeout(function(){
+          setLids(REST_U, REST_L);
+          setPupil(1.0);
+        }, rnd(1500, 3500));
+      }, rnd(400, 900));
+    }
+    setTimeout(function(){
+      gaze.style.transition = 'transform '+rnd(1.0,2.2)+'s ease-in-out';
+      setGaze(0, 0);
+      setPupil(1.0);
+    }, holdTime);
+    return holdTime + rnd(800, 2000);
+  }
+
+  function doSuspiciousSquint(){
+    gaze.style.transition = 'transform 0.4s ease-in';
+    var x = pick([-38, -32, 32, 38, -20, 20]);
+    setGaze(x, 0);
+    setTimeout(function(){
+      setLids(62, -22);
+      setPupil(rnd(0.85, 0.92));
+    }, 400);
+    var hold = rnd(3000, 7000);
+    setTimeout(function(){
+      gaze.style.transition = 'transform 1.5s ease-in-out';
+      setLids(REST_U, REST_L);
+      setGaze(0, 0);
+      setPupil(1.0);
+    }, hold);
+    return hold + rnd(1000, 2000);
+  }
+
+  function doDoubleBlink(){
+    doFastBlink();
+    setTimeout(doFastBlink, rnd(300, 600));
+    return rnd(700, 1500);
+  }
+
+  function doPupilPulse(){
+    var dir = Math.random() > 0.5 ? rnd(0.86, 0.93) : rnd(0.86, 0.93);
+    setPupil(dir);
+    setTimeout(function(){ setPupil(1.0); }, rnd(3000, 6000));
+    return rnd(4000, 7000);
+  }
+
+  function doLongStare(){
+    setLids(REST_U, REST_L);
+    setTimeout(resumeTracking, 600);
+    return rnd(6000, 14000);
+  }
+
+  // ── WEIGHTED BEHAVIOR POOL ────────────────────────────────────────
+  var behaviors = [
+    {fn: doRest,             weight: 12},
+    {fn: doFastBlink,        weight: 8},
+    {fn: doSlowBlink,        weight: 5},
+    {fn: doContemptDroop,    weight: 8},
+    {fn: doScanLeft,         weight: 10},
+    {fn: doScanRight,        weight: 10},
+    {fn: doSuspiciousSquint, weight: 6},
+    {fn: doDoubleBlink,      weight: 3},
+    {fn: doPupilPulse,       weight: 4},
+    {fn: doLongStare,        weight: 5},
+  ];
+
+  var totalWeight = behaviors.reduce(function(s,b){ return s+b.weight; }, 0);
+
+  function pickBehavior(){
+    var r = Math.random() * totalWeight;
+    var cum = 0;
+    for(var i=0; i<behaviors.length; i++){
+      cum += behaviors[i].weight;
+      if(r <= cum) return behaviors[i].fn;
+    }
+    return behaviors[0].fn;
+  }
+
+  var lastBehavior = null;
+
+  function scheduleNext(){
+    var fn;
+    do { fn = pickBehavior(); } while(fn === lastBehavior);
+    lastBehavior = fn;
+    var delay = fn();
+    timer = setTimeout(scheduleNext, delay);
+  }
+
+  // ── FLOAT EYE — grabbed at init, used directly everywhere ───────
+  var fgaze, fulid, fllid;
+
+  // ── INIT ON DOM READY ─────────────────────────────────────────────
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
 </script>
 </body>
 </html>
