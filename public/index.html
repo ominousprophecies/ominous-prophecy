@@ -618,13 +618,13 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">FULFILLED · Bow Echo won impressively · 8/11 SP</div>
         </div>
       </div>
-      <div class="prophecy-card" onclick="openModal(13)">
-        <div class="card-meta"><span class="card-category cat-sport">Horse Racing</span><span class="card-date">Issued: June 12, 2026 · Resolves June 19</span></div>
+      <div class="prophecy-card oracle-fulfilled" onclick="openModal(13)">
+        <div class="card-meta"><span class="card-category cat-sport">Horse Racing ✓ FULFILLED</span><span class="card-date">Issued: June 12, 2026 · FULFILLED June 18</span></div>
         <div class="card-title">Scandinavia will win the 2026 Ascot Gold Cup — the staying crown passes to a new king</div>
         <div class="card-excerpt">"The marathon belongs not to the fastest but to the one who refuses to stop."</div>
         <div class="card-footer">
-          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>62%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:62%"></div></div></div>
-          <div class="card-votes">0 judgments · 11-8 favourite</div>
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>62% ✓</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:62%"></div></div></div>
+          <div class="card-votes">FULFILLED · Beat Trawlerman in the final strides · 11/8 favourite</div>
         </div>
       </div>
       <div class="prophecy-card oracle-failed" onclick="openModal(14)">
@@ -636,13 +636,15 @@ footer{position:relative;z-index:10;border-top:1px solid rgba(201,168,76,.1);pad
           <div class="card-votes">FAILED · Daryz finished 3rd</div>
         </div>
       </div>
-      <div class="prophecy-card" onclick="openModal(15)">
-        <div class="card-meta"><span class="card-category cat-sport">Horse Racing</span><span class="card-date">Issued: June 8, 2026 · Resolves June 21</span></div>
+      <div class="prophecy-card oracle-fulfilled" onclick="openModal(15)">
+        <div class="card-meta"><span class="card-category cat-sport">Horse Racing ✓ FULFILLED</span><span class="card-date">Issued: June 8, 2026 · FULFILLED June 18</span></div>
         <div class="card-title">Aidan O Brien will train at least two Group 1 winners at Royal Ascot 2026</div>
         <div class="card-excerpt">"The master of Ballydoyle sends his army to the royal meeting and the royal meeting yields to it."</div>
         <div class="card-footer">
-          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>72%</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:72%"></div></div></div>
-          <div class="card-votes">0 judgments · June 16-20</div>
+          <div class="probability-bar-wrap"><div class="prob-label"><span>Oracle Confidence</span><span>72% ✓</span></div><div class="probability-bar"><div class="probability-fill fill-med" style="width:72%"></div></div></div>
+          <div class="card-votes">FULFILLED · Scandinavia's Gold Cup win was O'Brien's 100th Royal Ascot winner</div>
+        </div>
+      </div>
         </div>
       </div>
 
@@ -1309,9 +1311,9 @@ const prophecies = [
   {title:"Alex Pereira will defeat Ciryl Gane for the interim UFC heavyweight title at UFC Freedom 250",category:"Sport",catClass:"cat-sport",excerpt:"The man who has conquered two weight classes looks upward.",analysis:"Gane checked trajectory path safely to claim tracking victory instead.",confidence:58,status:"failed"},
   {title:"Notable Speech will win the Queen Anne Stakes at Royal Ascot 2026",category:"Sport",catClass:"cat-sport",excerpt:"The one who speaks without noise arrives at the mile's end already crowned.",analysis:"Docklands (Harry Eustace / Mark Zahra) held on in a thrilling finish to claim the Queen Anne Stakes. Notable Speech, the 2/1 favourite, could not confirm Lockinge form at Royal Ascot. The oracle's confidence in the structural favourite was misplaced — a reminder that form can be course-specific.",confidence:68,status:"failed"},
   {title:"Bow Echo will win the St James's Palace Stakes at Royal Ascot 2026",category:"Sport",catClass:"cat-sport",excerpt:"The young king does not wait for permission.",analysis:"Bow Echo (G. Boughey / Billy Loughnane) took his unbeaten record to 5 with a highly impressive victory in the St James's Palace Stakes, confirming his status as the standout 3yo miler in Europe. The oracle's reading of his unbeaten profile and dominant Guineas form was fully vindicated.",confidence:70,status:"fulfilled"},
-  {title:"Scandinavia will win the 2026 Ascot Gold Cup — the staying crown passes to a new king",category:"Sport",catClass:"cat-sport",excerpt:"The marathon belongs not to the fastest but to the one who refuses to stop.",analysis:"Performance stamina looks clean across matching dynamic checks.",confidence:62},
+  {title:"Scandinavia will win the 2026 Ascot Gold Cup — the staying crown passes to a new king",category:"Sport",catClass:"cat-sport",excerpt:"The marathon belongs not to the fastest but to the one who refuses to stop.",analysis:"Scandinavia overhauled defending champion Trawlerman in the final strides of a thrilling Gold Cup, sent off the 11/8 favourite under Ryan Moore. The oracle's stamina projection held true across the full two and a half miles.",confidence:62,status:"fulfilled"},
   {title:"Daryz will win the Prince of Wales's Stakes at Royal Ascot 2026 and confirm Arc class at the highest level",category:"Sport",catClass:"cat-sport",excerpt:"What France crowns, Ascot cannot deny.",analysis:"Daryz finished 3rd in the Prince of Wales's Stakes. Arc form did not translate to the demands of a strongly-run 10-furlong Royal Ascot contest. The oracle overweighted championship pedigree and underweighted fitness and race-day conditions.",confidence:65,status:"failed"},
-  {title:"Aidan O Brien will train at least two Group 1 winners at Royal Ascot 2026",category:"Sport",catClass:"cat-sport",excerpt:"The master of Ballydoyle sends his army to the royal meeting.",analysis:"Deep training bench ensures high projection accuracy constants.",confidence:72},
+  {title:"Aidan O Brien will train at least two Group 1 winners at Royal Ascot 2026",category:"Sport",catClass:"cat-sport",excerpt:"The master of Ballydoyle sends his army to the royal meeting.",analysis:"O'Brien's army delivered far beyond the floor of two: Great Barrier Reef (Coventry Stakes), Mission Central (King Charles III Stakes), Victorious (Queen Mary Stakes), Bow Echo (St James's Palace Stakes), and Scandinavia's Gold Cup victory — the latter standing as his landmark 100th Royal Ascot winner, a record no other trainer has reached.",confidence:72,status:"fulfilled"},
   {title:"Scottie Scheffler will fail to complete the career grand slam at the 2026 US Open at Shinnecock Hills",category:"Sport",catClass:"cat-sport",excerpt:"Shinnecock does not yield to pressure — it creates it.",analysis:"Historical difficulty indicators constrain baseline performance limits.",confidence:82},
   {title:"The 2026 US Open at Shinnecock Hills will be won by a first-time major champion",category:"Sport",catClass:"cat-sport",excerpt:"The oldest examination in American golf produces a new name.",analysis:"Dynamic trending charts support dark horse distribution models.",confidence:64},
   {title:"The 2026 US Open winning score at Shinnecock Hills will be over par",category:"Sport",catClass:"cat-sport",excerpt:"The course that humbled the greatest players asks for survival.",analysis:"Wind vectors and core layout conditions suppress safe under-par pathways.",confidence:74},
